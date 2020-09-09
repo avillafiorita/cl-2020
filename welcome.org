@@ -1,0 +1,38 @@
+#+TITLE: Mathematical Logics - Welcome
+#+AUTHOR: 
+#+DATE: <2020-08-30 Sun>
+#+STARTUP: showall
+#+INCLUDE: _sidenav.org
+
+* Welcome!
+
+Welcome to the homepage of the Fall 2020 Edition of Mathematical Logics,
+course of the Computer Science degree at the University of Trento.
+
+This edition is taught by:
+
+- Fausto Giunchiglia
+- Adolfo Villafiorita
+
+Here you can find the following information:
+
+- [[file:instructions.org][Instructions]]
+- [[file:calendar.org][Calendar and Schedule]]
+- [[file:syllabus.org][Syllabus]]
+- [[file:material.org][Material]]
+- [[file:resources.org][Resources]]
+- [[file:exam.org][Examination and Grading]]
+- [[file:q-and-a.org][Questions and Answers]]
+- [[file:contacts.org][Contacts]]
+
+#+BEGIN_NOTES
+This website is built with Emacs Org Mode.  You can clone the sources
+of this repository at any time to get a local copy on your computer,
+which you can then build and run on your computer.
+#+END_NOTES
+
+* News
+
+No news is good news.
+
+

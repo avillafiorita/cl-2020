@@ -1,0 +1,34 @@
+#+TITLE: Contacts
+#+AUTHOR: 
+#+DATE: <2020-08-30 Sun>
+#+STARTUP: showall
+#+INCLUDE: _sidenav.org
+
+If you have a question or a doubt about the content of the course,
+please consult the [[file:instructions.org][Instructions]] first and open an issue on GitHub.
+
+For any other matter, you can drop an email:
+
+**Fausto Giunchiglia**
+
+#+BEGIN_EXPORT html
+        <script language="javascript">
+         var n = "fausto"
+         var s = "giunchiglia"
+         var d = "unitn.it"
+         document.write('<a href="mailto:' + n + '.' + s +'@' + d + '">' + n + ' DOT ' + s + ' AT ' + d + '</a>');
+        </script>
+#+END_EXPORT
+
+**Adolfo Villafiorita**
+
+#+BEGIN_EXPORT html
+        <script language="javascript">
+         var n = "adolfo"
+         var s = "villafiorita"
+         var d = "ict4g.net"
+         document.write('<a href="mailto:' + n + '.' + s +'@' + d + '">' + n + ' DOT ' + s + ' AT ' + d + '</a>');
+        </script>
+#+END_EXPORT
+
+

@@ -1,0 +1,8 @@
+#+TITLE: Resources
+#+AUTHOR: 
+#+DATE: <2020-08-30 Sun>
+#+STARTUP: showall
+#+INCLUDE: _sidenav.org
+
+
+

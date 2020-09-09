@@ -1,0 +1,48 @@
+#+TITLE: Instructions
+#+DATE: <2020-08-31 Mon>
+#+INCLUDE: _sidenav.org
+
+The Fall 2020 Edition of Mathematical Logics is delivered using the
+Flipped Classroom methodology[fn:1], which requires a bit more work on
+your side during the course (and also on our side), but should yield
+considerably better results.
+
+In synthesis...
+
+**Before the lesson:**
+
+- Watch videos and read the material which will be discussed during
+  the next lesson in person. If in doubt, consult the [[file:calendar.org][Calendar]] for the
+  current assignment.
+- Post your question and doubts by opening issues on the GitHub
+  repository where this website is hosted, **before the lesson**.  To
+  avoid useless work on both sides, make sure you **check the open
+  issues before posting a new question**.  Note that you might need to
+  register on GitHub, if you don't have an account.
+
+**During the lesson:**
+
+- The lesson is dedicated to answering questions and solving doubts
+  and issues.  The issues are then used to enrich the material on this
+  website (including the [[file:q-and-a.org][Q&A]] page) and closed on GitHub.
+
+**After the lesson:**
+
+- We update the website with the answers to the questions and other
+  material to help clarify the difficult parts.
+
+Among the advantages:
+
+- Students who can take the course are less likely to lose touch with
+  the subject
+- Students who cannot take the course have the possibility of
+  consulting the same material other students have
+- We all benefit from the fact that the doubts recurring most often
+  find answers recorded in the website.
+
+In order to favor interaction during the course we will grant
+additional scoring to the students making the most interesting
+question.  See [[file:exam.org][Examination and Grading]] for more details.
+
+
+[fn:1] https://en.wikipedia.org/wiki/Flipped_classroom

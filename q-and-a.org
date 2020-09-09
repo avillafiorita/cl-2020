@@ -1,0 +1,6 @@
+#+TITLE: Questions and Answers
+#+DATE: <2020-08-31 Mon>
+#+INCLUDE: _sidenav.org
+
+#+ATTR_HTML: :width 400px
+[[file:assets/images/the_far_side-more-wrongs.png]]

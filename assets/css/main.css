@@ -1,0 +1,105 @@
+.unitn-logo {
+  width: 50%;
+  margin-top: 10rem;
+  text-align: right;
+  border-right: 1px solid #DEDEDE;
+  float: left;
+}
+
+.course-title {
+  margin-top: 10rem;
+  float: right;
+  width: 48%;
+}
+
+.btn {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 0.5rem 0.8rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  font-family: sans;
+}
+
+body {
+    font-family: 'PT Serif', serif;
+    font-size: 16px;
+    line-height: 180%;     
+    align: center;
+    background: #FEFEFE;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'PT Sans', sans;
+}
+
+a {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: white;
+    background: #4CAF50;
+    p
+}
+
+#postamble {
+    margin-top: 2rem;
+    border-top: 1px solid #DEDEDE;
+    font-size: smaller;
+    line-height: 1.3rem;
+    padding-top: 0.6rem;
+}
+
+#postamble p {
+    margin: 0px auto 0px auto;
+}
+
+/* SIDENAV */
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 24px;
+  text-decoration: none;
+  font-family: sans;
+  font-size: 0.8rem;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 2px;
+  font-size: 2rem;
+  padding: 4px;
+}
+
+#content {
+  transition: margin-left .5s;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}

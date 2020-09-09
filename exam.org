@@ -1,0 +1,13 @@
+#+TITLE: Examination and Grading
+#+DATE: <2020-08-31 Mon>
+#+INCLUDE: _sidenav.org
+
+The Examination consists of two midterms **or** a final written exam (no
+interview).
+
+#+BEGIN_NOTES
+**IMPORTANT:** You must register to ESSE3 in order to take part to the written
+exam. The registration (mandatory) concludes the exam. Those passing with
+midterms need to register tothe first standard session (see below).
+#+END_NOTES
+

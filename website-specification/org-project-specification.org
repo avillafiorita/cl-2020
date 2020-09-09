@@ -1,0 +1,221 @@
+#+TITLE: Org Mode Project Specification
+#+AUTHOR: Adolfo Villafiorita
+#+DATE: <2020-08-27 Thu>
+#+STARTUP: showall
+
+* Introduction
+
+This page contains the specification to build this website using Org Mode.
+You might want to look and set some of the variables in the [[Configuration][Configuration]]
+section.
+
+It can be found here:
+
+#+NAME: pwd
+#+BEGIN_SRC shell :results output
+pwd
+#+END_SRC
+
+#+RESULTS: pwd
+: /home/adolfo/Sites/ml-2020/website-specification
+
+To load this configuration, either =M-x org-babel-execute-buffer= this
+buffer or put in your Emacs initialization file (=.emacs.el=):
+
+#+BEGIN_EXAMPLE emacs-lisp
+(setq project-location (expand-file-name "~/Sites/home/site-building/org-project-specification.org"))
+
+(if (file-exists-p project-location)
+    (org-babel-load-file project-location)
+  (message "Warning! project specification (%s) not found (check init.el)" project-location))
+#+END_EXAMPLE
+
+* Project Specification
+
+** Configuration
+
+The project name is:
+
+#+BEGIN_SRC emacs-lisp :results silent
+  (setq website-name "ml-2020")
+#+END_SRC
+
+On which port do we run it when previewing locally?
+
+#+BEGIN_SRC emacs-lisp :results silent
+  (setq website-preview-port 4701)
+#+END_SRC
+
+Where are the sources and where do we save resulting HTML files?
+
+#+BEGIN_SRC emacs-lisp :results silent
+  (setq website-sources (expand-file-name "~/Sites/ml-2020"))
+  (setq slash (if (equal (substring website-sources -2 -1) "/") "" "/"))
+  (setq website-dest (concat website-sources slash "_site"))
+#+END_SRC
+
+Where do we deploy the generated HTML?  
+
+Set to =nil= if no remote deployment is necessary (in which case the
+website will be available in the =website-dest= directory):
+
+#+BEGIN_SRC emacs-lisp :results silent
+  (setq website-deploy "adolfo@ict4g.net:/srv/http/datascientia_education/ml-2020")
+#+END_SRC
+
+** Project Specification
+
+HTML websites projects:
+
+#+BEGIN_SRC emacs-lisp :results silent
+  (setq content (concat website-name "-content"))
+  (setq assets (concat website-name "-assets"))
+
+  (setq project-specification
+        `((,website-name
+           :components (,content ,assets))
+
+          (,content
+           :base-directory ,website-sources
+           :publishing-directory ,website-dest
+           :publishing-function org-html-publish-to-html
+           :base-extension "org"
+           :exclude "\\(.git\\|_site\\|^_.*\\|.*~\\)"
+           :recursive t
+
+           :html-doctype "html5"
+           :section-numbers nil
+           :with-toc nil
+           :with-broken-links nil
+           :html-head-include-default-style nil
+           :html-head-include-scripts nil
+
+           :html-head "<link rel=\"stylesheet\" href=\"assets/css/main.css\">"
+           :html-postamble "<p class=\"date\">Last modification: %C</p>
+<p class=\"date\">Created on: %d</p>"
+           )
+
+          (,assets
+           :base-directory ,website-sources
+           :publishing-directory ,website-dest
+           :publishing-function org-publish-attachment
+           :base-extension "woff\\|ttf\\|txt\\|css\\|js\\|png\\|svg\\|jpg\\|gif\\|xml\\|atom\\|gz"
+           :exclude "\\(.git\\|_site\\|^_.*\\|.*~\\)"
+           :recursive t
+           )
+           ))
+#+END_SRC
+
+Remove the project specification, if already present, so that we can
+modify and re-evaluate this page:
+
+#+BEGIN_SRC emacs-lisp :results silent
+  (let ( (components (mapcar (lambda (x) (car x)) project-specification)) )
+    (mapcar 
+       (lambda (x) (setq org-publish-project-alist (assoc-delete-all x org-publish-project-alist)))
+       components))
+#+END_SRC
+
+Add the project specification to the list of Org Mode projects:
+
+#+BEGIN_SRC emacs-lisp :results silent
+  (setq org-publish-project-alist (append project-specification org-publish-project-alist))
+#+END_SRC
+
+* Project Specification Association List
+
+Previewing and deploying are managed with emacs-lisp functions which
+allows to select the project to preview or publish.
+
+The following code builds an association list with all the information
+required to preview and publish a website, namely:
+
+#+BEGIN_EXAMPLE emacs-lisp
+    ( project-name (:port project-port :dir project-dir :deploy-cmd deploy-cmd ))
+#+END_EXAMPLE
+
+#+BEGIN_SRC emacs-lisp :results silent
+  (if (not (boundp (quote website-spec-alist)))
+    (setq website-spec-alist nil))
+
+  (setq website-spec-alist
+        (cons (cons website-name `(:port ,website-preview-port :dir ,website-dest :deploy-dir ,website-deploy))
+              website-spec-alist))
+#+END_SRC
+
+* Previewing
+
+Define two functions which start and stop a webserver to serve a
+website, whose specification is stored in =website-spec-alist=.
+The [[https://github.com/nicferrier/elnode/blob/master/elnode_tutorial.creole][elnode tutorial]] provides the example code for starting and
+stopping the server.
+
+#+BEGIN_NOTES
+These functions can be safely moved to the Emacs initialization file,
+especially when there is more than one project:
+#+END_NOTES
+
+#+BEGIN_SRC emacs-lisp  :results silent
+  (require 'elnode nil t)
+
+  (defun website-server-start ()
+    (interactive)
+    (let* ( (webserver (completing-read "Website to start previewing: " (mapcar (lambda (x) (car x)) website-spec-alist)))
+            (port (plist-get (cdr (assoc webserver website-spec-alist)) :port))
+            (dir (plist-get (cdr (assoc webserver website-spec-alist)) :dir)) )
+      (progn
+        (elnode-start 
+         (elnode-webserver-handler-maker dir)
+         :port port 
+         :host "localhost")
+        (message "Started serving directory %s on port %s" dir port))))
+
+  (defun website-server-stop ()
+    (interactive)
+    (let* ( (webserver (completing-read "Website to stop previewing: " (mapcar (lambda (x) (car x)) website-spec-alist)))
+            (port (plist-get (cdr (assoc webserver website-spec-alist)) :port)) )
+         (elnode-stop port)))
+#+END_SRC
+
+* Deploying
+
+Define a function which invokes the deploy command for the project.
+All project specifications are stored in =website-spec-alist=.
+
+The code for deploying has been taken from:
+https://stackoverflow.com/questions/1453956/which-shell-command-in-emacs-lisp.
+A more structured solution probably uses =call-process=, but I did not
+want to have to manage shell expansions.
+
+#+BEGIN_NOTES
+This function can be safely moved to the Emacs initialization file,
+especially when there is more than one project:
+#+END_NOTES
+
+
+#+BEGIN_SRC emacs-lisp :results silent
+  (defun website-deploy ()
+    (interactive)
+    (let* ( (webserver (completing-read "Website to deploy: " (mapcar (lambda (x) (car x)) website-spec-alist)))
+            (local-dir (plist-get (cdr (assoc webserver website-spec-alist)) :dir))
+            (deploy-dir (plist-get (cdr (assoc webserver website-spec-alist)) :deploy-dir)) )
+      (if deploy-dir
+          (start-process "process-name"
+                         (get-buffer-create (concat "*rsync-buffer for " webserver "*"))
+                         "/usr/bin/rsync"
+                         "-crvz"
+                         "--exclude=*~"
+                         "--exclude=.git"
+                         "--exclude=_*"
+                         "--delete"
+                         "--delete-excluded"
+                         local-dir
+                         deploy-dir)
+        (message "No deployment command specified for %s" webserver))))
+#+END_SRC
+
+* Local Variables                                                  :noexport:
+
+# Local Variables:
+# org-confirm-babel-evaluate: nil
+# End:

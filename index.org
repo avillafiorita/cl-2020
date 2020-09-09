@@ -1,0 +1,33 @@
+#+TITLE: Mathematical Logics
+#+AUTHOR: Fausto Giunchiglia and Adolfo Villafiorita
+#+DATE: <2020-08-30 Sun>
+#+STARTUP: showall
+
+#+BEGIN_EXPORT html
+<div class="unitn-logo">
+  <img src="./assets/images/newlogo_unitn_en.png">
+</div>
+<div class="course-title">
+  <h1 class="hero-title">Mathematical Logics</h1>
+  <h2 class="hero-subtitle">
+     Computer Science <br />
+     Fall 2020 Edition
+  </h2>
+  <a href="welcome.html" class="btn">Welcome!</a>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(event) { 
+  title = document.querySelector(".title");
+  title.style.display = 'none'
+
+  postamble = document.querySelector("#postamble");
+  postamble.style.display = 'none'
+})
+
+</script>
+
+#+END_EXPORT
+
+
+

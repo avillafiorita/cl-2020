@@ -1,0 +1,59 @@
+#+TITLE: Syllabus
+#+AUTHOR: 
+#+DATE: <2020-08-30 Sun>
+#+STARTUP: showall
+#+INCLUDE: _sidenav.org
+
+* Course Objectives and Outcomes
+
+The goal of this course is to provide motivations, definitions and techinques
+in support of the usefulness of logic in the effective and efficient modeling
+of data and knowledge. The course will have succeeded if it stimulates the
+interested students to continue their career with higher interest into
+logic-based models for data and knowledge representation in their own field of
+expertise, and to produce computer-processable solutions of relevant problems.
+
+* General Description
+
+The use of logic in computer science is very well-documented. The exponential
+increase of literature on every area of computer science has forced both
+definition and use of logical formalisms for knowledge representation and
+reasoning into greater complexity, and this complexity has in turn
+necessitated a deeper study of the principles by which logical models may be
+constucted. It has become more and more apparent, say since the 1989' First
+International Conference on the Principles of Knowledge Representation and
+Reasoning (KR-89), that knowledge representation models and reasoning models
+are only different views of the same common problem.
+
+Different logic-based approaches to data and knowledge representation and
+reasoning are beginning to converge. It seems therefore useful to try to
+accelerate this process by trying to provide a survey, as uniform as possible
+presentation of the whole problem of logic-based modeling of data and
+knowlege, treating the subject on general theoretical lines, yet filled in
+with practical examples from real-world scenarios, problems and applications,
+with a particular attention paid to the borderlines and inter-relationships
+among all logics presented.
+
+There is as yet no unified theory of logic-based models for data and knowledge
+representation, and a good deal of practical systems and working devices are
+not logic-based in their design foundation and unsullied by any logical
+model. There is nevertheless a real need for the subject to be looked at as a
+whole.
+
+* Basic Reading
+
+There is no basic or mandatory written reference for this course. A list of
+suggested readings (e.g. chapters in advanced/reference textbooks and
+collections, and research papers) will be available as the course
+proceeds. Any textbook on mathematical logic. (In our Library there are many,
+just do your choice. We will be happy to know what is your favourite!) Some
+suggestions follow.
+
+- A booklet with exercises spanning different logic languages
+- E. Mendelson: "Introduction to Mathematical Logic - Third edition",
+  Wadsworth Inc., Belmont, CA, 1987.
+- M. Huth and M. Ryan, "Logic in Computer Science", Cambridge University
+  Press, 2004.
+- F. Baader, D. Calvanese, D.L. McGuinness, D. Nardi and P.F. Patel-Schneider,
+  "Handbook of Description Logics", Cambridge University Press, Cambridge,
+  UK, 2002.
