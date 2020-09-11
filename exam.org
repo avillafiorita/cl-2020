@@ -5,6 +5,13 @@
 The Examination consists of two midterms **or** a final written exam (no
 interview).
 
+When taking the midterms, the final score is the average of the scores
+gotten in each midterm.
+
+The maximum score for the midterms and the written exam is higher than
+30, allowing to obtain the maximum score even in presence of minor
+mistakes.
+
 #+BEGIN_NOTES
 **IMPORTANT:** You must register to ESSE3 in order to take part to the written
 exam. The registration (mandatory) concludes the exam. Those passing with

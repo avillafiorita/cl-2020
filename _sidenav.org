@@ -4,11 +4,10 @@
 
 - [[file:index.html][Home]]
 - [[file:welcome.html][Welcome Page]]
+- [[file:news.html][News]]
 - [[file:instructions.org][Instructions]]
-- [[file:calendar.org][Calendar and Schedule]]
+- [[file:calendar.org][Calendar and Material]]
 - [[file:syllabus.org][Syllabus]]
-- [[file:material.org][Material]]
-- [[file:resources.org][Resources]]
 - [[file:exam.org][Examination and Grading]]
 - [[file:q-and-a.org][Questions and Answers]]
 - [[file:contacts.org][Contacts]]

@@ -6,7 +6,7 @@
 (setq slash (if (equal (substring website-sources -2 -1) "/") "" "/"))
 (setq website-dest (concat website-sources slash "_site"))
 
-(setq website-deploy "adolfo@ict4g.net:/srv/http/ict4g_net/ml-2020")
+(setq website-deploy "adolfo@ict4g.net:/srv/http/datascientia_education/ml-2020")
 
 (setq content (concat website-name "-content"))
   (setq assets (concat website-name "-assets"))

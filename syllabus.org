@@ -40,20 +40,26 @@ not logic-based in their design foundation and unsullied by any logical
 model. There is nevertheless a real need for the subject to be looked at as a
 whole.
 
-* Basic Reading
+* Suggested Readings
 
-There is no basic or mandatory written reference for this course. A list of
-suggested readings (e.g. chapters in advanced/reference textbooks and
-collections, and research papers) will be available as the course
-proceeds. Any textbook on mathematical logic. (In our Library there are many,
-just do your choice. We will be happy to know what is your favourite!) Some
-suggestions follow.
+Basic (mainly about PL e FOL)
 
-- A booklet with exercises spanning different logic languages
-- E. Mendelson: "Introduction to Mathematical Logic - Third edition",
-  Wadsworth Inc., Belmont, CA, 1987.
-- M. Huth and M. Ryan, "Logic in Computer Science", Cambridge University
-  Press, 2004.
-- F. Baader, D. Calvanese, D.L. McGuinness, D. Nardi and P.F. Patel-Schneider,
-  "Handbook of Description Logics", Cambridge University Press, Cambridge,
-  UK, 2002.
+- A. C. Varzi, J. Nolt, D. Rohatyn, “Logica”, McGraw-Hill Education, 2007
+- F. Berto, Logica da zero a Gödel, Laterza, 2008
+
+Mainly about ML
+
+- H. van Ditmarsch (et al.), “Handbook of Epistemic Logic”, College
+  Publications, 2015
+- D. Palladino, C. Palladino, “Logiche non classiche”, Carocci
+  editore, 2007
+
+Mainly about DL
+
+- F. Baader, D. Calvanese, D.L. McGuinness, D. Nardi and
+  P.F. Patel-Schneider, “Handbook of Description Logics”, Cambridge
+  University Press, Cambridge, UK, 2002
+
+* Teachers
+
+#+INCLUDE: _teachers.org

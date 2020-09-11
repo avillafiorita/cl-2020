@@ -2,7 +2,7 @@
 #+DATE: <2020-08-31 Mon>
 #+INCLUDE: _sidenav.org
 
-The Fall 2020 Edition of Mathematical Logics is delivered using the
+The Fall 2020 Edition of Computational Logic is delivered using the
 Flipped Classroom methodology[fn:1], which requires a bit more work on
 your side during the course (and also on our side), but should yield
 considerably better results.
@@ -14,11 +14,11 @@ In synthesis...
 - Watch videos and read the material which will be discussed during
   the next lesson in person. If in doubt, consult the [[file:calendar.org][Calendar]] for the
   current assignment.
-- Post your question and doubts by opening issues on the GitHub
-  repository where this website is hosted, **before the lesson**.  To
-  avoid useless work on both sides, make sure you **check the open
-  issues before posting a new question**.  Note that you might need to
-  register on GitHub, if you don't have an account.
+- Post your question and doubts by opening issues on the [[https://github.com/avillafiorita/cl-2020][cl-2020
+  repository]] on Github, where this website is hosted, **before the
+  lesson**.  To avoid useless work on both sides, make sure you
+  **check the open issues before posting a new question**.  Note that
+  you might need to register on GitHub, if you don't have an account.
 
 **During the lesson:**
 
@@ -28,21 +28,20 @@ In synthesis...
 
 **After the lesson:**
 
-- We update the website with the answers to the questions and other
-  material to help clarify the difficult parts.
+- We close the issues which have been answered, we update the website
+  with the answers to the questions and other material, to help
+  clarify the difficult parts.
 
 Among the advantages:
 
 - Students who can take the course are less likely to lose touch with
   the subject
-- Students who cannot take the course have the possibility of
+- Students who cannot attend the course have the possibility of
   consulting the same material other students have
 - We all benefit from the fact that the doubts recurring most often
-  find answers recorded in the website.
+  find answers which are reported on the website.
 
-In order to favor interaction during the course we will grant
-additional scoring to the students making the most interesting
-question.  See [[file:exam.org][Examination and Grading]] for more details.
-
+In order to favor interaction from everyone we might impose limits and
+select the questions we answer.
 
 [fn:1] https://en.wikipedia.org/wiki/Flipped_classroom

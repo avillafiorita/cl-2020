@@ -1,4 +1,4 @@
-- navbar
-- scheduleand calendar
-- a bit of styles
+- fixed navbar
+- schedule and calendar (check fausto poi deploy)
+- material and videos
 - publish

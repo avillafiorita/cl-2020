@@ -17,7 +17,7 @@ pwd
 #+END_SRC
 
 #+RESULTS: pwd
-: /home/adolfo/Sites/ml-2020/website-specification
+: /home/adolfo/Sites/cl-2020/website-specification
 
 To load this configuration, either =M-x org-babel-execute-buffer= this
 buffer or put in your Emacs initialization file (=.emacs.el=):
@@ -37,7 +37,7 @@ buffer or put in your Emacs initialization file (=.emacs.el=):
 The project name is:
 
 #+BEGIN_SRC emacs-lisp :results silent
-  (setq website-name "ml-2020")
+  (setq website-name "cl-2020")
 #+END_SRC
 
 On which port do we run it when previewing locally?
@@ -49,7 +49,7 @@ On which port do we run it when previewing locally?
 Where are the sources and where do we save resulting HTML files?
 
 #+BEGIN_SRC emacs-lisp :results silent
-  (setq website-sources (expand-file-name "~/Sites/ml-2020"))
+  (setq website-sources (expand-file-name "~/Sites/cl-2020"))
   (setq slash (if (equal (substring website-sources -2 -1) "/") "" "/"))
   (setq website-dest (concat website-sources slash "_site"))
 #+END_SRC
@@ -60,7 +60,7 @@ Set to =nil= if no remote deployment is necessary (in which case the
 website will be available in the =website-dest= directory):
 
 #+BEGIN_SRC emacs-lisp :results silent
-  (setq website-deploy "adolfo@ict4g.net:/srv/http/datascientia_education/ml-2020")
+  (setq website-deploy "adolfo@ict4g.net:/srv/http/datascientia_education/cl-2020")
 #+END_SRC
 
 ** Project Specification

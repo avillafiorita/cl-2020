@@ -1,4 +1,4 @@
-#+TITLE: Mathematical Logics
+#+TITLE: Computational Logic
 #+AUTHOR: Fausto Giunchiglia and Adolfo Villafiorita
 #+DATE: <2020-08-30 Sun>
 #+STARTUP: showall
@@ -8,7 +8,7 @@
   <img src="./assets/images/newlogo_unitn_en.png">
 </div>
 <div class="course-title">
-  <h1 class="hero-title">Mathematical Logics</h1>
+  <h1 class="hero-title">Computational Logic</h1>
   <h2 class="hero-subtitle">
      Computer Science <br />
      Fall 2020 Edition

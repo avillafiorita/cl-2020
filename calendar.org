@@ -3,3 +3,885 @@
 #+DATE: <2020-08-30 Sun>
 #+STARTUP: showall
 #+INCLUDE: _sidenav.org
+
+The course runs from Sep, 14, 2020 till Dec 15, 2020 is organized as follows:
+
+- 1 slot dedicated to discussing the organization of the course and
+  presenting an example video
+- 22 slots dedicated to discussing the content of the course (Q&A
+  sessions)
+- 2 slots dedicated to the midterms
+
+Live meetings are on:
+
+- Mondays, 14:30-16:00
+- Tuesdays, 9:00-10:30
+
+The following table recaps the structure of assignments and slots.
+The data represents the truth for dates before the publication date of
+this website and a projections for future dates:
+
+#+begin_src ruby :exports none :results silent
+require 'csv'
+files = Dir.glob "/home/adolfo/Slides/*.ppt*"
+header = [ ["basename", "topic_no", "subtopic_no", "topic", "subtopic"] ]
+content = files.map { |x| m = /L([0-9]+)\.T([0-9]+)\.([^\.]+)\.([^\.]+)/.match(x); [ File.basename(x), m[1].to_i, m[2].to_i, m[3], m[4] ] }
+array = header + content
+
+CSV.open("a.csv", "wb") do |csv|
+  array.each do |row|
+    csv << row
+  end
+end
+#+end_src
+
+#+begin_src ruby :exports results :results html output
+def content_to_string content
+  m = /([0-9]+),([0-9]+)/.match content
+  if m
+     "Q&A on lesson #{m[1]} and lesson #{m[2]}."
+  else
+     content
+  end
+end
+
+def link_if file, name
+  File.exists?(file) ? "<a href=\"./material/#{x}-small.mp4\">#{name}</a>" : name
+end
+
+def content_to_material content, material, extension=".pdf"
+  m = /([0-9]+),([0-9]+)/.match content
+  if m
+    mat = material.select { |x| x["topic_no"] == m[1] or x["topic_no"] == m[2] }.map { |x| x["basename"] }
+    mat.map { |x|
+      video = "./material/#{x}-small.mp4";
+      pdf   = "./material/#{x}.pdf";
+      "#{x} (#{link_if(video, "VIDEO")}) (#{link_if(pdf, "PDF")})"
+    }.join("<br/>\n")
+  else
+     ""
+  end
+end
+
+template = <<EOS
+<table class="calendar">
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>Date</th>
+      <th>Starts at</th>
+      <th>Material to prepare</th>
+      <th>Content of lesson</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% content.each do |slot| %>
+    <tr>
+    <td class="week"><%= slot["week"] %></td>
+    <td class="date"><%= DateTime.parse(slot["date"]).strftime("%a, %d/%b/%Y") %></td>
+    <td class="time"><%= DateTime.parse(slot["date"]).strftime("%H:%M") %></td>
+    <td class="material">
+      <%= content_to_material slot["content"], material, "-small.mp4" %>
+    </td>
+    <td class="content">
+      <%= content_to_string slot["content"] %>
+    </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+EOS
+
+  require 'csv'
+  require 'erb'
+
+  content = CSV::read "_data/programma.csv", headers: true, col_sep: ","
+  material = CSV::read "_data/material.csv", headers: true, col_sep: ","
+
+  renderer = ERB.new(template, nil, "-")
+  output = renderer.result(binding)
+
+  puts output
+#+end_src
+
+#+RESULTS:
+#+begin_export html
+<table class="calendar">
+  <thead>
+    <tr>
+      <th>Week</th>
+      <th>Date</th>
+      <th>Starts at</th>
+      <th>Material to prepare</th>
+      <th>Content of lesson</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+    <td class="week">1</td>
+    <td class="date">Mon, 14/Sep/2020</td>
+    <td class="time">14:30</td>
+    <td class="material">
+      
+    </td>
+    <td class="content">
+      Rules, Resources
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">1</td>
+    <td class="date">Tue, 15/Sep/2020</td>
+    <td class="time">09:00</td>
+    <td class="material">
+      
+    </td>
+    <td class="content">
+      
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">2</td>
+    <td class="date">Mon, 21/Sep/2020</td>
+    <td class="time">14:30</td>
+    <td class="material">
+      L01.T11.Introduction.Modeling.pptx
+       (VIDEO)
+       (PDF)<br/>
+L02.T12.Introduction.Language.pptx
+       (VIDEO)
+       (PDF)<br/>
+L02.T13.Introduction.LogicalModeling.pptx
+       (VIDEO)
+       (PDF)<br/>
+L02.T14.Introduction.WhyLogic.pptx
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 1 and lesson 2.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">2</td>
+    <td class="date">Tue, 22/Sep/2020</td>
+    <td class="time">09:00</td>
+    <td class="material">
+      L01.T11.Introduction.Modeling.pptx
+       (VIDEO)
+       (PDF)<br/>
+L02.T12.Introduction.Language.pptx
+       (VIDEO)
+       (PDF)<br/>
+L02.T13.Introduction.LogicalModeling.pptx
+       (VIDEO)
+       (PDF)<br/>
+L02.T14.Introduction.WhyLogic.pptx
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 1 and lesson 2.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">3</td>
+    <td class="date">Mon, 28/Sep/2020</td>
+    <td class="time">14:30</td>
+    <td class="material">
+      L03.T21.SetTheory.Introduction.pptx
+       (VIDEO)
+       (PDF)<br/>
+L03.T22.SetTheory.BasicNotions.pptx
+       (VIDEO)
+       (PDF)<br/>
+L03.T23.SetTheory.Relations.pptx
+       (VIDEO)
+       (PDF)<br/>
+L03.T24.SetTheory.Functions.pptx
+       (VIDEO)
+       (PDF)<br/>
+L03.T25.SetTheory.Exercises.pptx
+       (VIDEO)
+       (PDF)<br/>
+L03.T31.PL.Intuition.pptx
+       (VIDEO)
+       (PDF)<br/>
+L03.T32.PL.Language.pptx
+       (VIDEO)
+       (PDF)<br/>
+L04.T33.PL.Satisfiability.pptx
+       (VIDEO)
+       (PDF)<br/>
+L04.T34.PL.Validility.Unsat.pptx
+       (VIDEO)
+       (PDF)<br/>
+L04.T35.PL.LogCons.Equiv.pptx
+       (VIDEO)
+       (PDF)<br/>
+L04.T36.PL.theories.pptx
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 3 and lesson 4.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">3</td>
+    <td class="date">Tue, 29/Sep/2020</td>
+    <td class="time">09:00</td>
+    <td class="material">
+      L03.T21.SetTheory.Introduction.pptx
+       (VIDEO)
+       (PDF)<br/>
+L03.T22.SetTheory.BasicNotions.pptx
+       (VIDEO)
+       (PDF)<br/>
+L03.T23.SetTheory.Relations.pptx
+       (VIDEO)
+       (PDF)<br/>
+L03.T24.SetTheory.Functions.pptx
+       (VIDEO)
+       (PDF)<br/>
+L03.T25.SetTheory.Exercises.pptx
+       (VIDEO)
+       (PDF)<br/>
+L03.T31.PL.Intuition.pptx
+       (VIDEO)
+       (PDF)<br/>
+L03.T32.PL.Language.pptx
+       (VIDEO)
+       (PDF)<br/>
+L04.T33.PL.Satisfiability.pptx
+       (VIDEO)
+       (PDF)<br/>
+L04.T34.PL.Validility.Unsat.pptx
+       (VIDEO)
+       (PDF)<br/>
+L04.T35.PL.LogCons.Equiv.pptx
+       (VIDEO)
+       (PDF)<br/>
+L04.T36.PL.theories.pptx
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 3 and lesson 4.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">4</td>
+    <td class="date">Mon, 05/Oct/2020</td>
+    <td class="time">14:30</td>
+    <td class="material">
+      L05.T41.PL.Reasoning.TruthTables.Summary.pptx
+       (VIDEO)
+       (PDF)<br/>
+L05.T42.PL.Reasoning.TruthTables.DecisionProblems.pptx
+       (VIDEO)
+       (PDF)<br/>
+L05.T43.PL.Reasoning.TruthTables.SATCNF.pptx
+       (VIDEO)
+       (PDF)<br/>
+L05.T44.PL.Reasoning.TruthTables.SATDPLL - Copia.pptx
+       (VIDEO)
+       (PDF)<br/>
+L05.T45.PL.Reasoning.TruthTables.MiniSat.pptx
+       (VIDEO)
+       (PDF)<br/>
+L06.T51.PL.Reasoning.Deduction.pptx
+       (VIDEO)
+       (PDF)<br/>
+L06.T52.PL.Reasoning.Hilbert.calculus.pptx
+       (VIDEO)
+       (PDF)<br/>
+L06.T53.PL.Reasoning.Tableau.pptx
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 5 and lesson 6.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">4</td>
+    <td class="date">Tue, 06/Oct/2020</td>
+    <td class="time">09:00</td>
+    <td class="material">
+      L05.T41.PL.Reasoning.TruthTables.Summary.pptx
+       (VIDEO)
+       (PDF)<br/>
+L05.T42.PL.Reasoning.TruthTables.DecisionProblems.pptx
+       (VIDEO)
+       (PDF)<br/>
+L05.T43.PL.Reasoning.TruthTables.SATCNF.pptx
+       (VIDEO)
+       (PDF)<br/>
+L05.T44.PL.Reasoning.TruthTables.SATDPLL - Copia.pptx
+       (VIDEO)
+       (PDF)<br/>
+L05.T45.PL.Reasoning.TruthTables.MiniSat.pptx
+       (VIDEO)
+       (PDF)<br/>
+L06.T51.PL.Reasoning.Deduction.pptx
+       (VIDEO)
+       (PDF)<br/>
+L06.T52.PL.Reasoning.Hilbert.calculus.pptx
+       (VIDEO)
+       (PDF)<br/>
+L06.T53.PL.Reasoning.Tableau.pptx
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 5 and lesson 6.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">5</td>
+    <td class="date">Mon, 12/Oct/2020</td>
+    <td class="time">14:30</td>
+    <td class="material">
+      L07.T61.PL.exercises.ppt
+       (VIDEO)
+       (PDF)<br/>
+L07.T62.PL.DPLL.exercises.ppt
+       (VIDEO)
+       (PDF)<br/>
+L08.T71.FOL.Intuition.pptx
+       (VIDEO)
+       (PDF)<br/>
+L08.T72.FOL.Language.pptx
+       (VIDEO)
+       (PDF)<br/>
+L08.T73.FOL.Interpretation.function.pptx
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 7 and lesson 8.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">5</td>
+    <td class="date">Tue, 13/Oct/2020</td>
+    <td class="time">09:00</td>
+    <td class="material">
+      L07.T61.PL.exercises.ppt
+       (VIDEO)
+       (PDF)<br/>
+L07.T62.PL.DPLL.exercises.ppt
+       (VIDEO)
+       (PDF)<br/>
+L08.T71.FOL.Intuition.pptx
+       (VIDEO)
+       (PDF)<br/>
+L08.T72.FOL.Language.pptx
+       (VIDEO)
+       (PDF)<br/>
+L08.T73.FOL.Interpretation.function.pptx
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 7 and lesson 8.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">6</td>
+    <td class="date">Mon, 19/Oct/2020</td>
+    <td class="time">14:30</td>
+    <td class="material">
+      L09.T74.FOL.SAT.wrt.assignment.pptx
+       (VIDEO)
+       (PDF)<br/>
+L09.T75.FOL.SAT2LE.pptx
+       (VIDEO)
+       (PDF)<br/>
+L09.T76.FOL.exercizes.pptx
+       (VIDEO)
+       (PDF)<br/>
+L09.T77.FOL.Finite.Domains.pptx
+       (VIDEO)
+       (PDF)<br/>
+L09.T78.FOL.FOL.wrt.DB.pptx
+       (VIDEO)
+       (PDF)<br/>
+L10.T81.FOL.Reasoning.Hilbert.calculus.pptx
+       (VIDEO)
+       (PDF)<br/>
+L10.T82.FOL.Reasoning.Tableau.pptx
+       (VIDEO)
+       (PDF)<br/>
+L10.T83.FOL.Reasoning.Tableau.corr.compl.pptx
+       (VIDEO)
+       (PDF)<br/>
+L10.T84.FOL.Reasoning.Tableau.examples.pptx
+       (VIDEO)
+       (PDF)<br/>
+L10.T85.FOL.Reasoning.Tableau.termination.pptx
+       (VIDEO)
+       (PDF)<br/>
+L10.T86.FOL.Reasoning.Tableau.countermodels.pptx
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 9 and lesson 10.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">6</td>
+    <td class="date">Tue, 20/Oct/2020</td>
+    <td class="time">09:00</td>
+    <td class="material">
+      L09.T74.FOL.SAT.wrt.assignment.pptx
+       (VIDEO)
+       (PDF)<br/>
+L09.T75.FOL.SAT2LE.pptx
+       (VIDEO)
+       (PDF)<br/>
+L09.T76.FOL.exercizes.pptx
+       (VIDEO)
+       (PDF)<br/>
+L09.T77.FOL.Finite.Domains.pptx
+       (VIDEO)
+       (PDF)<br/>
+L09.T78.FOL.FOL.wrt.DB.pptx
+       (VIDEO)
+       (PDF)<br/>
+L10.T81.FOL.Reasoning.Hilbert.calculus.pptx
+       (VIDEO)
+       (PDF)<br/>
+L10.T82.FOL.Reasoning.Tableau.pptx
+       (VIDEO)
+       (PDF)<br/>
+L10.T83.FOL.Reasoning.Tableau.corr.compl.pptx
+       (VIDEO)
+       (PDF)<br/>
+L10.T84.FOL.Reasoning.Tableau.examples.pptx
+       (VIDEO)
+       (PDF)<br/>
+L10.T85.FOL.Reasoning.Tableau.termination.pptx
+       (VIDEO)
+       (PDF)<br/>
+L10.T86.FOL.Reasoning.Tableau.countermodels.pptx
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 9 and lesson 10.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">7</td>
+    <td class="date">Mon, 26/Oct/2020</td>
+    <td class="time">14:30</td>
+    <td class="material">
+      
+    </td>
+    <td class="content">
+      Mid term
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">7</td>
+    <td class="date">Tue, 27/Oct/2020</td>
+    <td class="time">09:00</td>
+    <td class="material">
+      
+    </td>
+    <td class="content">
+      
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">8</td>
+    <td class="date">Mon, 02/Nov/2020</td>
+    <td class="time">14:30</td>
+    <td class="material">
+      L11.T9.FOL.exercises.ppt
+       (VIDEO)
+       (PDF)<br/>
+L12.T101.ML.Intuition.pptx
+       (VIDEO)
+       (PDF)<br/>
+L12.T102.ML.language.pptx
+       (VIDEO)
+       (PDF)<br/>
+L12.T103.ML.SAT.pptx
+       (VIDEO)
+       (PDF)<br/>
+L12.T104.ML.VAL2LE.pptx
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 11 and lesson 12.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">8</td>
+    <td class="date">Tue, 03/Nov/2020</td>
+    <td class="time">09:00</td>
+    <td class="material">
+      L11.T9.FOL.exercises.ppt
+       (VIDEO)
+       (PDF)<br/>
+L12.T101.ML.Intuition.pptx
+       (VIDEO)
+       (PDF)<br/>
+L12.T102.ML.language.pptx
+       (VIDEO)
+       (PDF)<br/>
+L12.T103.ML.SAT.pptx
+       (VIDEO)
+       (PDF)<br/>
+L12.T104.ML.VAL2LE.pptx
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 11 and lesson 12.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">9</td>
+    <td class="date">Mon, 09/Nov/2020</td>
+    <td class="time">14:30</td>
+    <td class="material">
+      L13.T111.ML-K.More.ModalK.pptx
+       (VIDEO)
+       (PDF)<br/>
+L13.T112.ML-K.More.Acces.relation.pptx
+       (VIDEO)
+       (PDF)<br/>
+L13.T113.ML-K.More.ModalKT.pptx
+       (VIDEO)
+       (PDF)<br/>
+L13.T114.ML-K.More.ModalKB.pptx
+       (VIDEO)
+       (PDF)<br/>
+L14.T115.ML-K.More.ModalKD.pptx
+       (VIDEO)
+       (PDF)<br/>
+L14.T116.ML-K.More.ModalKT4.pptx
+       (VIDEO)
+       (PDF)<br/>
+L14.T117.ML-K.More.ModalKT5.pptx
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 13 and lesson 14.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">9</td>
+    <td class="date">Tue, 10/Nov/2020</td>
+    <td class="time">09:00</td>
+    <td class="material">
+      L13.T111.ML-K.More.ModalK.pptx
+       (VIDEO)
+       (PDF)<br/>
+L13.T112.ML-K.More.Acces.relation.pptx
+       (VIDEO)
+       (PDF)<br/>
+L13.T113.ML-K.More.ModalKT.pptx
+       (VIDEO)
+       (PDF)<br/>
+L13.T114.ML-K.More.ModalKB.pptx
+       (VIDEO)
+       (PDF)<br/>
+L14.T115.ML-K.More.ModalKD.pptx
+       (VIDEO)
+       (PDF)<br/>
+L14.T116.ML-K.More.ModalKT4.pptx
+       (VIDEO)
+       (PDF)<br/>
+L14.T117.ML-K.More.ModalKT5.pptx
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 13 and lesson 14.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">10</td>
+    <td class="date">Mon, 16/Nov/2020</td>
+    <td class="time">14:30</td>
+    <td class="material">
+      L15.T118.ML-K.More.MML.pptx
+       (VIDEO)
+       (PDF)<br/>
+L15.T119.ML-K.More.MMLKB.pptx
+       (VIDEO)
+       (PDF)<br/>
+L15.T121.Reasoning.Tableau.pptx
+       (VIDEO)
+       (PDF)<br/>
+L16.T13.ML.exercises.ppt
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 15 and lesson 16.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">10</td>
+    <td class="date">Tue, 17/Nov/2020</td>
+    <td class="time">09:00</td>
+    <td class="material">
+      L15.T118.ML-K.More.MML.pptx
+       (VIDEO)
+       (PDF)<br/>
+L15.T119.ML-K.More.MMLKB.pptx
+       (VIDEO)
+       (PDF)<br/>
+L15.T121.Reasoning.Tableau.pptx
+       (VIDEO)
+       (PDF)<br/>
+L16.T13.ML.exercises.ppt
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 15 and lesson 16.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">11</td>
+    <td class="date">Mon, 23/Nov/2020</td>
+    <td class="time">14:30</td>
+    <td class="material">
+      L17.T141.DL.Introduction.Intuition.ppt
+       (VIDEO)
+       (PDF)<br/>
+L17.T142.DL.Introduction.2KG.ppt
+       (VIDEO)
+       (PDF)<br/>
+L17.T143.DL.Introduction.DL.ppt
+       (VIDEO)
+       (PDF)<br/>
+L18.T151.DL.TBox-ABox.Families.ppt
+       (VIDEO)
+       (PDF)<br/>
+L18.T152.DL.TBox-ABox.TBox.synt.sem.ppt
+       (VIDEO)
+       (PDF)<br/>
+L18.T153.DL.TBox-ABox.Terminology.ppt
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 17 and lesson 18.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">11</td>
+    <td class="date">Tue, 24/Nov/2020</td>
+    <td class="time">09:00</td>
+    <td class="material">
+      L17.T141.DL.Introduction.Intuition.ppt
+       (VIDEO)
+       (PDF)<br/>
+L17.T142.DL.Introduction.2KG.ppt
+       (VIDEO)
+       (PDF)<br/>
+L17.T143.DL.Introduction.DL.ppt
+       (VIDEO)
+       (PDF)<br/>
+L18.T151.DL.TBox-ABox.Families.ppt
+       (VIDEO)
+       (PDF)<br/>
+L18.T152.DL.TBox-ABox.TBox.synt.sem.ppt
+       (VIDEO)
+       (PDF)<br/>
+L18.T153.DL.TBox-ABox.Terminology.ppt
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 17 and lesson 18.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">12</td>
+    <td class="date">Mon, 30/Nov/2020</td>
+    <td class="time">14:30</td>
+    <td class="material">
+      L19.T154.DL.TBox-ABox.TBox.reasoning.ppt
+       (VIDEO)
+       (PDF)<br/>
+L19.T155.DL.TBox-ABox.ABox.synt.sem.ppt
+       (VIDEO)
+       (PDF)<br/>
+L19.T156.DL.TBox-ABox.ABox.reasoning.ppt
+       (VIDEO)
+       (PDF)<br/>
+L19.T157.DL.TBox-ABox.CWA.ppt
+       (VIDEO)
+       (PDF)<br/>
+L20.T191.DL.Tableaux.Reasoning.Intuition.ppt
+       (VIDEO)
+       (PDF)<br/>
+L20.T192.DL.Tableaux.Reasoning.Recap.ppt
+       (VIDEO)
+       (PDF)<br/>
+L20.T193.DL.Tableaux.Reasoning.ppt
+       (VIDEO)
+       (PDF)<br/>
+L20.T194.DL.Tableaux.Reasoning.TBox-examples.ppt
+       (VIDEO)
+       (PDF)<br/>
+L20.T195.DL.Tableaux.Reasoning.ABox-examples.ppt
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 19 and lesson 20.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">12</td>
+    <td class="date">Tue, 01/Dec/2020</td>
+    <td class="time">09:00</td>
+    <td class="material">
+      L19.T154.DL.TBox-ABox.TBox.reasoning.ppt
+       (VIDEO)
+       (PDF)<br/>
+L19.T155.DL.TBox-ABox.ABox.synt.sem.ppt
+       (VIDEO)
+       (PDF)<br/>
+L19.T156.DL.TBox-ABox.ABox.reasoning.ppt
+       (VIDEO)
+       (PDF)<br/>
+L19.T157.DL.TBox-ABox.CWA.ppt
+       (VIDEO)
+       (PDF)<br/>
+L20.T191.DL.Tableaux.Reasoning.Intuition.ppt
+       (VIDEO)
+       (PDF)<br/>
+L20.T192.DL.Tableaux.Reasoning.Recap.ppt
+       (VIDEO)
+       (PDF)<br/>
+L20.T193.DL.Tableaux.Reasoning.ppt
+       (VIDEO)
+       (PDF)<br/>
+L20.T194.DL.Tableaux.Reasoning.TBox-examples.ppt
+       (VIDEO)
+       (PDF)<br/>
+L20.T195.DL.Tableaux.Reasoning.ABox-examples.ppt
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 19 and lesson 20.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">13</td>
+    <td class="date">Mon, 07/Dec/2020</td>
+    <td class="time">14:30</td>
+    <td class="material">
+      L21.T201.DL.Applications.DB.ppt
+       (VIDEO)
+       (PDF)<br/>
+L21.T202.DL.Applications.ERModels.ppt
+       (VIDEO)
+       (PDF)<br/>
+L21.T203.DL.Applications.KG.ppt
+       (VIDEO)
+       (PDF)<br/>
+L22.T21.DL.Exercises.ppt
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 21 and lesson 22.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">13</td>
+    <td class="date">Tue, 08/Dec/2020</td>
+    <td class="time">09:00</td>
+    <td class="material">
+      L21.T201.DL.Applications.DB.ppt
+       (VIDEO)
+       (PDF)<br/>
+L21.T202.DL.Applications.ERModels.ppt
+       (VIDEO)
+       (PDF)<br/>
+L21.T203.DL.Applications.KG.ppt
+       (VIDEO)
+       (PDF)<br/>
+L22.T21.DL.Exercises.ppt
+       (VIDEO)
+       (PDF)
+    </td>
+    <td class="content">
+      Q&A on lesson 21 and lesson 22.
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">14</td>
+    <td class="date">Mon, 14/Dec/2020</td>
+    <td class="time">14:30</td>
+    <td class="material">
+      
+    </td>
+    <td class="content">
+      Q&A
+    </td>
+    </tr>
+    
+    <tr>
+    <td class="week">14</td>
+    <td class="date">Tue, 15/Dec/2020</td>
+    <td class="time">09:00</td>
+    <td class="material">
+      
+    </td>
+    <td class="content">
+      Mid term
+    </td>
+    </tr>
+    
+  </tbody>
+</table>
+#+end_export
+
+** Local Variables                                                 :noexport:
+
+# Local Variables:
+# org-confirm-babel-evaluate: nil
+# End:
