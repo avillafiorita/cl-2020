@@ -99,7 +99,7 @@ HTML websites projects:
            :base-directory ,website-sources
            :publishing-directory ,website-dest
            :publishing-function org-publish-attachment
-           :base-extension "woff\\|ttf\\|txt\\|css\\|js\\|png\\|svg\\|jpg\\|gif\\|xml\\|atom\\|gz"
+           :base-extension "pdf\\|mp4\\|woff\\|ttf\\|txt\\|css\\|js\\|png\\|svg\\|jpg\\|gif\\|xml\\|atom\\|gz"
            :exclude "\\(.git\\|_site\\|^_.*\\|.*~\\)"
            :recursive t
            )

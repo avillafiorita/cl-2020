@@ -8,8 +8,9 @@
 Instructions:
 
 - Post your question and doubts by opening an issue on the [[https://github.com/avillafiorita/cl-2020][cl-2020
-  repository]] on Github, where this website is hosted, **before the
-  lesson**.  To avoid useless work on both sides, make sure you
+  repository]] on Github, where this website is hosted, **on the
+  Thursday before** the lesson in which you want to discuss your
+  question.  To avoid useless work on both sides, make sure you
   **check the open issues before posting a new question**.  Note that
   you might need to register on GitHub, if you don't have an account.
 

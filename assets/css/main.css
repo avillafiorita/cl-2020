@@ -144,7 +144,8 @@ a:hover {
 }
 
 table.calendar {
-    width: 100%;
+    width: 90%;
+    margin: auto;
     border-collapse: collapse;
 }
 

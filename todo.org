@@ -1,4 +1,1 @@
-- fixed navbar
-- schedule and calendar (check fausto poi deploy)
-- material and videos
-- publish
+- fixed navbar (on wide diplays)
