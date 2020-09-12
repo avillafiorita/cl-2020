@@ -4,6 +4,7 @@
   text-align: right;
   border-right: 1px solid #DEDEDE;
   float: left;
+  overflow: hidden;
 }
 
 .course-title {
@@ -30,6 +31,7 @@ body {
     line-height: 180%;     
     align: center;
     background: #FEFEFE;
+    margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -47,66 +49,74 @@ a:hover {
     p
 }
 
+#preamble {
+    margin: 0;
+    padding: 0rem;
+    padding-top: 1.6rem;
+    
+    width: 16rem;
+    height: 100%;
+    overflow: auto;
+    position: fixed;
+
+    font-size: smaller;
+    font-family: sans;
+
+    background-color: #2F2D2E;
+}
+
+#preamble span.title {
+    display: block;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+
+    font-size: x-large;
+    font-weight: bold;
+    color: #CCCCCC;
+}
+    
+
+#preamble a {
+    padding-left: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+#preamble a {
+    color: #DFDFDF;
+    text-decoration: none;
+}
+
+#preamble a:hover {
+    color: white;
+    background: #4CAF50;
+    p
+}
+
+#content {
+  margin-left: 16rem;
+  padding: 1px 16px;
+  text-align: justify;
+}
+
+
 #postamble {
-    margin-top: 2rem;
-    border-top: 1px solid #DEDEDE;
+    margin-left: 16rem;
     font-size: smaller;
     line-height: 1.3rem;
-    padding-top: 0.6rem;
+    padding: 0.6rem 1rem 0px 1rem;
+}
+
+#postamble p:first-child {
+    border-top: 1px solid #DEDEDE;
 }
 
 #postamble p {
     margin: 0px auto 0px auto;
 }
 
-/* SIDENAV */
-.sidenav {
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 24px;
-  text-decoration: none;
-  font-family: sans;
-  font-size: 0.8rem;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 2px;
-  font-size: 2rem;
-  padding: 4px;
-}
-
-#content {
-  transition: margin-left .5s;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
 
 /* Teachers */
-
-/* Inline #1 | http://localhost:4701/welcome.html */
 
 .teachers-container {
     display: block;
@@ -144,7 +154,7 @@ a:hover {
 }
 
 table.calendar {
-    width: 90%;
+    width: 100%;
     margin: auto;
     border-collapse: collapse;
 }
@@ -157,4 +167,51 @@ table.calendar {
 
 .calendar th {
     text-align: left;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media screen and (max-width: 700px) {
+  .unitn-logo {
+      width: 100%;
+      /* background: #ce132d; */
+      padding; 1rem auto 1rem auto;
+  }
+  .course-title {
+      text-align: right;
+      margin-top: 2rem;
+  }
+    
+  #preamble {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding-top: 0rem;
+  }
+  #preamble span.title {
+      display: inline-block;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      padding-bottom: 3rem;
+      font-size: unset;
+      float: left;
+  }
+  #preamble a {
+      float: left;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem
+  }
+  #content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  #preamble a {
+    text-align: center;
+    float: none;
+  }
+  #preamble span.title {
+      display: block;
+      float: none;
+      text-align: center;
+  }
 }

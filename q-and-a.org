@@ -1,6 +1,5 @@
 #+TITLE: Questions and Answers
 #+DATE: <2020-08-31 Mon>
-#+INCLUDE: _sidenav.org
 
 #+ATTR_HTML: :width 400px
 [[file:assets/images/the_far_side-more-wrongs.png]]
@@ -13,4 +12,5 @@ Instructions:
   question.  To avoid useless work on both sides, make sure you
   **check the open issues before posting a new question**.  Note that
   you might need to register on GitHub, if you don't have an account.
-
+- Questions will be processed from the oldest to
+  the most recent lesson

@@ -2,7 +2,6 @@
 #+AUTHOR: 
 #+DATE: <2020-08-30 Sun>
 #+STARTUP: showall
-#+INCLUDE: _sidenav.org
 
 If you have a question or a doubt about the content of the course,
 please consult the [[file:instructions.org][Instructions]] first and open an issue on GitHub.

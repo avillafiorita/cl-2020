@@ -1,6 +1,6 @@
 #+TITLE: Instructions
 #+DATE: <2020-08-31 Mon>
-#+INCLUDE: _sidenav.org
+
 
 The Fall 2020 Edition of Computational Logic is delivered using the
 Flipped Classroom methodology[fn:1], which requires a bit more work on
@@ -14,8 +14,8 @@ In synthesis...
 - Watch videos and read the material which will be discussed during
   the next lesson in person. If in doubt, consult the [[file:calendar.org][Calendar]] for the
   current assignment.
-- Post your question and doubts by opening issues on the [[https://github.com/avillafiorita/cl-2020][cl-2020
-  repository]] on Github, where this website is hosted, **on the
+- Post your question and doubts by **opening issues** on the [[https://github.com/avillafiorita/cl-2020][cl-2020
+  repository]] on GitHub, where this website is hosted, **on the
   Thursday before the lesson**.  To avoid useless work on both sides,
   make sure you **check the open issues before posting a new
   question**.  Note that you might need to register on GitHub, if you
@@ -26,6 +26,9 @@ In synthesis...
 - The lesson is dedicated to answering questions and solving doubts
   and issues.  The issues are then used to enrich the material on this
   website (including the [[file:q-and-a.org][Q&A]] page) and closed on GitHub.
+- Questions will be processed from the oldest to the most recent
+  lesson. Thus, for instance, questions about lesson 4 will be
+  answered before any questions lesson 5.
 
 **After the lesson:**
 

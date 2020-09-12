@@ -1,8 +1,7 @@
 #+TITLE: Calendar and Material
-#+AUTHOR: 
+#+AUTHOR:
 #+DATE: <2020-08-30 Sun>
 #+STARTUP: showall
-#+INCLUDE: _sidenav.org
 
 The course runs from Sep, 14, 2020 till Dec 15, 2020 with the
 following schedule:
@@ -10,72 +9,80 @@ following schedule:
 - Mondays, 14:30-16:00
 - Tuesdays, 9:00-10:30
 
+The Zoom link for the video conference available on the Moodle
+platform at the University of Trento.
+
 You might want to read the [[file:./instructions.org][Instructions]] to understand how to take the
 course.  (And the expression "you might want ..." gets translated in
 Italian with: "è assolutamente necessario che ...".)
 
-#+begin_src ruby :exports results :results html output
-def content_to_string content_type, content
-  if content_type == "Q&A"
-     "Q&A on lessons #{content}."
-  else
-     content
+Notice also the titles and structure of the lessons yet to be
+delivered might change slightly .  The rule of the thumb is: if there
+are links with materials, things won't change; if there are no links
+to the materials, titles and content are just suggestions.
+
+#+begin_src ruby :exports results :results html output :var content = lesson-plan
+  def content_to_string content_type, content
+    if content_type == "Q&A"
+       "Q&A about lessons #{content}."
+    else
+       content
+    end
   end
-end
 
-def link_if file, name
-  File.exists?(file) ? "<a href=\"#{file}\">#{name}</a>" : name
-end
+  def link_if file, name
+    File.exists?(file) ? "<a href=\"#{file}\">#{name}</a>" : name
+  end
 
-def content_to_material content, material
-  mat = material.select { |x| (content || "").split(",").include?(x["topic_no"]) }.map { |x| x["basename"] }
-  mat.map { |x|
-    video = "./material/#{x}-small.mp4";
-    pdf   = "./material/#{x}.pdf";
-    "#{x} (#{link_if(video, "VIDEO")}) (#{link_if(pdf, "PDF")})"
-  }.join("<br/>\n")
-end
+  def content_to_material content, material
+    mat = material.select { |x| content == x["topic_no"].to_i }.map { |x| x["basename"] }
+    mat.map { |x|
+      video = "./material/#{x}-small.mp4";
+      pdf   = "./material/#{x}.pdf";
+      "#{x} (#{link_if(video, "VIDEO")}) (#{link_if(pdf, "PDF")})"
+    }.join("<br/>\n")
+  end
 
-template = <<EOS
-<table class="calendar">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Starts at</th>
-      <th>Material to prepare</th>
-      <th>Content of lesson</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% content.each do |slot| %>
-    <tr>
-    <td class="date">
-      <%= DateTime.parse(slot["date"]).strftime("%a") %><br />
-      <%= DateTime.parse(slot["date"]).strftime("%d/%b/%Y") %>
-    </td>
-    <td class="time"><%= DateTime.parse(slot["date"]).strftime("%H:%M") %></td>
-    <td class="material">
-      <%= content_to_material slot["prepare"], material %>
-    </td>
-    <td class="content">
-      <%= content_to_string slot["content_type"], slot["content"] %>
-    </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-EOS
+  template = <<EOS
+  <table class="calendar">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Starts at</th>
+        <th>Material to prepare</th>
+        <th>Content of lesson</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% content.each do |slot| %>
+      <tr>
+      <td class="date">
+        <%= DateTime.parse(slot[0]).strftime("%a") %><br />
+        <%= DateTime.parse(slot[0]).strftime("%d/%b/%Y") %>
+      </td>
+      <td class="time"><%= DateTime.parse(slot[0]).strftime("%H:%M") %></td>
+      <td class="material">
+        <%= content_to_material slot[3], material %>
+      </td>
+      <td class="content">
+        <%= content_to_string slot[4], slot[5] %>
+      </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  EOS
 
-  require 'csv'
-  require 'erb'
+    require 'csv'
+    require 'erb'
 
-  content = CSV::read "_data/programma.csv", headers: true, col_sep: ","
-  material = CSV::read "_data/material.csv", headers: true, col_sep: ","
+    # content = CSV::read "_data/programma.csv", headers: true, col_sep: ","
+    material = CSV::read "_data/material.csv", headers: true, col_sep: ","
 
-  renderer = ERB.new(template, nil, "-")
-  output = renderer.result(binding)
+    renderer = ERB.new(template, nil, "-")
+    output = renderer.result(binding)
 
-  puts output
+    puts output
 #+end_src
 
 #+RESULTS:
@@ -128,16 +135,10 @@ L2.T14.Introduction.WhyLogic (<a href="./material/L2.T14.Introduction.WhyLogic-s
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L3.T21.SetTheory.Introduction (VIDEO) (PDF)<br/>
-L3.T22.SetTheory.BasicNotions (VIDEO) (PDF)<br/>
-L3.T23.SetTheory.Relations (VIDEO) (PDF)<br/>
-L3.T24.SetTheory.Functions (VIDEO) (PDF)<br/>
-L3.T25.SetTheory.Exercises (VIDEO) (PDF)<br/>
-L3.T31.PL.Intuition (VIDEO) (PDF)<br/>
-L3.T32.PL.Language (VIDEO) (PDF)
+      
     </td>
     <td class="content">
-      Q&A on lessons 1,2,3.
+      Q&A about lessons 1 and 2.
     </td>
     </tr>
     
@@ -148,13 +149,16 @@ L3.T32.PL.Language (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L4.T33.PL.Satisfiability (VIDEO) (PDF)<br/>
-L4.T34.PL.Validility.Unsat (VIDEO) (PDF)<br/>
-L4.T35.PL.LogCons.Equiv (VIDEO) (PDF)<br/>
-L4.T36.PL.theories (VIDEO) (PDF)
+      L3.T21.SetTheory.Introduction (<a href="./material/L3.T21.SetTheory.Introduction-small.mp4">VIDEO</a>) (<a href="./material/L3.T21.SetTheory.Introduction.pdf">PDF</a>)<br/>
+L3.T22.SetTheory.BasicNotions (<a href="./material/L3.T22.SetTheory.BasicNotions-small.mp4">VIDEO</a>) (<a href="./material/L3.T22.SetTheory.BasicNotions.pdf">PDF</a>)<br/>
+L3.T23.SetTheory.Relations (<a href="./material/L3.T23.SetTheory.Relations-small.mp4">VIDEO</a>) (<a href="./material/L3.T23.SetTheory.Relations.pdf">PDF</a>)<br/>
+L3.T24.SetTheory.Functions (<a href="./material/L3.T24.SetTheory.Functions-small.mp4">VIDEO</a>) (<a href="./material/L3.T24.SetTheory.Functions.pdf">PDF</a>)<br/>
+L3.T25.SetTheory.Exercises (VIDEO) (PDF)<br/>
+L3.T31.PL.Intuition (<a href="./material/L3.T31.PL.Intuition-small.mp4">VIDEO</a>) (<a href="./material/L3.T31.PL.Intuition.pdf">PDF</a>)<br/>
+L3.T32.PL.Language (<a href="./material/L3.T32.PL.Language-small.mp4">VIDEO</a>) (<a href="./material/L3.T32.PL.Language.pdf">PDF</a>)
     </td>
     <td class="content">
-      Q&A on lessons 2,3,4.
+      Q&A about lessons 1 and 2.
     </td>
     </tr>
     
@@ -165,14 +169,13 @@ L4.T36.PL.theories (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L5.T41.PL.Reasoning.TruthTables.Summary (VIDEO) (PDF)<br/>
-L5.T42.PL.Reasoning.TruthTables.DecisionProblems (VIDEO) (PDF)<br/>
-L5.T43.PL.Reasoning.TruthTables.SATCNF (VIDEO) (PDF)<br/>
-L5.T44.PL.Reasoning.TruthTables.SATDPLL - Copia (VIDEO) (PDF)<br/>
-L5.T45.PL.Reasoning.TruthTables.MiniSat (VIDEO) (PDF)
+      L4.T33.PL.Satisfiability (VIDEO) (PDF)<br/>
+L4.T34.PL.Validility.Unsat (VIDEO) (PDF)<br/>
+L4.T35.PL.LogCons.Equiv (VIDEO) (PDF)<br/>
+L4.T36.PL.theories (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 3,4,5.
+      Q&A about lessons 2 and 3 and 4.
     </td>
     </tr>
     
@@ -183,12 +186,14 @@ L5.T45.PL.Reasoning.TruthTables.MiniSat (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L6.T51.PL.Reasoning.Deduction (VIDEO) (PDF)<br/>
-L6.T52.PL.Reasoning.Hilbert.calculus (VIDEO) (PDF)<br/>
-L6.T53.PL.Reasoning.Tableau (VIDEO) (PDF)
+      L5.T41.PL.Reasoning.TruthTables.Summary (VIDEO) (PDF)<br/>
+L5.T42.PL.Reasoning.TruthTables.DecisionProblems (VIDEO) (PDF)<br/>
+L5.T43.PL.Reasoning.TruthTables.SATCNF (VIDEO) (PDF)<br/>
+L5.T44.PL.Reasoning.TruthTables.SATDPLL - Copia (VIDEO) (PDF)<br/>
+L5.T45.PL.Reasoning.TruthTables.MiniSat (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 4,5,6.
+      Q&A about lessons 3 and 4 and 5.
     </td>
     </tr>
     
@@ -199,11 +204,12 @@ L6.T53.PL.Reasoning.Tableau (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L7.T61.PL.exercises (VIDEO) (PDF)<br/>
-L7.T62.PL.DPLL.exercises (VIDEO) (PDF)
+      L6.T51.PL.Reasoning.Deduction (VIDEO) (PDF)<br/>
+L6.T52.PL.Reasoning.Hilbert.calculus (VIDEO) (PDF)<br/>
+L6.T53.PL.Reasoning.Tableau (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 5,6,7.
+      Q&A about lessons 4 and 5 and 6.
     </td>
     </tr>
     
@@ -214,12 +220,11 @@ L7.T62.PL.DPLL.exercises (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L8.T71.FOL.Intuition (VIDEO) (PDF)<br/>
-L8.T72.FOL.Language (VIDEO) (PDF)<br/>
-L8.T73.FOL.Interpretation.function (VIDEO) (PDF)
+      L7.T61.PL.exercises (VIDEO) (PDF)<br/>
+L7.T62.PL.DPLL.exercises (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 6,7,8.
+      Q&A about lessons 5 and 6 and 7.
     </td>
     </tr>
     
@@ -230,14 +235,12 @@ L8.T73.FOL.Interpretation.function (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L9.T74.FOL.SAT.wrt.assignment (VIDEO) (PDF)<br/>
-L9.T75.FOL.SAT2LE (VIDEO) (PDF)<br/>
-L9.T76.FOL.exercizes (VIDEO) (PDF)<br/>
-L9.T77.FOL.Finite.Domains (VIDEO) (PDF)<br/>
-L9.T78.FOL.FOL.wrt.DB (VIDEO) (PDF)
+      L8.T71.FOL.Intuition (VIDEO) (PDF)<br/>
+L8.T72.FOL.Language (VIDEO) (PDF)<br/>
+L8.T73.FOL.Interpretation.function (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 7,8,9.
+      Q&A about lessons 6 and 7 and 8.
     </td>
     </tr>
     
@@ -248,15 +251,14 @@ L9.T78.FOL.FOL.wrt.DB (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L10.T81.FOL.Reasoning.Hilbert.calculus (VIDEO) (PDF)<br/>
-L10.T82.FOL.Reasoning.Tableau (VIDEO) (PDF)<br/>
-L10.T83.FOL.Reasoning.Tableau.corr.compl (VIDEO) (PDF)<br/>
-L10.T84.FOL.Reasoning.Tableau.examples (VIDEO) (PDF)<br/>
-L10.T85.FOL.Reasoning.Tableau.termination (VIDEO) (PDF)<br/>
-L10.T86.FOL.Reasoning.Tableau.countermodels (VIDEO) (PDF)
+      L9.T74.FOL.SAT.wrt.assignment (VIDEO) (PDF)<br/>
+L9.T75.FOL.SAT2LE (VIDEO) (PDF)<br/>
+L9.T76.FOL.exercizes (VIDEO) (PDF)<br/>
+L9.T77.FOL.Finite.Domains (VIDEO) (PDF)<br/>
+L9.T78.FOL.FOL.wrt.DB (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 8,9,10.
+      Q&A about lessons 7 and 8 and 9.
     </td>
     </tr>
     
@@ -267,10 +269,15 @@ L10.T86.FOL.Reasoning.Tableau.countermodels (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L11.T9.FOL.exercises (VIDEO) (PDF)
+      L10.T81.FOL.Reasoning.Hilbert.calculus (VIDEO) (PDF)<br/>
+L10.T82.FOL.Reasoning.Tableau (VIDEO) (PDF)<br/>
+L10.T83.FOL.Reasoning.Tableau.corr.compl (VIDEO) (PDF)<br/>
+L10.T84.FOL.Reasoning.Tableau.examples (VIDEO) (PDF)<br/>
+L10.T85.FOL.Reasoning.Tableau.termination (VIDEO) (PDF)<br/>
+L10.T86.FOL.Reasoning.Tableau.countermodels (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 9,10,11.
+      Q&A about lessons 8 and 9 and 10.
     </td>
     </tr>
     
@@ -281,13 +288,10 @@ L10.T86.FOL.Reasoning.Tableau.countermodels (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L12.T101.ML.Intuition (VIDEO) (PDF)<br/>
-L12.T102.ML.language (VIDEO) (PDF)<br/>
-L12.T103.ML.SAT (VIDEO) (PDF)<br/>
-L12.T104.ML.VAL2LE (VIDEO) (PDF)
+      L11.T9.FOL.exercises (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 10,11,12.
+      Q&A about lessons 9 and 10 and 11.
     </td>
     </tr>
     
@@ -301,7 +305,7 @@ L12.T104.ML.VAL2LE (VIDEO) (PDF)
       
     </td>
     <td class="content">
-      Q&A
+      Q&A about mid term
     </td>
     </tr>
     
@@ -326,13 +330,13 @@ L12.T104.ML.VAL2LE (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L13.T111.ML-K.More.ModalK (VIDEO) (PDF)<br/>
-L13.T112.ML-K.More.Acces.relation (VIDEO) (PDF)<br/>
-L13.T113.ML-K.More.ModalKT (VIDEO) (PDF)<br/>
-L13.T114.ML-K.More.ModalKB (VIDEO) (PDF)
+      L12.T101.ML.Intuition (VIDEO) (PDF)<br/>
+L12.T102.ML.language (VIDEO) (PDF)<br/>
+L12.T103.ML.SAT (VIDEO) (PDF)<br/>
+L12.T104.ML.VAL2LE (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 11,12,13.
+      Q&A about lessons 10 and 11 and 12.
     </td>
     </tr>
     
@@ -343,12 +347,13 @@ L13.T114.ML-K.More.ModalKB (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L14.T115.ML-K.More.ModalKD (VIDEO) (PDF)<br/>
-L14.T116.ML-K.More.ModalKT4 (VIDEO) (PDF)<br/>
-L14.T117.ML-K.More.ModalKT5 (VIDEO) (PDF)
+      L13.T111.ML-K.More.ModalK (VIDEO) (PDF)<br/>
+L13.T112.ML-K.More.Acces.relation (VIDEO) (PDF)<br/>
+L13.T113.ML-K.More.ModalKT (VIDEO) (PDF)<br/>
+L13.T114.ML-K.More.ModalKB (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 12,13,14.
+      Q&A about lessons 11 and 12 and 13.
     </td>
     </tr>
     
@@ -359,12 +364,12 @@ L14.T117.ML-K.More.ModalKT5 (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L15.T118.ML-K.More.MML (VIDEO) (PDF)<br/>
-L15.T119.ML-K.More.MMLKB (VIDEO) (PDF)<br/>
-L15.T121.Reasoning.Tableau (VIDEO) (PDF)
+      L14.T115.ML-K.More.ModalKD (VIDEO) (PDF)<br/>
+L14.T116.ML-K.More.ModalKT4 (VIDEO) (PDF)<br/>
+L14.T117.ML-K.More.ModalKT5 (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 13,14,15.
+      Q&A about lessons 12 and 13 and 14.
     </td>
     </tr>
     
@@ -375,10 +380,12 @@ L15.T121.Reasoning.Tableau (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L16.T13.ML.exercises (VIDEO) (PDF)
+      L15.T118.ML-K.More.MML (VIDEO) (PDF)<br/>
+L15.T119.ML-K.More.MMLKB (VIDEO) (PDF)<br/>
+L15.T121.Reasoning.Tableau (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 14,15,16.
+      Q&A about lessons 13 and 14 and 15.
     </td>
     </tr>
     
@@ -389,12 +396,10 @@ L15.T121.Reasoning.Tableau (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L17.T141.DL.Introduction.Intuition (VIDEO) (PDF)<br/>
-L17.T142.DL.Introduction.2KG (VIDEO) (PDF)<br/>
-L17.T143.DL.Introduction.DL (VIDEO) (PDF)
+      L16.T13.ML.exercises (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 15,16,17.
+      Q&A about lessons 14 and 15 and 16.
     </td>
     </tr>
     
@@ -405,12 +410,12 @@ L17.T143.DL.Introduction.DL (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L18.T151.DL.TBox-ABox.Families (VIDEO) (PDF)<br/>
-L18.T152.DL.TBox-ABox.TBox.synt.sem (VIDEO) (PDF)<br/>
-L18.T153.DL.TBox-ABox.Terminology (VIDEO) (PDF)
+      L17.T141.DL.Introduction.Intuition (VIDEO) (PDF)<br/>
+L17.T142.DL.Introduction.2KG (VIDEO) (PDF)<br/>
+L17.T143.DL.Introduction.DL (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 16,17,18.
+      Q&A about lessons 15 and 16 and 17.
     </td>
     </tr>
     
@@ -421,13 +426,12 @@ L18.T153.DL.TBox-ABox.Terminology (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L19.T154.DL.TBox-ABox.TBox.reasoning (VIDEO) (PDF)<br/>
-L19.T155.DL.TBox-ABox.ABox.synt.sem (VIDEO) (PDF)<br/>
-L19.T156.DL.TBox-ABox.ABox.reasoning (VIDEO) (PDF)<br/>
-L19.T157.DL.TBox-ABox.CWA (VIDEO) (PDF)
+      L18.T151.DL.TBox-ABox.Families (VIDEO) (PDF)<br/>
+L18.T152.DL.TBox-ABox.TBox.synt.sem (VIDEO) (PDF)<br/>
+L18.T153.DL.TBox-ABox.Terminology (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 17,18,19.
+      Q&A about lessons 16 and 17 and 18.
     </td>
     </tr>
     
@@ -438,14 +442,13 @@ L19.T157.DL.TBox-ABox.CWA (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L20.T191.DL.Tableaux.Reasoning.Intuition (VIDEO) (PDF)<br/>
-L20.T192.DL.Tableaux.Reasoning.Recap (VIDEO) (PDF)<br/>
-L20.T193.DL.Tableaux.Reasoning (VIDEO) (PDF)<br/>
-L20.T194.DL.Tableaux.Reasoning.TBox-examples (VIDEO) (PDF)<br/>
-L20.T195.DL.Tableaux.Reasoning.ABox-examples (VIDEO) (PDF)
+      L19.T154.DL.TBox-ABox.TBox.reasoning (VIDEO) (PDF)<br/>
+L19.T155.DL.TBox-ABox.ABox.synt.sem (VIDEO) (PDF)<br/>
+L19.T156.DL.TBox-ABox.ABox.reasoning (VIDEO) (PDF)<br/>
+L19.T157.DL.TBox-ABox.CWA (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 18,19,20.
+      Q&A about lessons 17 and 18 and 19.
     </td>
     </tr>
     
@@ -456,12 +459,14 @@ L20.T195.DL.Tableaux.Reasoning.ABox-examples (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L21.T201.DL.Applications.DB (VIDEO) (PDF)<br/>
-L21.T202.DL.Applications.ERModels (VIDEO) (PDF)<br/>
-L21.T203.DL.Applications.KG (VIDEO) (PDF)
+      L20.T191.DL.Tableaux.Reasoning.Intuition (VIDEO) (PDF)<br/>
+L20.T192.DL.Tableaux.Reasoning.Recap (VIDEO) (PDF)<br/>
+L20.T193.DL.Tableaux.Reasoning (VIDEO) (PDF)<br/>
+L20.T194.DL.Tableaux.Reasoning.TBox-examples (VIDEO) (PDF)<br/>
+L20.T195.DL.Tableaux.Reasoning.ABox-examples (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 19,20,21.
+      Q&A about lessons 18 and 19 and 20.
     </td>
     </tr>
     
@@ -472,10 +477,12 @@ L21.T203.DL.Applications.KG (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L22.T21.DL.Exercises (VIDEO) (PDF)
+      L21.T201.DL.Applications.DB (VIDEO) (PDF)<br/>
+L21.T202.DL.Applications.ERModels (VIDEO) (PDF)<br/>
+L21.T203.DL.Applications.KG (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 20,21,22.
+      Q&A about lessons 19 and 20 and 21.
     </td>
     </tr>
     
@@ -486,10 +493,10 @@ L21.T203.DL.Applications.KG (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      
+      L22.T21.DL.Exercises (VIDEO) (PDF)
     </td>
     <td class="content">
-      Q&A on lessons 21,22.
+      Q&A about lessons 20 and 21 and 22.
     </td>
     </tr>
     
@@ -503,7 +510,7 @@ L21.T203.DL.Applications.KG (VIDEO) (PDF)
       
     </td>
     <td class="content">
-      Q&A
+      Q&A about lessons 21 and 22.
     </td>
     </tr>
     
@@ -517,7 +524,7 @@ L21.T203.DL.Applications.KG (VIDEO) (PDF)
       
     </td>
     <td class="content">
-      
+      Q&A about final term
     </td>
     </tr>
     
@@ -539,6 +546,7 @@ L21.T203.DL.Applications.KG (VIDEO) (PDF)
 </table>
 #+end_export
 
+
 ** Code to build material.csv                                      :noexport:
 
 #+begin_src ruby :exports none :results silent
@@ -555,6 +563,42 @@ CSV.open("a.csv", "wb") do |csv|
 end
 #+end_src
 
+** Input Table for Calendar                                        :noexport:
+
+There is no way of specifying that a table cannot be exported.  Hence
+I moved the table here, under a heading which is not exported.
+
+#+name: lesson-plan
+| date             | week | slot | prepare | content_type | content              |
+|------------------+------+------+---------+--------------+----------------------|
+| 2020-09-14T14:30 |    1 |    1 |       1 | Instructions | Rules and Resources  |
+| 2020-09-15T09:00 |    1 |    2 |       2 |              |                      |
+| 2020-09-21T14:30 |    2 |    3 |         | Q&A          | 1, 2                 |
+| 2020-09-22T09:00 |    2 |    4 |       3 | Q&A          | 1, 2                 |
+| 2020-09-28T14:30 |    3 |    5 |       4 | Q&A          | 2, 3, 4              |
+| 2020-09-29T09:00 |    3 |    6 |       5 | Q&A          | 3, 4, 5              |
+| 2020-10-05T14:30 |    4 |    7 |       6 | Q&A          | 4, 5, 6              |
+| 2020-10-06T09:00 |    4 |    8 |       7 | Q&A          | 5, 6, 7              |
+| 2020-10-12T14:30 |    5 |    9 |       8 | Q&A          | 6, 7, 8              |
+| 2020-10-13T09:00 |    5 |   10 |       9 | Q&A          | 7, 8, 9              |
+| 2020-10-19T14:30 |    6 |   11 |      10 | Q&A          | 8, 9, 10             |
+| 2020-10-20T09:00 |    6 |   12 |      11 | Q&A          | 9, 10, 11            |
+| 2020-10-26T14:30 |    7 |   13 |         | General Q&A  | Q&A about mid term   |
+| 2020-10-27T09:00 |    7 |   14 |         | Exam         | Mid term             |
+| 2020-11-02T14:30 |    8 |   15 |      12 | Q&A          | 10, 11, 12           |
+| 2020-11-03T09:00 |    8 |   16 |      13 | Q&A          | 11, 12, 13           |
+| 2020-11-09T14:30 |    9 |   17 |      14 | Q&A          | 12, 13, 14           |
+| 2020-11-10T09:00 |    9 |   18 |      15 | Q&A          | 13, 14, 15           |
+| 2020-11-16T14:30 |   10 |   19 |      16 | Q&A          | 14, 15, 16           |
+| 2020-11-17T09:00 |   10 |   20 |      17 | Q&A          | 15, 16, 17           |
+| 2020-11-23T14:30 |   11 |   21 |      18 | Q&A          | 16, 17, 18           |
+| 2020-11-24T09:00 |   11 |   22 |      19 | Q&A          | 17, 18, 19           |
+| 2020-11-30T14:30 |   12 |   23 |      20 | Q&A          | 18, 19, 20           |
+| 2020-12-01T09:00 |   12 |   24 |      21 | Q&A          | 19, 20, 21           |
+| 2020-12-07T14:30 |   13 |   25 |      22 | Q&A          | 20, 21, 22           |
+| 2020-12-08T09:00 |   13 |   26 |         |              |                      |
+| 2020-12-14T14:30 |   14 |   27 |         | General Q&A  | Q&A about final term |
+| 2020-12-15T09:00 |   14 |   28 |         | Exam         | Final term           |
 
 
 ** Local Variables                                                 :noexport:

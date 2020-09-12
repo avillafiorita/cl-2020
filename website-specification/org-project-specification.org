@@ -49,9 +49,9 @@ On which port do we run it when previewing locally?
 Where are the sources and where do we save resulting HTML files?
 
 #+BEGIN_SRC emacs-lisp :results silent
-  (setq website-sources (expand-file-name "~/Sites/cl-2020"))
-  (setq slash (if (equal (substring website-sources -2 -1) "/") "" "/"))
-  (setq website-dest (concat website-sources slash "_site"))
+  (setq website-sources (expand-file-name "~/Sites/cl-2020/"))
+  ;; (setq website-dest (concat (file-name-as-directory website-sources) "_site/"))
+  (setq website-dest website-sources)
 #+END_SRC
 
 Where do we deploy the generated HTML?  
@@ -68,42 +68,63 @@ website will be available in the =website-dest= directory):
 HTML websites projects:
 
 #+BEGIN_SRC emacs-lisp :results silent
-  (setq content (concat website-name "-content"))
-  (setq assets (concat website-name "-assets"))
+    (setq content (concat website-name "-content"))
+    (setq assets (concat website-name "-assets"))
 
-  (setq project-specification
-        `((,website-name
-           :components (,content ,assets))
+    (setq website-menu
+          '((nil                  . "CL-2020")
+            ("welcome.html"       . "Welcome")
+            ("news.html"          . "News")
+            ("instructions.html"  . "Instructions")
+            ("calendar.html"      . "Calendar and Material")
+            ("syllabus.html"      . "Syllabus")
+            ("exam.html"          . "Examination and Grading")
+            ("q-and-a.html"       . "Questions and Answers")
+            ("opportunities.html" . "Collaboration Opportunities")
+            ("contacts.html"      . "Contacts")))
 
-          (,content
-           :base-directory ,website-sources
-           :publishing-directory ,website-dest
-           :publishing-function org-html-publish-to-html
-           :base-extension "org"
-           :exclude "\\(.git\\|_site\\|^_.*\\|.*~\\)"
-           :recursive t
+    (defun cl-2020-preamble (x)
+           (apply 'concat
+                  (mapcar (lambda (x) (if (car x)
+                                          (concat "<a href=\"" (car x) "\">" (cdr x) "</a>")
+                                        (concat "<span class=\"title\">" (cdr x) "</span>")))
+                          website-menu)))
 
-           :html-doctype "html5"
-           :section-numbers nil
-           :with-toc nil
-           :with-broken-links nil
-           :html-head-include-default-style nil
-           :html-head-include-scripts nil
+    (setq project-specification
+          `((,website-name
+             ;; :components (,content ,assets))
+             :components (,content ))
 
-           :html-head "<link rel=\"stylesheet\" href=\"assets/css/main.css\">"
-           :html-postamble "<p class=\"date\">Last modification: %C</p>
-<p class=\"date\">Created on: %d</p>"
-           )
+            (,content
+             :base-directory ,website-sources
+             :publishing-directory ,website-dest
+             :publishing-function org-html-publish-to-html
+             :base-extension "org"
+             :exclude "\\(.git\\|_site\\|^_.*\\|.*~\\)"
+             :recursive t
 
-          (,assets
-           :base-directory ,website-sources
-           :publishing-directory ,website-dest
-           :publishing-function org-publish-attachment
-           :base-extension "pdf\\|mp4\\|woff\\|ttf\\|txt\\|css\\|js\\|png\\|svg\\|jpg\\|gif\\|xml\\|atom\\|gz"
-           :exclude "\\(.git\\|_site\\|^_.*\\|.*~\\)"
-           :recursive t
-           )
-           ))
+             :html-doctype "html5"
+             :section-numbers nil
+             :with-toc nil
+             :with-broken-links nil
+             :html-head-include-default-style nil
+             :html-head-include-scripts nil
+
+             :html-head "<link rel=\"stylesheet\" href=\"assets/css/main.css\">"
+             :html-preamble cl-2020-preamble
+             :html-postamble "<p class=\"date\">Last modification: %C</p>
+  <p class=\"date\">Created on: %d</p>"
+             )
+
+            ;; (,assets
+            ;;  :base-directory ,website-sources
+            ;;  :publishing-directory ,website-dest
+            ;;  :publishing-function org-publish-attachment
+            ;;  :base-extension "pdf\\|mp4\\|woff\\|ttf\\|txt\\|css\\|js\\|png\\|svg\\|jpg\\|gif\\|xml\\|atom\\|gz"
+            ;;  :exclude "\\(.git\\|_site\\|^_.*\\|.*~\\)"
+            ;;  :recursive t
+            ;;  )
+             ))
 #+END_SRC
 
 Remove the project specification, if already present, so that we can
@@ -198,20 +219,24 @@ especially when there is more than one project:
     (interactive)
     (let* ( (webserver (completing-read "Website to deploy: " (mapcar (lambda (x) (car x)) website-spec-alist)))
             (local-dir (plist-get (cdr (assoc webserver website-spec-alist)) :dir))
-            (deploy-dir (plist-get (cdr (assoc webserver website-spec-alist)) :deploy-dir)) )
+            (deploy-dir (plist-get (cdr (assoc webserver website-spec-alist)) :deploy-dir))
+            (buffer (get-buffer-create (concat "*rsync-buffer for " webserver "*"))) )
       (if deploy-dir
-          (start-process "process-name"
-                         (get-buffer-create (concat "*rsync-buffer for " webserver "*"))
-                         "/usr/bin/rsync"
-                         "-crvz"
-                         "--exclude=*~"
-                         "--exclude=.git"
-                         "--exclude=_*"
-                         "--delete"
-                         "--delete-excluded"
-                         local-dir
-                         deploy-dir)
-        (message "No deployment command specified for %s" webserver))))
+          (progn
+            (display-buffer buffer)
+            (start-process "process-name"
+                           buffer
+                           "/usr/bin/rsync"
+                           "-crvz"
+                           "--exclude=*~"
+                           "--exclude=*.org"
+                           "--exclude=.git"
+                           "--exclude=_*"
+                           "--delete"
+                           "--delete-excluded"
+                           (file-name-as-directory local-dir) ; add a final slash (otherwise local-dir might be created on the server instead)
+                           deploy-dir))
+            (message "No deployment command specified for %s" webserver))))
 #+END_SRC
 
 * Local Variables                                                  :noexport:

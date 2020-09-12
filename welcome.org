@@ -2,7 +2,6 @@
 #+AUTHOR: 
 #+DATE: <2020-08-30 Sun>
 #+STARTUP: showall
-#+INCLUDE: _sidenav.org
 
 Welcome to the homepage of the Fall 2020 Edition of Computational Logic,
 course of the Computer Science degree at the University of Trento.
@@ -13,20 +12,20 @@ This edition is taught by:
 
 On this website you can find the following information:
 
+- [[file:news.org][News]]
 - [[file:instructions.org][Instructions]]
 - [[file:calendar.org][Calendar and Material]]
 - [[file:syllabus.org][Syllabus]]
 - [[file:exam.org][Examination and Grading]]
 - [[file:q-and-a.org][Questions and Answers]]
+- [[file:opportunities.org][Collaboration opportunities (e.g., 150h)]]
 - [[file:contacts.org][Contacts]]
 
 #+BEGIN_NOTES
-This website is built with Emacs Org Mode.  You can clone the sources
-of this repository at any time to get a local copy on your computer,
-which you can then build and run on your computer.
-
-The repository is available at the following link: [[https://github.com/avillafiorita/cl-2020][cl-2020]].
+This website is built with [[https://www.gnu.org/software/emacs/][Emacs]] [[https://orgmode.org][Org Mode]].  You can clone the sources
+of this website at any time to get a local copy running on your
+computer.  The specification to build this website can be found in the
+[[file:website-specification/org-project-specification.org][website specification]] page.  Do not hesitate and get in touch should
+you need support on the matter.  The repository is available at the
+following link: [[https://github.com/avillafiorita/cl-2020][cl-2020]].
 #+END_NOTES
-
-
-

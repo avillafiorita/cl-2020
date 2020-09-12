@@ -1,6 +1,5 @@
 #+TITLE: Examination and Grading
 #+DATE: <2020-08-31 Mon>
-#+INCLUDE: _sidenav.org
 
 The Examination consists of two midterms **or** a final written exam (no
 interview).

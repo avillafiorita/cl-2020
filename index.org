@@ -15,19 +15,18 @@
   </h2>
   <a href="welcome.html" class="btn">Welcome!</a>
 </div>
+<div style="clear:both"></div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function(event) { 
-  title = document.querySelector(".title");
+  title = document.querySelector("h1.title");
   title.style.display = 'none'
+
+  preamble = document.querySelector("#preamble");
+  preamble.style.display = 'none'
 
   postamble = document.querySelector("#postamble");
   postamble.style.display = 'none'
 })
-
 </script>
-
 #+END_EXPORT
-
-
-
