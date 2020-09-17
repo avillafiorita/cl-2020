@@ -1,16 +1,23 @@
+.cover-page {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    display: flex;
+    margin-top: 10rem;
+}
+
 .unitn-logo {
-  width: 50%;
-  margin-top: 10rem;
-  text-align: right;
-  border-right: 1px solid #DEDEDE;
-  float: left;
-  overflow: hidden;
+    width: 50%;
+    margin: 1rem;
+    text-align: right;
+    border-right: 1px solid #DEDEDE;
+    overflow: hidden;
 }
 
 .course-title {
-  margin-top: 10rem;
-  float: right;
-  width: 48%;
+    width: 50%;
+    margin: 1rem;
 }
 
 .btn {
@@ -115,6 +122,11 @@ a:hover {
     margin: 0px auto 0px auto;
 }
 
+.warning {
+  background: lightpink;
+  padding: 0.2rem 1rem 0.5rem 1rem;
+  border-left: 6px solid red;
+}
 
 /* Teachers */
 
@@ -171,16 +183,6 @@ table.calendar {
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
-  .unitn-logo {
-      width: 100%;
-      /* background: #ce132d; */
-      padding; 1rem auto 1rem auto;
-  }
-  .course-title {
-      text-align: right;
-      margin-top: 2rem;
-  }
-    
   #preamble {
     width: 100%;
     height: auto;
@@ -213,5 +215,6 @@ table.calendar {
       display: block;
       float: none;
       text-align: center;
+      padding-bottom: 0rem;
   }
 }

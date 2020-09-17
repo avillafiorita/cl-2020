@@ -3,6 +3,18 @@
 #+DATE: <2020-08-30 Sun>
 #+STARTUP: showall
 
-No news is good news.
+* Collaboration Opportunities (Posted on: [2020-09-17 Thu])
 
+  The applications to the “150 ore” program can be done at the link:
 
+  https://www.unitn.it/servizi/224/collaborazioni-studenti-150-ore
+
+  Notice that the deadline for applications for the A.Y. 2020-2021 is
+  **September 30, 2020**.
+
+* New Material (Posted on: [2020-09-17 Thu])
+
+  The following material has been uploaded on the website:
+
+  - L3.X.25A.SetTheory.Exercises: [[file:material/L3.X.25A.SetTheory.Exercises-small.mkv][Video]] and [[file:material/L3.X.25A.SetTheory.Exercises.pdf][PDF]]
+  - L3.X.25B.SetTheory.Exercises: [[file:material/L3.X.25B.SetTheory.Exercises-small.mp4][Video]] and [[file:material/L3.X.25B.SetTheory.Exercises.pdf][PDF]]

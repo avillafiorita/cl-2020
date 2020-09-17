@@ -19,3 +19,10 @@ le aree o tematiche di interesse. In caso di attività 150h, è
 opportuno indicare i linguaggi conosciuti con il corrispondente
 livello di competenza, in un valore compreso nell’intervallo è [ 1,5 ]
 dove 1= conoscenze di base, 5= conoscenze avanzate.
+
+The applications to the “150 ore” program can be done at the link:
+
+https://www.unitn.it/servizi/224/collaborazioni-studenti-150-ore
+
+Notice that the deadline for applications for the A.Y. 2020-2021 is
+**September 30, 2020**.

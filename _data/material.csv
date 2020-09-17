@@ -3,11 +3,13 @@ L1.T11.Introduction.Modeling,1,11,Introduction,Modeling
 L2.T12.Introduction.Language,2,12,Introduction,Language
 L2.T13.Introduction.LogicalModeling,2,13,Introduction,LogicalModeling
 L2.T14.Introduction.WhyLogic,2,14,Introduction,WhyLogic
+L2.X.1.Introduction.ExerciseOnModels,2,X1,Introduction,ExerciseOnModels
 L3.T21.SetTheory.Introduction,3,21,SetTheory,Introduction
 L3.T22.SetTheory.BasicNotions,3,22,SetTheory,BasicNotions
 L3.T23.SetTheory.Relations,3,23,SetTheory,Relations
 L3.T24.SetTheory.Functions,3,24,SetTheory,Functions
-L3.T25.SetTheory.Exercises,3,25,SetTheory,Exercises
+L3.X.25A.SetTheory.Exercises,3,X25A,SetTheory,Exercises
+L3.X.25B.SetTheory.Exercises,3,X25B,SetTheory,Exercises
 L3.T31.PL.Intuition,3,31,PL,Intuition
 L3.T32.PL.Language,3,32,PL,Language
 L4.T33.PL.Satisfiability,4,33,PL,Satisfiability

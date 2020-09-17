@@ -180,10 +180,15 @@ especially when there is more than one project:
   (require 'elnode nil t)
 
   (defun website-server-start ()
+    "Ask for a project name and start previewing it"
     (interactive)
-    (let* ( (webserver (completing-read "Website to start previewing: " (mapcar (lambda (x) (car x)) website-spec-alist)))
-            (port (plist-get (cdr (assoc webserver website-spec-alist)) :port))
-            (dir (plist-get (cdr (assoc webserver website-spec-alist)) :dir)) )
+    (let* ( (project-name (completing-read "Website to start previewing: " (mapcar (lambda (x) (car x)) website-spec-alist))) )
+      (website-server-start-ll project-name)))
+
+  (defun website-server-start-ll (project-name)
+    "Start previewing a project whose name is passed as argument"
+    (let ( (port (plist-get (cdr (assoc project-name website-spec-alist)) :port))
+           (dir (plist-get (cdr (assoc project-name website-spec-alist)) :dir)) )
       (progn
         (elnode-start 
          (elnode-webserver-handler-maker dir)
@@ -192,10 +197,15 @@ especially when there is more than one project:
         (message "Started serving directory %s on port %s" dir port))))
 
   (defun website-server-stop ()
+    "Stop previewing a project"
     (interactive)
-    (let* ( (webserver (completing-read "Website to stop previewing: " (mapcar (lambda (x) (car x)) website-spec-alist)))
-            (port (plist-get (cdr (assoc webserver website-spec-alist)) :port)) )
-         (elnode-stop port)))
+    (let* ( (project-name (completing-read "Website to stop previewing: " (mapcar (lambda (x) (car x)) website-spec-alist))) )
+      (website-server-stop-ll project-name)))
+
+  (defun website-server-stop-ll (project-name)
+    "Stop previewing a project passed as argument"
+    (let ( (port (plist-get (cdr (assoc project-name website-spec-alist)) :port)) )
+      (elnode-stop port)))
 #+END_SRC
 
 * Deploying
@@ -230,6 +240,7 @@ especially when there is more than one project:
                            "-crvz"
                            "--exclude=*~"
                            "--exclude=*.org"
+                           "--exclude=.gitignore"
                            "--exclude=.git"
                            "--exclude=_*"
                            "--delete"

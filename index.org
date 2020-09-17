@@ -4,6 +4,7 @@
 #+STARTUP: showall
 
 #+BEGIN_EXPORT html
+<div class="cover-page">
 <div class="unitn-logo">
   <img src="./assets/images/newlogo_unitn_en.png">
 </div>
@@ -16,7 +17,7 @@
   <a href="welcome.html" class="btn">Welcome!</a>
 </div>
 <div style="clear:both"></div>
-
+</div>
 <script>
 document.addEventListener("DOMContentLoaded", function(event) { 
   title = document.querySelector("h1.title");
