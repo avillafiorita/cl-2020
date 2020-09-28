@@ -3,6 +3,10 @@
 #+DATE: <2020-08-30 Sun>
 #+STARTUP: showall
 
+* New Material published (Posted on: [2020-09-28 Mon])
+
+  The material for L5, L6, and L7 has been published on the website.
+
 * Tic-Tac-Toe (Posted on: [2020-09-23 Wed])
 
   A revised version of the slides presented on Tuesday is now

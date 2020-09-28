@@ -27,27 +27,50 @@ delivered might change slightly .  The rule of the thumb is: if there
 are links with materials, things won't change; if there are no links
 to the materials, titles and content are just suggestions.
 
-#+begin_src ruby :exports results :results html output :var content = lesson-plan
+#+begin_src ruby :exports results :results html output :var lesson_plan = lesson-plan
   def content_to_string content_type, content
     if content_type == "Q&A"
        "Q&A about lessons #{content}."
     elsif content_type == "Prepare"
        "Students prepare L#{content}"
+    else
+       content
     end
   end
 
   def link_if file, name
-    File.exists?(file) ? "<a href=\"#{file}\">#{name}</a>" : name
+    (file and File.exists?(file)) ? "<a href=\"#{file}\">#{name}</a>" : name
   end
 
-  def content_to_material content, material
-    mat = material.select { |x| content == x["topic_no"].to_i }.map { |x| x["basename"] }
-
-    mat.map { |x|
-      video = File.exists?("./material/#{x}-small.mp4") ? "./material/#{x}-small.mp4" :  "./material/#{x}-small.mkv"
-      pdf   = "./material/#{x}.pdf";
-      "#{x} (#{link_if(video, "VIDEO")}) (#{link_if(pdf, "PDF")})"
+  def lesson_to_materials lesson_number, materials
+    mats = materials.select { |x| lesson_number == x[:lesson] }
+    mats.map { |x|
+      "#{x[:basename]} (#{link_if(x[:video], "VIDEO")}) (#{link_if(x[:pdf], "PDF")})"
     }.join("<br/>\n")
+  end
+
+  # take a filename in the "material" directory and break it into its basic components
+  # (the most important of which being the lesson number)
+  def filename_to_elements filename
+    elements = File.basename(filename).split "."
+
+    hash = {}
+    hash[:pdf] = filename
+    hash[:basename] = File.basename filename, ".pdf"
+    
+    if File.exists?(filename.gsub(".pdf", "-small.mp4")) 
+      hash[:video] = filename.gsub(".pdf", "-small.mp4")
+    elsif File.exists?(filename.gsub(".pdf", "-small.mkv")) 
+      hash[:video] = filename.gsub(".pdf", "-small.mkv")
+    end
+
+    hash[:lesson] = elements[0][1..-1].to_i
+    hash[:topic_number] = elements[1]
+    hash[:group] = elements[2]
+    hash[:topic] = elements[3].gsub("-small", "")
+    hash[:extension] = elements[4]
+
+    hash
   end
 
   template = <<-EOS
@@ -62,7 +85,7 @@ to the materials, titles and content are just suggestions.
       </tr>
     </thead>
     <tbody>
-      <% content.each do |slot| %>
+      <% lesson_plan.each do |slot| %>
       <tr>
       <td class="date">
         <%= DateTime.parse(slot[0]).strftime("%a") %><br />
@@ -70,7 +93,7 @@ to the materials, titles and content are just suggestions.
       </td>
       <td class="time"><%= DateTime.parse(slot[0]).strftime("%H:%M") %></td>
       <td class="material">
-        <%= content_to_material slot[3], material %>
+        <%= lesson_to_materials slot[3], materials %>
       </td>
       <td class="content">
         <%= content_to_string slot[4], slot[5] %>
@@ -89,8 +112,11 @@ to the materials, titles and content are just suggestions.
     require 'csv'
     require 'erb'
 
-    # content is a local variable passed in the headers of this source block
-    material = CSV::read "_data/material.csv", col_sep: ",", headers: true
+    # lesson_plan is a local variable passed in the headers of this source block
+
+    # materials is derived from the pdf files in the "material" directory
+    pdf_files = Dir.glob("./material/*.pdf")
+    materials = pdf_files.map { |x| filename_to_elements x }
 
     renderer = ERB.new(template, nil, "-")
     output = renderer.result(binding)
@@ -138,17 +164,15 @@ to the materials, titles and content are just suggestions.
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L2.T12.Introduction.Language (<a href="./material/L2.T12.Introduction.Language-small.mp4">VIDEO</a>) (<a href="./material/L2.T12.Introduction.Language.pdf">PDF</a>)<br/>
-L2.T13.Introduction.LogicalModeling (<a href="./material/L2.T13.Introduction.LogicalModeling-small.mp4">VIDEO</a>) (<a href="./material/L2.T13.Introduction.LogicalModeling.pdf">PDF</a>)<br/>
-L2.T14.Introduction.WhyLogic (<a href="./material/L2.T14.Introduction.WhyLogic-small.mp4">VIDEO</a>) (<a href="./material/L2.T14.Introduction.WhyLogic.pdf">PDF</a>)<br/>
-L2.X.1.Introduction.ExerciseOnModels (<a href="./material/L2.X.1.Introduction.ExerciseOnModels-small.mkv">VIDEO</a>) (<a href="./material/L2.X.1.Introduction.ExerciseOnModels.pdf">PDF</a>)
+      L2.T14.Introduction.WhyLogic (<a href="./material/L2.T14.Introduction.WhyLogic-small.mp4">VIDEO</a>) (<a href="./material/L2.T14.Introduction.WhyLogic.pdf">PDF</a>)<br/>
+L2.X.1.Introduction.ExerciseOnModels (<a href="./material/L2.X.1.Introduction.ExerciseOnModels-small.mkv">VIDEO</a>) (<a href="./material/L2.X.1.Introduction.ExerciseOnModels.pdf">PDF</a>)<br/>
+L2.T12.Introduction.Language (<a href="./material/L2.T12.Introduction.Language-small.mp4">VIDEO</a>) (<a href="./material/L2.T12.Introduction.Language.pdf">PDF</a>)<br/>
+L2.T13.Introduction.LogicalModeling (<a href="./material/L2.T13.Introduction.LogicalModeling-small.mp4">VIDEO</a>) (<a href="./material/L2.T13.Introduction.LogicalModeling.pdf">PDF</a>)
     </td>
     <td class="content">
-      
+      Students prepare L2
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -163,11 +187,9 @@ L2.X.1.Introduction.ExerciseOnModels (<a href="./material/L2.X.1.Introduction.Ex
       
     </td>
     <td class="content">
-      Q&A about lessons 1, 2.
+      
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -179,21 +201,22 @@ L2.X.1.Introduction.ExerciseOnModels (<a href="./material/L2.X.1.Introduction.Ex
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L3.T21.SetTheory.Introduction (<a href="./material/L3.T21.SetTheory.Introduction-small.mp4">VIDEO</a>) (<a href="./material/L3.T21.SetTheory.Introduction.pdf">PDF</a>)<br/>
+      L3.T24.SetTheory.Functions (<a href="./material/L3.T24.SetTheory.Functions-small.mp4">VIDEO</a>) (<a href="./material/L3.T24.SetTheory.Functions.pdf">PDF</a>)<br/>
+L3.T32.PL.Language (<a href="./material/L3.T32.PL.Language-small.mp4">VIDEO</a>) (<a href="./material/L3.T32.PL.Language.pdf">PDF</a>)<br/>
+L3.X.25B.SetTheory.Exercises (<a href="./material/L3.X.25B.SetTheory.Exercises-small.mp4">VIDEO</a>) (<a href="./material/L3.X.25B.SetTheory.Exercises.pdf">PDF</a>)<br/>
+L3.T21.SetTheory.Introduction (<a href="./material/L3.T21.SetTheory.Introduction-small.mp4">VIDEO</a>) (<a href="./material/L3.T21.SetTheory.Introduction.pdf">PDF</a>)<br/>
 L3.T22.SetTheory.BasicNotions (<a href="./material/L3.T22.SetTheory.BasicNotions-small.mp4">VIDEO</a>) (<a href="./material/L3.T22.SetTheory.BasicNotions.pdf">PDF</a>)<br/>
 L3.T23.SetTheory.Relations (<a href="./material/L3.T23.SetTheory.Relations-small.mp4">VIDEO</a>) (<a href="./material/L3.T23.SetTheory.Relations.pdf">PDF</a>)<br/>
-L3.T24.SetTheory.Functions (<a href="./material/L3.T24.SetTheory.Functions-small.mp4">VIDEO</a>) (<a href="./material/L3.T24.SetTheory.Functions.pdf">PDF</a>)<br/>
+L3.X.1B.Introduction.ExerciseOnModels (VIDEO) (<a href="./material/L3.X.1B.Introduction.ExerciseOnModels.pdf">PDF</a>)<br/>
 L3.X.25A.SetTheory.Exercises (<a href="./material/L3.X.25A.SetTheory.Exercises-small.mkv">VIDEO</a>) (<a href="./material/L3.X.25A.SetTheory.Exercises.pdf">PDF</a>)<br/>
-L3.X.25B.SetTheory.Exercises (<a href="./material/L3.X.25B.SetTheory.Exercises-small.mp4">VIDEO</a>) (<a href="./material/L3.X.25B.SetTheory.Exercises.pdf">PDF</a>)<br/>
-L3.T31.PL.Intuition (<a href="./material/L3.T31.PL.Intuition-small.mp4">VIDEO</a>) (<a href="./material/L3.T31.PL.Intuition.pdf">PDF</a>)<br/>
-L3.T32.PL.Language (<a href="./material/L3.T32.PL.Language-small.mp4">VIDEO</a>) (<a href="./material/L3.T32.PL.Language.pdf">PDF</a>)
+L3.T31.PL.Intuition (<a href="./material/L3.T31.PL.Intuition-small.mp4">VIDEO</a>) (<a href="./material/L3.T31.PL.Intuition.pdf">PDF</a>)
     </td>
     <td class="content">
       Q&A about lessons 1, 2, 3.
     </td>
     <td class="content">
       
-      <a href="">Lesson Recording</a>
+      <a href="https://drive.google.com/file/d/1rW4NY75IJP3zVFd6TsJrzxeySVLhUV6T/view?usp=sharing">Lesson Recording</a>
       
     </td>
     </tr>
@@ -205,17 +228,13 @@ L3.T32.PL.Language (<a href="./material/L3.T32.PL.Language-small.mp4">VIDEO</a>)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L4.T33.PL.Satisfiability (VIDEO) (PDF)<br/>
-L4.T34.PL.Validility.Unsat (VIDEO) (PDF)<br/>
-L4.T35.PL.LogCons.Equiv (VIDEO) (PDF)<br/>
-L4.T36.PL.theories (VIDEO) (PDF)
+      L4.T33.PL.Satisfiability (<a href="./material/L4.T33.PL.Satisfiability-small.mp4">VIDEO</a>) (<a href="./material/L4.T33.PL.Satisfiability.pdf">PDF</a>)<br/>
+L4.T34.PL.Validity.Unsat (<a href="./material/L4.T34.PL.Validity.Unsat-small.mp4">VIDEO</a>) (<a href="./material/L4.T34.PL.Validity.Unsat.pdf">PDF</a>)
     </td>
     <td class="content">
       Q&A about lessons 2, 3, 4.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -227,18 +246,14 @@ L4.T36.PL.theories (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L5.T41.PL.Reasoning.TruthTables.Summary (VIDEO) (PDF)<br/>
-L5.T42.PL.Reasoning.TruthTables.DecisionProblems (VIDEO) (PDF)<br/>
-L5.T43.PL.Reasoning.TruthTables.SATCNF (VIDEO) (PDF)<br/>
-L5.T44.PL.Reasoning.TruthTables.SATDPLL - Copia (VIDEO) (PDF)<br/>
-L5.T45.PL.Reasoning.TruthTables.MiniSat (VIDEO) (PDF)
+      L5.T41.PL.Reasoning.TruthTables.Summary (<a href="./material/L5.T41.PL.Reasoning.TruthTables.Summary-small.mp4">VIDEO</a>) (<a href="./material/L5.T41.PL.Reasoning.TruthTables.Summary.pdf">PDF</a>)<br/>
+L5.T36.PL.theories (<a href="./material/L5.T36.PL.theories-small.mp4">VIDEO</a>) (<a href="./material/L5.T36.PL.theories.pdf">PDF</a>)<br/>
+L5.T35.PL.LogCE (<a href="./material/L5.T35.PL.LogCE-small.mp4">VIDEO</a>) (<a href="./material/L5.T35.PL.LogCE.pdf">PDF</a>)
     </td>
     <td class="content">
       Q&A about lessons 3, 4, 5.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -250,16 +265,14 @@ L5.T45.PL.Reasoning.TruthTables.MiniSat (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L6.T51.PL.Reasoning.Deduction (VIDEO) (PDF)<br/>
-L6.T52.PL.Reasoning.Hilbert.calculus (VIDEO) (PDF)<br/>
-L6.T53.PL.Reasoning.Tableau (VIDEO) (PDF)
+      L6.T44.PL.Reasoning.TruthTables.SATDPLL (<a href="./material/L6.T44.PL.Reasoning.TruthTables.SATDPLL-small.mp4">VIDEO</a>) (<a href="./material/L6.T44.PL.Reasoning.TruthTables.SATDPLL.pdf">PDF</a>)<br/>
+L6.T42.PL.Reasoning.TruthTables.DecisionProblems (<a href="./material/L6.T42.PL.Reasoning.TruthTables.DecisionProblems-small.mp4">VIDEO</a>) (<a href="./material/L6.T42.PL.Reasoning.TruthTables.DecisionProblems.pdf">PDF</a>)<br/>
+L6.T43.PL.Reasoning.TruthTables.SATCNF (<a href="./material/L6.T43.PL.Reasoning.TruthTables.SATCNF-small.mp4">VIDEO</a>) (<a href="./material/L6.T43.PL.Reasoning.TruthTables.SATCNF.pdf">PDF</a>)
     </td>
     <td class="content">
       Q&A about lessons 4, 5, 6.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -271,15 +284,14 @@ L6.T53.PL.Reasoning.Tableau (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L7.T61.PL.exercises (VIDEO) (PDF)<br/>
-L7.T62.PL.DPLL.exercises (VIDEO) (PDF)
+      L7.T51.PL.Reasoning.Deduction (<a href="./material/L7.T51.PL.Reasoning.Deduction-small.mp4">VIDEO</a>) (<a href="./material/L7.T51.PL.Reasoning.Deduction.pdf">PDF</a>)<br/>
+L7.T53.PL.Reasoning.Tableau (<a href="./material/L7.T53.PL.Reasoning.Tableau-small.mp4">VIDEO</a>) (<a href="./material/L7.T53.PL.Reasoning.Tableau.pdf">PDF</a>)<br/>
+L7.T52.PL.Reasoning.Hilbert.calculus (<a href="./material/L7.T52.PL.Reasoning.Hilbert.calculus-small.mp4">VIDEO</a>) (<a href="./material/L7.T52.PL.Reasoning.Hilbert.calculus.pdf">PDF</a>)
     </td>
     <td class="content">
       Q&A about lessons 5, 6, 7.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -291,16 +303,12 @@ L7.T62.PL.DPLL.exercises (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L8.T71.FOL.Intuition (VIDEO) (PDF)<br/>
-L8.T72.FOL.Language (VIDEO) (PDF)<br/>
-L8.T73.FOL.Interpretation.function (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 6, 7, 8.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -312,18 +320,12 @@ L8.T73.FOL.Interpretation.function (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L9.T74.FOL.SAT.wrt.assignment (VIDEO) (PDF)<br/>
-L9.T75.FOL.SAT2LE (VIDEO) (PDF)<br/>
-L9.T76.FOL.exercizes (VIDEO) (PDF)<br/>
-L9.T77.FOL.Finite.Domains (VIDEO) (PDF)<br/>
-L9.T78.FOL.FOL.wrt.DB (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 7, 8, 9.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -335,19 +337,12 @@ L9.T78.FOL.FOL.wrt.DB (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L10.T81.FOL.Reasoning.Hilbert.calculus (VIDEO) (PDF)<br/>
-L10.T82.FOL.Reasoning.Tableau (VIDEO) (PDF)<br/>
-L10.T83.FOL.Reasoning.Tableau.corr.compl (VIDEO) (PDF)<br/>
-L10.T84.FOL.Reasoning.Tableau.examples (VIDEO) (PDF)<br/>
-L10.T85.FOL.Reasoning.Tableau.termination (VIDEO) (PDF)<br/>
-L10.T86.FOL.Reasoning.Tableau.countermodels (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 8, 9, 10.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -359,14 +354,12 @@ L10.T86.FOL.Reasoning.Tableau.countermodels (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L11.T9.FOL.exercises (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 9, 10, 11.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -385,8 +378,6 @@ L10.T86.FOL.Reasoning.Tableau.countermodels (VIDEO) (PDF)
     </td>
     <td class="content">
       
-      <a href="">Lesson Recording</a>
-      
     </td>
     </tr>
     
@@ -404,8 +395,6 @@ L10.T86.FOL.Reasoning.Tableau.countermodels (VIDEO) (PDF)
     </td>
     <td class="content">
       
-      <a href="">Lesson Recording</a>
-      
     </td>
     </tr>
     
@@ -416,17 +405,12 @@ L10.T86.FOL.Reasoning.Tableau.countermodels (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L12.T101.ML.Intuition (VIDEO) (PDF)<br/>
-L12.T102.ML.language (VIDEO) (PDF)<br/>
-L12.T103.ML.SAT (VIDEO) (PDF)<br/>
-L12.T104.ML.VAL2LE (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 10, 11, 12.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -438,17 +422,12 @@ L12.T104.ML.VAL2LE (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L13.T111.ML-K.More.ModalK (VIDEO) (PDF)<br/>
-L13.T112.ML-K.More.Acces.relation (VIDEO) (PDF)<br/>
-L13.T113.ML-K.More.ModalKT (VIDEO) (PDF)<br/>
-L13.T114.ML-K.More.ModalKB (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 11, 12, 13.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -460,16 +439,12 @@ L13.T114.ML-K.More.ModalKB (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L14.T115.ML-K.More.ModalKD (VIDEO) (PDF)<br/>
-L14.T116.ML-K.More.ModalKT4 (VIDEO) (PDF)<br/>
-L14.T117.ML-K.More.ModalKT5 (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 12, 13, 14.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -481,16 +456,12 @@ L14.T117.ML-K.More.ModalKT5 (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L15.T118.ML-K.More.MML (VIDEO) (PDF)<br/>
-L15.T119.ML-K.More.MMLKB (VIDEO) (PDF)<br/>
-L15.T121.Reasoning.Tableau (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 13, 14, 15.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -502,14 +473,12 @@ L15.T121.Reasoning.Tableau (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L16.T13.ML.exercises (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 14, 15, 16.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -521,16 +490,12 @@ L15.T121.Reasoning.Tableau (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L17.T141.DL.Introduction.Intuition (VIDEO) (PDF)<br/>
-L17.T142.DL.Introduction.2KG (VIDEO) (PDF)<br/>
-L17.T143.DL.Introduction.DL (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 15, 16, 17.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -542,16 +507,12 @@ L17.T143.DL.Introduction.DL (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L18.T151.DL.TBox-ABox.Families (VIDEO) (PDF)<br/>
-L18.T152.DL.TBox-ABox.TBox.synt.sem (VIDEO) (PDF)<br/>
-L18.T153.DL.TBox-ABox.Terminology (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 16, 17, 18.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -563,17 +524,12 @@ L18.T153.DL.TBox-ABox.Terminology (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L19.T154.DL.TBox-ABox.TBox.reasoning (VIDEO) (PDF)<br/>
-L19.T155.DL.TBox-ABox.ABox.synt.sem (VIDEO) (PDF)<br/>
-L19.T156.DL.TBox-ABox.ABox.reasoning (VIDEO) (PDF)<br/>
-L19.T157.DL.TBox-ABox.CWA (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 17, 18, 19.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -585,18 +541,12 @@ L19.T157.DL.TBox-ABox.CWA (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L20.T191.DL.Tableaux.Reasoning.Intuition (VIDEO) (PDF)<br/>
-L20.T192.DL.Tableaux.Reasoning.Recap (VIDEO) (PDF)<br/>
-L20.T193.DL.Tableaux.Reasoning (VIDEO) (PDF)<br/>
-L20.T194.DL.Tableaux.Reasoning.TBox-examples (VIDEO) (PDF)<br/>
-L20.T195.DL.Tableaux.Reasoning.ABox-examples (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 18, 19, 20.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -608,16 +558,12 @@ L20.T195.DL.Tableaux.Reasoning.ABox-examples (VIDEO) (PDF)
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L21.T201.DL.Applications.DB (VIDEO) (PDF)<br/>
-L21.T202.DL.Applications.ERModels (VIDEO) (PDF)<br/>
-L21.T203.DL.Applications.KG (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 19, 20, 21.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -629,14 +575,12 @@ L21.T203.DL.Applications.KG (VIDEO) (PDF)
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L22.T21.DL.Exercises (VIDEO) (PDF)
+      
     </td>
     <td class="content">
       Q&A about lessons 20, 21, 22.
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
@@ -655,8 +599,6 @@ L21.T203.DL.Applications.KG (VIDEO) (PDF)
     </td>
     <td class="content">
       
-      <a href="">Lesson Recording</a>
-      
     </td>
     </tr>
     
@@ -674,8 +616,6 @@ L21.T203.DL.Applications.KG (VIDEO) (PDF)
     </td>
     <td class="content">
       
-      <a href="">Lesson Recording</a>
-      
     </td>
     </tr>
     
@@ -692,8 +632,6 @@ L21.T203.DL.Applications.KG (VIDEO) (PDF)
       Final term
     </td>
     <td class="content">
-      
-      <a href="">Lesson Recording</a>
       
     </td>
     </tr>
