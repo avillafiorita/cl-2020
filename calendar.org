@@ -10,7 +10,7 @@ following schedule:
 - Tuesdays, 9:00-10:30
 
 The Zoom link for the video conference available on the Moodle
-platform at the University of Trento. 
+platform at the University of Trento.
 
 #+BEGIN_warning
 Interactive sessions are recorded and made available on the Internet
@@ -38,8 +38,8 @@ to the materials, titles and content are just suggestions.
     end
   end
 
-  def link_if file, name
-    (file and File.exists?(file)) ? "<a href=\"#{file}\">#{name}</a>" : name
+  def link_if file, name, options = {}
+    (file and File.exists?(file)) ? "<a href=\"#{file}\" #{"download" if options[:download]}>#{name}</a>" : name
   end
 
   def lesson_to_materials lesson_number, materials
@@ -57,10 +57,10 @@ to the materials, titles and content are just suggestions.
     hash = {}
     hash[:pdf] = filename
     hash[:basename] = File.basename filename, ".pdf"
-    
-    if File.exists?(filename.gsub(".pdf", "-small.mp4")) 
+
+    if File.exists?(filename.gsub(".pdf", "-small.mp4"))
       hash[:video] = filename.gsub(".pdf", "-small.mp4")
-    elsif File.exists?(filename.gsub(".pdf", "-small.mkv")) 
+    elsif File.exists?(filename.gsub(".pdf", "-small.mkv"))
       hash[:video] = filename.gsub(".pdf", "-small.mkv")
     end
 
@@ -115,13 +115,18 @@ to the materials, titles and content are just suggestions.
     # lesson_plan is a local variable passed in the headers of this source block
 
     # materials is derived from the pdf files in the "material" directory
-    pdf_files = Dir.glob("./material/*.pdf")
+    # make sure it is sorted alphabetically
+    pdf_files = Dir.glob("./material/*.pdf").sort
     materials = pdf_files.map { |x| filename_to_elements x }
 
     renderer = ERB.new(template, nil, "-")
     output = renderer.result(binding)
 
+    # for debugging
+    # puts pdf_files
+
     puts output
+
 #+end_src
 
 #+RESULTS:
@@ -145,7 +150,7 @@ to the materials, titles and content are just suggestions.
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L1.T11.Introduction.Modeling (<a href="./material/L1.T11.Introduction.Modeling-small.mp4">VIDEO</a>) (<a href="./material/L1.T11.Introduction.Modeling.pdf">PDF</a>)
+      L1.T11.Introduction.Modeling (<a href="./material/L1.T11.Introduction.Modeling-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L1.T11.Introduction.Modeling-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L1.T11.Introduction.Modeling.pdf" >PDF</a>)
     </td>
     <td class="content">
       Rules and Resources
@@ -164,10 +169,10 @@ to the materials, titles and content are just suggestions.
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L2.T14.Introduction.WhyLogic (<a href="./material/L2.T14.Introduction.WhyLogic-small.mp4">VIDEO</a>) (<a href="./material/L2.T14.Introduction.WhyLogic.pdf">PDF</a>)<br/>
-L2.X.1.Introduction.ExerciseOnModels (<a href="./material/L2.X.1.Introduction.ExerciseOnModels-small.mkv">VIDEO</a>) (<a href="./material/L2.X.1.Introduction.ExerciseOnModels.pdf">PDF</a>)<br/>
-L2.T12.Introduction.Language (<a href="./material/L2.T12.Introduction.Language-small.mp4">VIDEO</a>) (<a href="./material/L2.T12.Introduction.Language.pdf">PDF</a>)<br/>
-L2.T13.Introduction.LogicalModeling (<a href="./material/L2.T13.Introduction.LogicalModeling-small.mp4">VIDEO</a>) (<a href="./material/L2.T13.Introduction.LogicalModeling.pdf">PDF</a>)
+      L2.T12.Introduction.Language (<a href="./material/L2.T12.Introduction.Language-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L2.T12.Introduction.Language-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L2.T12.Introduction.Language.pdf" >PDF</a>)<br/>
+L2.T13.Introduction.LogicalModeling (<a href="./material/L2.T13.Introduction.LogicalModeling-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L2.T13.Introduction.LogicalModeling-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L2.T13.Introduction.LogicalModeling.pdf" >PDF</a>)<br/>
+L2.T14.Introduction.WhyLogic (<a href="./material/L2.T14.Introduction.WhyLogic-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L2.T14.Introduction.WhyLogic-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L2.T14.Introduction.WhyLogic.pdf" >PDF</a>)<br/>
+L2.X.1.Introduction.ExerciseOnModels (<a href="./material/L2.X.1.Introduction.ExerciseOnModels-small.mkv" >VIDEO (VIEW)</a> <a href="./material/L2.X.1.Introduction.ExerciseOnModels-small.mkv" download>DOWNLOAD VIDEO</a>) (<a href="./material/L2.X.1.Introduction.ExerciseOnModels.pdf" >PDF</a>)
     </td>
     <td class="content">
       Students prepare L2
@@ -201,15 +206,15 @@ L2.T13.Introduction.LogicalModeling (<a href="./material/L2.T13.Introduction.Log
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L3.T24.SetTheory.Functions (<a href="./material/L3.T24.SetTheory.Functions-small.mp4">VIDEO</a>) (<a href="./material/L3.T24.SetTheory.Functions.pdf">PDF</a>)<br/>
-L3.T32.PL.Language (<a href="./material/L3.T32.PL.Language-small.mp4">VIDEO</a>) (<a href="./material/L3.T32.PL.Language.pdf">PDF</a>)<br/>
-L3.X.25B.SetTheory.Exercises (<a href="./material/L3.X.25B.SetTheory.Exercises-small.mp4">VIDEO</a>) (<a href="./material/L3.X.25B.SetTheory.Exercises.pdf">PDF</a>)<br/>
-L3.T21.SetTheory.Introduction (<a href="./material/L3.T21.SetTheory.Introduction-small.mp4">VIDEO</a>) (<a href="./material/L3.T21.SetTheory.Introduction.pdf">PDF</a>)<br/>
-L3.T22.SetTheory.BasicNotions (<a href="./material/L3.T22.SetTheory.BasicNotions-small.mp4">VIDEO</a>) (<a href="./material/L3.T22.SetTheory.BasicNotions.pdf">PDF</a>)<br/>
-L3.T23.SetTheory.Relations (<a href="./material/L3.T23.SetTheory.Relations-small.mp4">VIDEO</a>) (<a href="./material/L3.T23.SetTheory.Relations.pdf">PDF</a>)<br/>
-L3.X.1B.Introduction.ExerciseOnModels (VIDEO) (<a href="./material/L3.X.1B.Introduction.ExerciseOnModels.pdf">PDF</a>)<br/>
-L3.X.25A.SetTheory.Exercises (<a href="./material/L3.X.25A.SetTheory.Exercises-small.mkv">VIDEO</a>) (<a href="./material/L3.X.25A.SetTheory.Exercises.pdf">PDF</a>)<br/>
-L3.T31.PL.Intuition (<a href="./material/L3.T31.PL.Intuition-small.mp4">VIDEO</a>) (<a href="./material/L3.T31.PL.Intuition.pdf">PDF</a>)
+      L3.T21.SetTheory.Introduction (<a href="./material/L3.T21.SetTheory.Introduction-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L3.T21.SetTheory.Introduction-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L3.T21.SetTheory.Introduction.pdf" >PDF</a>)<br/>
+L3.T22.SetTheory.BasicNotions (<a href="./material/L3.T22.SetTheory.BasicNotions-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L3.T22.SetTheory.BasicNotions-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L3.T22.SetTheory.BasicNotions.pdf" >PDF</a>)<br/>
+L3.T23.SetTheory.Relations (<a href="./material/L3.T23.SetTheory.Relations-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L3.T23.SetTheory.Relations-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L3.T23.SetTheory.Relations.pdf" >PDF</a>)<br/>
+L3.T24.SetTheory.Functions (<a href="./material/L3.T24.SetTheory.Functions-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L3.T24.SetTheory.Functions-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L3.T24.SetTheory.Functions.pdf" >PDF</a>)<br/>
+L3.T31.PL.Intuition (<a href="./material/L3.T31.PL.Intuition-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L3.T31.PL.Intuition-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L3.T31.PL.Intuition.pdf" >PDF</a>)<br/>
+L3.T32.PL.Language (<a href="./material/L3.T32.PL.Language-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L3.T32.PL.Language-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L3.T32.PL.Language.pdf" >PDF</a>)<br/>
+L3.X.1B.Introduction.ExerciseOnModels (VIDEO (VIEW) DOWNLOAD VIDEO) (<a href="./material/L3.X.1B.Introduction.ExerciseOnModels.pdf" >PDF</a>)<br/>
+L3.X.25A.SetTheory.Exercises (<a href="./material/L3.X.25A.SetTheory.Exercises-small.mkv" >VIDEO (VIEW)</a> <a href="./material/L3.X.25A.SetTheory.Exercises-small.mkv" download>DOWNLOAD VIDEO</a>) (<a href="./material/L3.X.25A.SetTheory.Exercises.pdf" >PDF</a>)<br/>
+L3.X.25B.SetTheory.Exercises (<a href="./material/L3.X.25B.SetTheory.Exercises-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L3.X.25B.SetTheory.Exercises-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L3.X.25B.SetTheory.Exercises.pdf" >PDF</a>)
     </td>
     <td class="content">
       Q&A about lessons 1, 2, 3.
@@ -228,13 +233,15 @@ L3.T31.PL.Intuition (<a href="./material/L3.T31.PL.Intuition-small.mp4">VIDEO</a
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L4.T33.PL.Satisfiability (<a href="./material/L4.T33.PL.Satisfiability-small.mp4">VIDEO</a>) (<a href="./material/L4.T33.PL.Satisfiability.pdf">PDF</a>)<br/>
-L4.T34.PL.Validity.Unsat (<a href="./material/L4.T34.PL.Validity.Unsat-small.mp4">VIDEO</a>) (<a href="./material/L4.T34.PL.Validity.Unsat.pdf">PDF</a>)
+      L4.T33.PL.Satisfiability (<a href="./material/L4.T33.PL.Satisfiability-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L4.T33.PL.Satisfiability-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L4.T33.PL.Satisfiability.pdf" >PDF</a>)<br/>
+L4.T34.PL.Validity.Unsat (<a href="./material/L4.T34.PL.Validity.Unsat-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L4.T34.PL.Validity.Unsat-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L4.T34.PL.Validity.Unsat.pdf" >PDF</a>)
     </td>
     <td class="content">
       Q&A about lessons 2, 3, 4.
     </td>
     <td class="content">
+      
+      <a href="https://drive.google.com/file/d/1-abjdix7esi7t0_Ucz0F2tNplBpVx9B8/view?usp=sharing">Lesson Recording</a>
       
     </td>
     </tr>
@@ -246,9 +253,9 @@ L4.T34.PL.Validity.Unsat (<a href="./material/L4.T34.PL.Validity.Unsat-small.mp4
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L5.T41.PL.Reasoning.TruthTables.Summary (<a href="./material/L5.T41.PL.Reasoning.TruthTables.Summary-small.mp4">VIDEO</a>) (<a href="./material/L5.T41.PL.Reasoning.TruthTables.Summary.pdf">PDF</a>)<br/>
-L5.T36.PL.theories (<a href="./material/L5.T36.PL.theories-small.mp4">VIDEO</a>) (<a href="./material/L5.T36.PL.theories.pdf">PDF</a>)<br/>
-L5.T35.PL.LogCE (<a href="./material/L5.T35.PL.LogCE-small.mp4">VIDEO</a>) (<a href="./material/L5.T35.PL.LogCE.pdf">PDF</a>)
+      L5.T35.PL.LogCE (<a href="./material/L5.T35.PL.LogCE-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L5.T35.PL.LogCE-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L5.T35.PL.LogCE.pdf" >PDF</a>)<br/>
+L5.T36.PL.theories (<a href="./material/L5.T36.PL.theories-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L5.T36.PL.theories-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L5.T36.PL.theories.pdf" >PDF</a>)<br/>
+L5.T41.PL.Reasoning.TruthTables.Summary (<a href="./material/L5.T41.PL.Reasoning.TruthTables.Summary-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L5.T41.PL.Reasoning.TruthTables.Summary-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L5.T41.PL.Reasoning.TruthTables.Summary.pdf" >PDF</a>)
     </td>
     <td class="content">
       Q&A about lessons 3, 4, 5.
@@ -265,9 +272,9 @@ L5.T35.PL.LogCE (<a href="./material/L5.T35.PL.LogCE-small.mp4">VIDEO</a>) (<a h
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      L6.T44.PL.Reasoning.TruthTables.SATDPLL (<a href="./material/L6.T44.PL.Reasoning.TruthTables.SATDPLL-small.mp4">VIDEO</a>) (<a href="./material/L6.T44.PL.Reasoning.TruthTables.SATDPLL.pdf">PDF</a>)<br/>
-L6.T42.PL.Reasoning.TruthTables.DecisionProblems (<a href="./material/L6.T42.PL.Reasoning.TruthTables.DecisionProblems-small.mp4">VIDEO</a>) (<a href="./material/L6.T42.PL.Reasoning.TruthTables.DecisionProblems.pdf">PDF</a>)<br/>
-L6.T43.PL.Reasoning.TruthTables.SATCNF (<a href="./material/L6.T43.PL.Reasoning.TruthTables.SATCNF-small.mp4">VIDEO</a>) (<a href="./material/L6.T43.PL.Reasoning.TruthTables.SATCNF.pdf">PDF</a>)
+      L6.T42.PL.Reasoning.TruthTables.DecisionProblems (<a href="./material/L6.T42.PL.Reasoning.TruthTables.DecisionProblems-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L6.T42.PL.Reasoning.TruthTables.DecisionProblems-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L6.T42.PL.Reasoning.TruthTables.DecisionProblems.pdf" >PDF</a>)<br/>
+L6.T43.PL.Reasoning.TruthTables.SATCNF (<a href="./material/L6.T43.PL.Reasoning.TruthTables.SATCNF-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L6.T43.PL.Reasoning.TruthTables.SATCNF-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L6.T43.PL.Reasoning.TruthTables.SATCNF.pdf" >PDF</a>)<br/>
+L6.T44.PL.Reasoning.TruthTables.SATDPLL (<a href="./material/L6.T44.PL.Reasoning.TruthTables.SATDPLL-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L6.T44.PL.Reasoning.TruthTables.SATDPLL-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L6.T44.PL.Reasoning.TruthTables.SATDPLL.pdf" >PDF</a>)
     </td>
     <td class="content">
       Q&A about lessons 4, 5, 6.
@@ -284,9 +291,9 @@ L6.T43.PL.Reasoning.TruthTables.SATCNF (<a href="./material/L6.T43.PL.Reasoning.
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      L7.T51.PL.Reasoning.Deduction (<a href="./material/L7.T51.PL.Reasoning.Deduction-small.mp4">VIDEO</a>) (<a href="./material/L7.T51.PL.Reasoning.Deduction.pdf">PDF</a>)<br/>
-L7.T53.PL.Reasoning.Tableau (<a href="./material/L7.T53.PL.Reasoning.Tableau-small.mp4">VIDEO</a>) (<a href="./material/L7.T53.PL.Reasoning.Tableau.pdf">PDF</a>)<br/>
-L7.T52.PL.Reasoning.Hilbert.calculus (<a href="./material/L7.T52.PL.Reasoning.Hilbert.calculus-small.mp4">VIDEO</a>) (<a href="./material/L7.T52.PL.Reasoning.Hilbert.calculus.pdf">PDF</a>)
+      L7.T51.PL.Reasoning.Deduction (<a href="./material/L7.T51.PL.Reasoning.Deduction-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L7.T51.PL.Reasoning.Deduction-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L7.T51.PL.Reasoning.Deduction.pdf" >PDF</a>)<br/>
+L7.T52.PL.Reasoning.Hilbert.calculus (<a href="./material/L7.T52.PL.Reasoning.Hilbert.calculus-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L7.T52.PL.Reasoning.Hilbert.calculus-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L7.T52.PL.Reasoning.Hilbert.calculus.pdf" >PDF</a>)<br/>
+L7.T53.PL.Reasoning.Tableau (<a href="./material/L7.T53.PL.Reasoning.Tableau-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L7.T53.PL.Reasoning.Tableau-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L7.T53.PL.Reasoning.Tableau.pdf" >PDF</a>)
     </td>
     <td class="content">
       Q&A about lessons 5, 6, 7.
@@ -303,7 +310,8 @@ L7.T52.PL.Reasoning.Hilbert.calculus (<a href="./material/L7.T52.PL.Reasoning.Hi
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      
+      L8.X.1.PL.Exercises (<a href="./material/L8.X.1.PL.Exercises-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L8.X.1.PL.Exercises-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L8.X.1.PL.Exercises.pdf" >PDF</a>)<br/>
+L8.X.25C.SetTheory.Solutions (<a href="./material/L8.X.25C.SetTheory.Solutions-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L8.X.25C.SetTheory.Solutions-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L8.X.25C.SetTheory.Solutions.pdf" >PDF</a>)
     </td>
     <td class="content">
       Q&A about lessons 6, 7, 8.
@@ -320,7 +328,8 @@ L7.T52.PL.Reasoning.Hilbert.calculus (<a href="./material/L7.T52.PL.Reasoning.Hi
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      
+      L9.T71.FOL.Intuition (<a href="./material/L9.T71.FOL.Intuition-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L9.T71.FOL.Intuition-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L9.T71.FOL.Intuition.pdf" >PDF</a>)<br/>
+L9.T72.FOL.Language (<a href="./material/L9.T72.FOL.Language-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L9.T72.FOL.Language-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L9.T72.FOL.Language.pdf" >PDF</a>)
     </td>
     <td class="content">
       Q&A about lessons 7, 8, 9.
@@ -337,7 +346,12 @@ L7.T52.PL.Reasoning.Hilbert.calculus (<a href="./material/L7.T52.PL.Reasoning.Hi
     </td>
     <td class="time">14:30</td>
     <td class="material">
-      
+      L10.T73.FOL.Interpretation.function (<a href="./material/L10.T73.FOL.Interpretation.function-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L10.T73.FOL.Interpretation.function-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L10.T73.FOL.Interpretation.function.pdf" >PDF</a>)<br/>
+L10.T74.FOL.SAT.wrt.assignment (<a href="./material/L10.T74.FOL.SAT.wrt.assignment-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L10.T74.FOL.SAT.wrt.assignment-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L10.T74.FOL.SAT.wrt.assignment.pdf" >PDF</a>)<br/>
+L10.T75.FOL.SAT2LE (<a href="./material/L10.T75.FOL.SAT2LE-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L10.T75.FOL.SAT2LE-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L10.T75.FOL.SAT2LE.pdf" >PDF</a>)<br/>
+L10.T76.FOL.exercises (<a href="./material/L10.T76.FOL.exercises-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L10.T76.FOL.exercises-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L10.T76.FOL.exercises.pdf" >PDF</a>)<br/>
+L10.T77.FOL.Finite.Domains (<a href="./material/L10.T77.FOL.Finite.Domains-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L10.T77.FOL.Finite.Domains-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L10.T77.FOL.Finite.Domains.pdf" >PDF</a>)<br/>
+L10.T78.FOL.FOL.wrt.DB (<a href="./material/L10.T78.FOL.FOL.wrt.DB-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L10.T78.FOL.FOL.wrt.DB-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L10.T78.FOL.FOL.wrt.DB.pdf" >PDF</a>)
     </td>
     <td class="content">
       Q&A about lessons 8, 9, 10.
@@ -354,7 +368,12 @@ L7.T52.PL.Reasoning.Hilbert.calculus (<a href="./material/L7.T52.PL.Reasoning.Hi
     </td>
     <td class="time">09:00</td>
     <td class="material">
-      
+      L11.T81.FOL.Reasoning.Hilbert.calculus (<a href="./material/L11.T81.FOL.Reasoning.Hilbert.calculus-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L11.T81.FOL.Reasoning.Hilbert.calculus-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L11.T81.FOL.Reasoning.Hilbert.calculus.pdf" >PDF</a>)<br/>
+L11.T82.FOL.Reasoning.Tableau (<a href="./material/L11.T82.FOL.Reasoning.Tableau-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L11.T82.FOL.Reasoning.Tableau-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L11.T82.FOL.Reasoning.Tableau.pdf" >PDF</a>)<br/>
+L11.T83.FOL.Reasoning.Tableau.corr.compl (<a href="./material/L11.T83.FOL.Reasoning.Tableau.corr.compl-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L11.T83.FOL.Reasoning.Tableau.corr.compl-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L11.T83.FOL.Reasoning.Tableau.corr.compl.pdf" >PDF</a>)<br/>
+L11.T84.FOL.Reasoning.Tableau.examples (<a href="./material/L11.T84.FOL.Reasoning.Tableau.examples-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L11.T84.FOL.Reasoning.Tableau.examples-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L11.T84.FOL.Reasoning.Tableau.examples.pdf" >PDF</a>)<br/>
+L11.T85.FOL.Reasoning.Tableau.termination (<a href="./material/L11.T85.FOL.Reasoning.Tableau.termination-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L11.T85.FOL.Reasoning.Tableau.termination-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L11.T85.FOL.Reasoning.Tableau.termination.pdf" >PDF</a>)<br/>
+L11.T86.FOL.Reasoning.Tableau.countermodels (<a href="./material/L11.T86.FOL.Reasoning.Tableau.countermodels-small.mp4" >VIDEO (VIEW)</a> <a href="./material/L11.T86.FOL.Reasoning.Tableau.countermodels-small.mp4" download>DOWNLOAD VIDEO</a>) (<a href="./material/L11.T86.FOL.Reasoning.Tableau.countermodels.pdf" >PDF</a>)
     </td>
     <td class="content">
       Q&A about lessons 9, 10, 11.
@@ -374,7 +393,7 @@ L7.T52.PL.Reasoning.Hilbert.calculus (<a href="./material/L7.T52.PL.Reasoning.Hi
       
     </td>
     <td class="content">
-      Q&A about mid term
+      Q&A about lessons 10, 11, 12.
     </td>
     <td class="content">
       
@@ -391,7 +410,7 @@ L7.T52.PL.Reasoning.Hilbert.calculus (<a href="./material/L7.T52.PL.Reasoning.Hi
       
     </td>
     <td class="content">
-      Mid term
+      Q&A about mid-term
     </td>
     <td class="content">
       
@@ -408,7 +427,7 @@ L7.T52.PL.Reasoning.Hilbert.calculus (<a href="./material/L7.T52.PL.Reasoning.Hi
       
     </td>
     <td class="content">
-      Q&A about lessons 10, 11, 12.
+      Mid-term
     </td>
     <td class="content">
       
@@ -668,8 +687,8 @@ I moved the table here, under a heading which is not exported.
 | 2020-09-14T14:30 |    1 |    1 |       1 | Instructions     | Rules and Resources  | https://drive.google.com/file/d/1Fe-tCom7R2Eo_otUfXX5AUP2e_Cxte9-/view?usp=sharing |
 | 2020-09-15T09:00 |    1 |    2 |       2 | Prepare          | 2                    |                                                                                    |
 | 2020-09-21T14:30 |    2 |    3 |         | Lesson suspended |                      |                                                                                    |
-| 2020-09-22T09:00 |    2 |    4 |       3 | Q&A              | 1, 2, 3              | https://drive.google.com/file/d/1rW4NY75IJP3zVFd6TsJrzxeySVLhUV6T/view?usp=sharing                                                                                   |
-| 2020-09-28T14:30 |    3 |    5 |       4 | Q&A              | 2, 3, 4              |                                                                                    |
+| 2020-09-22T09:00 |    2 |    4 |       3 | Q&A              | 1, 2, 3              | https://drive.google.com/file/d/1rW4NY75IJP3zVFd6TsJrzxeySVLhUV6T/view?usp=sharing |
+| 2020-09-28T14:30 |    3 |    5 |       4 | Q&A              | 2, 3, 4              | https://drive.google.com/file/d/1-abjdix7esi7t0_Ucz0F2tNplBpVx9B8/view?usp=sharing |
 | 2020-09-29T09:00 |    3 |    6 |       5 | Q&A              | 3, 4, 5              |                                                                                    |
 | 2020-10-05T14:30 |    4 |    7 |       6 | Q&A              | 4, 5, 6              |                                                                                    |
 | 2020-10-06T09:00 |    4 |    8 |       7 | Q&A              | 5, 6, 7              |                                                                                    |
@@ -677,9 +696,9 @@ I moved the table here, under a heading which is not exported.
 | 2020-10-13T09:00 |    5 |   10 |       9 | Q&A              | 7, 8, 9              |                                                                                    |
 | 2020-10-19T14:30 |    6 |   11 |      10 | Q&A              | 8, 9, 10             |                                                                                    |
 | 2020-10-20T09:00 |    6 |   12 |      11 | Q&A              | 9, 10, 11            |                                                                                    |
-| 2020-10-26T14:30 |    7 |   13 |         | General Q&A      | Q&A about mid term   |                                                                                    |
-| 2020-10-27T09:00 |    7 |   14 |         | Exam             | Mid term             |                                                                                    |
-| 2020-11-02T14:30 |    8 |   15 |      12 | Q&A              | 10, 11, 12           |                                                                                    |
+| 2020-10-26T14:30 |    7 |   13 |      12 | Q&A              | 10, 11, 12           |                                                                                    |
+| 2020-10-27T09:00 |    7 |   14 |         | General Q&A      | Q&A about mid-term   |                                                                                    |
+| 2020-11-02T14:30 |    8 |   15 |         | Exam             | Mid-term             |                                                                                    |
 | 2020-11-03T09:00 |    8 |   16 |      13 | Q&A              | 11, 12, 13           |                                                                                    |
 | 2020-11-09T14:30 |    9 |   17 |      14 | Q&A              | 12, 13, 14           |                                                                                    |
 | 2020-11-10T09:00 |    9 |   18 |      15 | Q&A              | 13, 14, 15           |                                                                                    |

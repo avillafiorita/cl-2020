@@ -11,6 +11,9 @@ The maximum score for the midterms and the written exam is higher than
 30, allowing to obtain the maximum score even in presence of minor
 mistakes.
 
+Details about the structure of the exam can be found in the [[file:exam-structure.org][Exam
+Structure]] page (in Italian).
+
 #+BEGIN_NOTES
 **IMPORTANT:** You must register to ESSE3 in order to take part to the written
 exam. The registration (mandatory) concludes the exam. Those passing with

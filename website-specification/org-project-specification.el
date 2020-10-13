@@ -82,6 +82,8 @@
 
 (require 'elnode nil t)
 
+(defalias 'website-build 'org-publish)
+
 (defun website-server-start ()
   "Ask for a project name and start previewing it"
   (interactive)
