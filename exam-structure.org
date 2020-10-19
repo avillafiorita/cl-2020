@@ -189,4 +189,7 @@ conterrà un indicazione dei punteggi ottenibili rispondendo correttamente.
 | Total      |                                   |                   36 |
 #+TBLFM: @>$3 = vsum(@2..@-1)
 
+* Lingua
+
+Il testo dell'esame è in italiano.
 

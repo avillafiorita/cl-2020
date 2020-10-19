@@ -53,7 +53,6 @@ a {
 a:hover {
     color: white;
     background: #4CAF50;
-    p
 }
 
 #preamble {
@@ -217,4 +216,9 @@ table.calendar {
       text-align: center;
       padding-bottom: 0rem;
   }
+}
+
+#errore a:hover, #soluzione a:hover {
+    color: black;
+    background: white;
 }

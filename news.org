@@ -2,6 +2,23 @@
 #+AUTHOR: 
 #+DATE: <2020-08-30 Sun>
 #+STARTUP: showall
+#+HTML_HEAD_EXTRA: <script src="assets/js/main.js"></script>
+
+* Errata on Slides (Posted on: [2020-10-19 Mon])
+
+Trova l'errore (fare click per la soluzione) ...
+
+#+BEGIN_EXPORT html
+  <center>
+  <a id="errore" href="#" onClick="toggle_solution()"><img src="./assets/images/Errata.png" width="45%" /></a>
+  <a id="soluzione" style="display:none" href="#" onClick="toggle_solution()"><img src="./assets/images/Errata-Sol.png" width="45%"/></a>
+  </center>
+#+END_EXPORT
+
+La numerazione alle slide 17 della vecchia versione delle slides di
+esercizi di Propositional Logic era errata.  Le slide sono state
+aggiornate, ma se le avete scaricate prima di oggi (19/10/2020), vi
+consigliamo di riscaricarle al seguente link: [[file:./material/L8.X.1.PL.Exercises.pdf][L8.X.1.PL.Exercises.pdf]].
 
 * Recent Changes (Posted on: [2020-10-13 Tue])
 
