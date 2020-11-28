@@ -1,6 +1,7 @@
 #+TITLE: Opportunità di Collaborazione nel Gruppo Knowdive@disi
 #+AUTHOR: 
 #+DATE: <2020-09-12 Sat>
+#+INCLUDE: _navigation-l0.org
 
 Sono disponibili varie posizioni di 150h nonché posizioni di
 studentato interno, da intendersi come prima fase di un progetto di

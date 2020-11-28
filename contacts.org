@@ -1,6 +1,7 @@
 #+TITLE: Contacts
 #+AUTHOR: 
 #+DATE: <2020-08-30 Sun>
+#+INCLUDE: _navigation-l0.org
 #+STARTUP: showall
 
 If you have a question or a doubt about the content of the course,

@@ -2,6 +2,7 @@
 #+AUTHOR: 
 #+DATE: <2020-08-30 Sun>
 #+STARTUP: showall
+#+INCLUDE: _navigation-l0.org
 
 Welcome to the homepage of the Fall 2020 Edition of Computational Logic,
 course of the Computer Science degree at the University of Trento.

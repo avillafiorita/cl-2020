@@ -1,3 +1,72 @@
-#+TITLE: Material
+#+TITLE: Materials
 #+DATE: <2020-08-31 Mon>
+#+INCLUDE: _navigation-l0.org
 
+This page contains references and materials on the topics taught in
+the course.  There are many, many courses covering mathematical logic:
+if you find interesting resources not listed here, please open an
+issue on Github, so that we can improve this page.
+
+* Online Tools
+
+  - [[http://datascientia.education/logictools/][LogicTools on Datascientia]] local instance of the Logic Tools,
+    where you can have PL and FOL problems solved.  The tools are more
+    relevant for PL than for FOL.
+  - [[https://www.umsu.de/trees/][Tree Proof Generator]] builds Tableaux for PL and FOL.
+
+* Materials covering topics taught in CL-2020
+
+  You might try using these materials to get a different approach to
+  explaining the topics we cover in the course.  Notice that these
+  materials might not cover topics we cover in CL-2020 and, viceversa,
+  explore topics we are not covering in this course.
+
+  - [[http://www.cs.cornell.edu/courses/cs4700/2011fa/][Introduction to AI at Cornell]] as a lesson dedicated to [[http://www.cs.cornell.edu/courses/cs4700/2011fa/lectures/16_FirstOrderLogic.pdf][FOL]], which
+    includes a very short tutorial on Prolog.
+  - [[http://www.cs.yale.edu/homes/piskac/teaching/decpro-729/fol.pdf][First-Order Logic -Syntax, Semantics, Resolution]] is another
+    introduction to FOL in the form of slides.
+  - The [[https://www21.in.tum.de/teaching/sar/SS20/][Seminar on Automated Reasoning at TUM]] has material to read on
+    various topics, including [[https://www21.in.tum.de/teaching/sar/SS20/2.pdf][Tableaux for FOL]].
+  - The [[http://users.cecs.anu.edu.au/~jks/LogicNotes/index.html][Logic Notes]] pages focuses on (natural) deduction, but it has a
+    lesson on [[http://users.cecs.anu.edu.au/~jks/LogicNotes/quantifiers-in-tableaux.html][Tableaux]].
+  - [[https://www.mpi-inf.mpg.de/fileadmin/inf/rg1/script8ws1617.pdf][First-Order Tableau]] is a chapter from a book, probably, covering
+    Tableaux for FOL.
+  - [[http://www.dis.uniroma1.it/liberato/planning/tableau/ground.html][Tableeuax for first order logic]] at the University of Roma is a
+    step-by-step example of Tableaux with term substitution.  Part of
+    the [[http://www.dis.uniroma1.it/liberato/planning/][Planning and reasoning]] course by Paolo Liberatore.
+
+  A very detailed and clear discussion about the formalization of
+  constraints on terms satisfying a formula (exactly ..., at most ...,
+  execpt ...):
+
+  - [[https://faculty.washington.edu/smcohen/120/Chapter14.pdf][More about Quantification]] at the University of Washington
+    (Full set of [[https://faculty.washington.edu/smcohen/120/LectureNotes.htm][lecture notes]]).
+
+* Exercises on topics covered in CL-2020
+
+  - [[https://logic.umwblogs.org/][Introduction to Logic]] is a blog and course on logic, with
+    highlights on logical fallacies in informal reasoning.
+    Interesting, it also has various exercises on informal to formal:
+    [[https://logic.umwblogs.org/symbolic-logic/exercises-translation-practice-in-propositional-logic/][I2F for PL]] and [[https://logic.umwblogs.org/predicate-logic/][I2F for FOL]].
+  - [[https://www.cs.upc.edu/~larrosa/MEI-CSI-files/SAT/SAT-exercises.pdf][Exercises on satisfiability]] and [[https://www.cl.cam.ac.uk/teaching/1112/DiscMathI/exercises.pdf][Exercises on PL, FOL, Set Theory]]
+
+  #+begin_comment
+  - The [[https://cgi.csc.liv.ac.uk/~frank/teaching/comp118/comp118.html][Logic in Computer Science (COMP118)]] course has various
+    exercises, which you can find, for instance, here: [[https://cgi.csc.liv.ac.uk/~frank/teaching/comp118/lecture4.pdf][Lecture 4]],
+    [[https://cgi.csc.liv.ac.uk/~frank/teaching/comp118/tutorial1.pdf][Tutorial 1]], [[https://cgi.csc.liv.ac.uk/~frank/teaching/comp118/test2013a.pdf][Test 1]]. If you are interested in the topic, you might
+    also have a look at the [[https://cgi.csc.liv.ac.uk/~frank/teaching/comp118/material.html][Material]] page, where you can find some
+    interesting resources.
+  #+end_comment
+
+* Moodle page for CL-2020
+
+  - This is useful only for Adolfo, since he always forgets where the
+    course lives:
+    https://didatticaonline.unitn.it/dol/enrol/index.php?id=24456
+
+* Books
+
+  They might have exercises at the end of each chapter:
+
+  - [[https://www2.karlin.mff.cuni.cz/~krajicek/mendelson.pdf][Introduction to Mathematical Logic]] (Elliott Mendelson)
+  - [[http://page.mi.fu-berlin.de/raut/logic3/announce.pdf][A Concise IntroductiontoMathematical Logic]] (Wolfgang Rautenberg)

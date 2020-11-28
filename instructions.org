@@ -1,5 +1,6 @@
 #+TITLE: Instructions
 #+DATE: <2020-08-31 Mon>
+#+INCLUDE: _navigation-l0.org
 
 
 The Fall 2020 Edition of Computational Logic is delivered using the

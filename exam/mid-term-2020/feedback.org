@@ -1,0 +1,277 @@
+#+TITLE: Feedback received on Mid-Term 2020
+#+DATE: <2020-11-17 Tue>
+#+HTML_HEAD: <link rel="stylesheet" href="../../assets/css/main.css">
+#+INCLUDE: ../../_navigation-l2.org
+
+** Feedback su Mid-Term e prima parte del corso
+   :PROPERTIES:
+   :CUSTOM_ID: feedback-su-mid-term-e-prima-parte-del-corso
+   :v-0de30f25: 
+   :v-2c9fa664: 
+   :END:
+
+72 responses
+
+*** Quanto era complesso il compito di mid-term?
+    :PROPERTIES:
+    :CUSTOM_ID: quanto-era-complesso-il-compito-di-mid-term
+    :v-0bf29df7: 
+    :END:
+Dropdown
+
+1. 44 (61%): Molto: il compito era difficile, ma affrontabile
+2. 24 (33%): Giusto: il compito aveva la giusta complessità
+3. 4 (6%): Troppo: il compito era troppo difficile
+4. 0 (0%): No response
+5. 0 (0%): Facile: il compito è stato più facile di quanto mi aspettavo
+6. 0 (0%): Molto facile: il compito è stato molto più semplice del
+   previsto
+
+*** Quanto ti sei preparato per il mid-term?
+    :PROPERTIES:
+    :CUSTOM_ID: quanto-ti-sei-preparato-per-il-mid-term
+    :v-0bf29df7: 
+    :END:
+Dropdown
+
+1. 48 (67%): Ho studiato tanto
+2. 13 (18%): Ho studiato veramente tanto, ci tenevo
+3. 9 (13%): Ho studiato quanto bastava per passare
+4. 1 (1%): Ho studiato poco
+5. 1 (1%): Ho studiato quel che potevo e "ci ho provato"
+6. 0 (0%): No response
+
+*** Come pensi sia andato?
+    :PROPERTIES:
+    :CUSTOM_ID: come-pensi-sia-andato
+    :v-0bf29df7: 
+    :END:
+Dropdown
+
+1. 39 (54%): Così - così
+2. 23 (32%): Bene
+3. 8 (11%): Male
+4. 1 (1%): No response
+5. 1 (1%): Molto bene
+6. 0 (0%): Molto male
+
+*** Il tempo a disposizione per il compito è stato
+    :PROPERTIES:
+    :CUSTOM_ID: il-tempo-a-disposizione-per-il-compito-è-stato
+    :v-0bf29df7: 
+    :END:
+Multiple choice
+
+1. 72 (100%): Adeguato
+2. 0 (0%): No response
+3. 0 (0%): Non adeguato: avrei preferito avere più tempo
+
+*** Quanto è stato coerente con gli argomenti trattati a lezione?
+    :PROPERTIES:
+    :CUSTOM_ID: quanto-è-stato-coerente-con-gli-argomenti-trattati-a-lezione
+    :v-0bf29df7: 
+    :END:
+Dropdown
+
+1. 42 (58%): Coerente: qualche domanda mi ha sorpreso, ma avevo i
+   relativi argomenti sono stati trattati nel corso
+2. 23 (32%): Poco coerente: qualche domanda non è stata adeguatamente
+   "coperta" durante il corso
+3. 4 (6%): Molto coerente: il compito conteneva le domande che mi
+   aspettavo
+4. 3 (4%): Per nulla coerente: il mid-term aveva poco a che fare con gli
+   argomenti trattati nel corso
+5. 0 (0%): No response
+
+*** Quanto è stato difficile gestire la modalità a domande chiuse?
+    :PROPERTIES:
+    :CUSTOM_ID: quanto-è-stato-difficile-gestire-la-modalità-a-domande-chiuse
+    :v-0bf29df7: 
+    :END:
+Dropdown
+
+1. 56 (78%): Come mi aspettavo
+2. 13 (18%): Difficile
+3. 2 (3%): Più facile di come mi aspettavo
+4. 1 (1%): Inaspettatamente difficile
+5. 0 (0%): No response
+6. 0 (0%): Molto più facile di uno svolgimento a domanda aperta
+
+*** Quanto hai avuto difficoltà a gestire il punteggio negativo sulle risposte sbagliate?
+
+Dropdown
+
+1. 30 (42%): Molto: ha influenzato la mia capacità di rispondere ad
+   alcune domande
+2. 16 (22%): Troppo: ho rinunciato a rispondere ad alcune domande per
+   timore di includere una risposta sbagliata
+3. 16 (22%): Nè troppo, nè poco: sapevo come gestire
+4. 9 (13%): Poco: non mi sono posto il problema
+5. 1 (1%): Niente: è giusto avere risposte con un punteggio negativo
+6. 0 (0%): No response
+
+*** Esercizio più complesso?
+    :PROPERTIES:
+    :CUSTOM_ID: esercizio-più-complesso
+    :v-0bf29df7: 
+    :END:
+Dropdown
+
+1.  24 (33%): Tableau (modello)
+2.  19 (26%): Relazione tra teoria, interpretazione e modelli
+3.  9 (13%): First Order Logic: proprietà linguaggio
+4.  8 (11%): Dominio finito
+5.  6 (8%): DPLL
+6.  5 (7%): Tableau (svolgimento)
+7.  1 (1%): Propositional Logic: Informal to formal (passaggio a
+    livello)
+8.  0 (0%): No response
+9.  0 (0%): Proprietà formule PL
+10. 0 (0%): Truth table
+11. 0 (0%): First Order Logic: informal to formal (red mushrooms)
+12. 0 (0%): CNF
+
+*** Esercizio più facile?
+    :PROPERTIES:
+    :CUSTOM_ID: esercizio-più-facile
+    :v-0bf29df7: 
+    :END:
+Dropdown
+
+1.  23 (32%): Truth Table
+2.  12 (17%): CNF
+3.  10 (14%): Tableau (svolgimento)
+4.  8 (11%): Propositional Logic: Informal to formal (passaggio a
+    livello)
+5.  7 (10%): DPLL
+6.  4 (6%): No response
+7.  4 (6%): First Order Logic: informal to formal (red mushrooms)
+8.  3 (4%): Proprietà formule PL
+9.  1 (1%): First Order Logic: proprietà linguaggio
+10. 0 (0%): Relazione tra teoria, interpretazione e modelli
+11. 0 (0%): Tableau (modello)
+12. 0 (0%): Dominio finito
+
+*** Inserisci qui i tuoi suggerimenti per la prossima prova
+    :PROPERTIES:
+    :CUSTOM_ID: inserisci-qui-i-tuoi-suggerimenti-per-la-prossima-prova
+    :v-0bf29df7: 
+    :END:
+Long text
+
+- 54 (75%): No response
+- Modificare il comportamento dei punteggi negativi
+- Il sistema di penalizzazione tramite assegnazione di punteggio
+  negativo in alcuni casi potrebbe essere stato un po' troppo severo. In
+  alcune domande a risposta multipla infatti, le alternative
+  selezionabili erano molte. Questo ha determinato un "fattore di
+  penalizzazione potenziale" a mio parere talvolta troppo elevato. Forse
+  una nota sul numero di risposte corrette per ogni (o per qualche)
+  domanda a risposta multipla avrebbe in parte alleviato il problema
+  (es. "2 risposte tra quelle elencate sono corrette") .
+- Io avrei personalmente fornito qualche esempio di esercizio stile
+  provetta perché a mio parere sarebbe stato più facile entrare nella
+  modalità, mentre con gli esercizi forniti in classe ci si poteva
+  basare più su un processo qui si trattava di solo risultato che magari
+  può essere frutto di una svista e penalizza troppo quando magari
+  poteva penalizzare meno in una prova che prevedeva sviluppo
+- Se possibile, quando vengono poste domande su GitHub, sarebbe molto
+  istruttivo ottenere risposte (magari una spiegazione differente
+  rispetto a quella del video) con anche degli esempi. Perché, spesso,
+  chi pone la domanda ha già visto il video della lezione, anche varie
+  volte, ma comunque non ha compreso ciò che richiede e, inserendo il
+  semplice link alla lezione, non è utilissimo. Alcuni argomenti
+  dell'esame non erano stati approfonditi a dovere nelle lezione (tra
+  tutti i "modelli" e "contromodelli") e, specialmente, sarebbe il caso
+  anche di effettuare degli esercizi SVOLTI (passo-passo) direttamente a
+  lezione (magari facendo qualche lezione di esercitazione in più)
+  piuttosto che lasciarli "agli studenti". Inoltre, penso sarebbe meglio
+  anche essere più "legati" e coerenti con libro consigliato
+  (eventualmente inserendo le pagine del libro relative agli argomenti
+  trattati nella singola lezione, come è stato fatto in un paio di
+  lezioni), poiché molti argomenti avevano nomi e segni differenti sul
+  libro consigliato (Logica di McGraw Hill): alberi di refutazione
+  invece di tableau, sul libro non vengono mai citate le "alpha",
+  "beta", "gamma" e "delta" rules, ma ne vengono citate altre. Per
+  finire, penso sarebbe molto utile anche inserire negli annunci su
+  Moodle quando una lezione in presenza NON viene effettuata (dal
+  momento che sul calendario accademico le lezioni sono riportate
+  sempre). Grazie
+- Concordo con il fatto di mettere domande in cui la risposta da dare
+  non si trova esattamente sul materiale da studiare. Questo perchè è
+  giusto che si facciano dei ragionamenti per arrivarci. Ciononostante,
+  in questa prova alcune risposte si discostavano troppo dal materiale.
+  Quindi nella prossima prova sarebbe meglio diminuire, almeno un po',
+  questa difficoltà
+- Il sistema di punteggio credo penalizzasse troppo in alcuni scenari,
+  il fatto che un errore possa annullare il punteggio di una domanda (a
+  risposte multiple), nonostante tutte le altre risposte fossero
+  corrette lo ritengo inutilmente punitivo. Credo che il sistema di
+  punteggio possa essere rivisto, per il resto il compito non mi è
+  sembrato eccessivamente complesso, però con questo sistema di
+  punteggio potrebbe essere comunque andato male
+- So che magari questo mio pensiero non è legato direttamente alla
+  prossima prova ma mi farebbe piacere se le lezioni registrate fossero
+  un po' più "vive" ed energetiche (mi riferisco soprattutto alle
+  lezioni teoriche del prof Giunchiglia). Capisco che sia davvero
+  difficile e triste registrare le lezioni a casa davanti al computer
+  ma, se dovessi essere del tutto sincero, guardando le lezioni
+  registrate finora, sembra che non ci sia un vero interesse nel
+  trasmettere una "passione" agli studenti.
+- Gli argomenti del compito non erano coerenti con quello che è stato
+  trattato a lezione. L'esame trattava alcuni esercizi mai visti nello
+  specifico. A lezione sono stati svolti molti esercizi, totalmente
+  differenti da quelli presenti nel compito. Per il prossimo esame
+  sarebbe meglio che al compito venissero chiesti più esercizi simili a
+  quelli svolti in aula. Inoltre il punteggio negativo negli esercizi è
+  stata una decisione a dir poco insensata: è giustissimo penalizzare
+  chi va a fortuna nelle crocette, ma non penalizzare una persona che ha
+  studiato e si vede perdere 4-5 voti per delle piccole imprecisioni.
+  Giusto sarebbe invece togliere mezzo punto.
+- L'unico suggerimento che vorrei dare è di eliminare il punteggio
+  negativo sulle risposte sbagliate. A mio parere, infatti, è inutile e
+  porta ad uno sbilanciamento psicologico nel dare la risposta, nel
+  senso che uno studente potrebbe aver concluso un ragionamento in modo
+  corretto, ma, per paura di dare una risposta sbagliata, potrebbe non
+  voler salvare la risposta nel quiz. Questo porterebbe alla sottrazione
+  di alcuni punti che, anche se leggera, può risultare vitale per alcuni
+  studenti.
+- Sarebbe opportuno inserire più spazi quando vengono utilizzate delle
+  parentesi all'interno delle formule
+- il rapporto tra il punteggio della risposta sbagliata e corretta e'
+  troppo consistente, scoraggia il completamento del quiz anche nelle
+  domande laddove ragionando si arriva a una risposta sensata, ma non
+  essendo sicuri si preferisce evitare la compilazione. Le domande di
+  teoria sono state un po' una sorpresa siccome non ci sono state
+  fornite domande di esempio.
+- Inserire un'opzione per togliere la risposta una volta inserita, nel
+  caso si volesse consegnare in bianco. Accentuare alcuni spazi nel
+  tableau per facilitarne la lettura, si faceva facilmente confusione
+  nella lettura delle parentesi, e poteva compromettere sia l'esercizio
+  sul tableau, che quello sul suo modello, che per come è strutturato il
+  sistema di valutazione portava a perdere molti punti.
+- Fornire fac-simili delle prove da affrontare, aumentare il numero di
+  esercizi svolti nelle presentazioni degli argomenti
+- Fare a lezione esercizi più inerenti, così da preparare veramente gli
+  studenti all'esame. Gli esercizi svolti durante le lezioni sono
+  risultati inutili in quando la maggior parte degli esercizi dell'esame
+  aveva una struttura molto differente rispetto a quelli proposti in
+  questi mesi.
+- Suggerisco di rendere più chiare alcune consegne/risposte in moda da
+  ridurre il tempo di lettura e comprensione delle stesse. Per il resto
+  tutto ok
+- 
+
+- Non era ben chiaro come interpretare e svolgere l'esercizio sul
+  dominio finito visto che non era stato spiegato precisamente a
+  lezione, comunque ci si poteva provare arrivandoci per intuizione.
+  Considerando però anche il punteggio negativo in caso di risposta
+  sbagliata, era una domanda a cui probabilmente era preferibile non
+  rispondere (io personalmente ho risposto). In generale consiglierei di
+  scegliere domande il meno ambigue possibili per la prova, soprattutto
+  se svolta a distanza e senza la possibilità di fare domande ai
+  docenti.
+- Lo che era quel tableaux, lo sogno di notte
+
+
+  

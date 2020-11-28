@@ -2,7 +2,23 @@
 #+AUTHOR: 
 #+DATE: <2020-08-30 Sun>
 #+STARTUP: showall
+#+INCLUDE: _navigation-l0.org
 #+HTML_HEAD_EXTRA: <script src="assets/js/main.js"></script>
+
+* Esercizi su ML
+
+Trovate qui esercizi su Modal Logics:
+
+- Informal to Formal: [[file:material/L17.X.ML.Informal2Formal.pdf][L17.X.ML.Informal2Formal.pdf]], [[file:material/L17.X.ML.Informal2Formal-small.mp4][L17.X.ML.Informal2Formal-small.mp4]]
+  
+
+* Nuovi contenuti (Posted on: [2020-10-19 Mon])
+
+- Caricate slide con approfondimento su L5.T35:  [[http://www.datascientia.education/cl-2020/material/L5.T35.PL.LogCE-Addendum.pdf][L5.T35.PL.LogCE-Addendum.pdf]]
+- Caricate slide per intervento live di oggi (teoria): [[http://www.datascientia.education/cl-2020/material/L10.Z.Lezione.Frontale.pdf][L10.Z.Lezione.Frontale.pdf]]
+- Caricate slide e video per lezione di oggi (logictools + esercizi): [[http://www.datascientia.education/cl-2020/material/L10.ZX.Lezione.Frontale.pdf][L10.ZX.Lezione.Frontale.pdf]] e [[http://www.datascientia.education/cl-2020/material/L10.ZX.Lezione.Frontale-small.mp4][L10.ZX.Lezione.Frontale-small.mp4]]
+- Aggiunta news su piccolo errore in una vecchia versione delle slide: L8.X (si trova immeditamente dopo questa news)
+- Aggiunta lingua nella specifica dell'esame: Italiano (vedi: http://www.datascientia.education/cl-2020/exam-structure.html)
 
 * Errata on Slides (Posted on: [2020-10-19 Mon])
 

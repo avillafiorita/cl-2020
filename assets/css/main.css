@@ -55,7 +55,11 @@ a:hover {
     background: #4CAF50;
 }
 
-#preamble {
+#my-preamble {
+    position: absolute;
+    top: 0;
+    left: 0;
+
     margin: 0;
     padding: 0rem;
     padding-top: 1.6rem;
@@ -71,7 +75,7 @@ a:hover {
     background-color: #2F2D2E;
 }
 
-#preamble span.title {
+#my-preamble span.title {
     display: block;
     margin-bottom: 1rem;
     padding-left: 2rem;
@@ -82,18 +86,18 @@ a:hover {
 }
     
 
-#preamble a {
+#my-preamble a {
     padding-left: 2rem;
     display: block;
     margin-bottom: 0.5rem;
 }
 
-#preamble a {
+#my-preamble a {
     color: #DFDFDF;
     text-decoration: none;
 }
 
-#preamble a:hover {
+#my-preamble a:hover {
     color: white;
     background: #4CAF50;
     p
@@ -182,13 +186,13 @@ table.calendar {
 
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
-  #preamble {
+  #my-preamble {
     width: 100%;
     height: auto;
     position: relative;
     padding-top: 0rem;
   }
-  #preamble span.title {
+  #my-preamble span.title {
       display: inline-block;
       padding-left: 0.5rem;
       padding-right: 0.5rem;
@@ -196,7 +200,7 @@ table.calendar {
       font-size: unset;
       float: left;
   }
-  #preamble a {
+  #my-preamble a {
       float: left;
       padding-left: 0.5rem;
       padding-right: 0.5rem
@@ -206,11 +210,11 @@ table.calendar {
 
 /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
 @media screen and (max-width: 400px) {
-  #preamble a {
+  #my-preamble a {
     text-align: center;
     float: none;
   }
-  #preamble span.title {
+  #my-preamble span.title {
       display: block;
       float: none;
       text-align: center;

@@ -1,0 +1,327 @@
+#+TITLE: Struttura e Regole Compito
+#+AUTHOR: Fausto Giunchiglia e Adolfo Villafiorita
+#+DATE: <2020-10-11 Sun>
+#+HTML_HEAD: <link rel="stylesheet" href="../assets/css/main.css">
+#+INCLUDE: ../_navigation-l1.org
+
+* Obiettivi
+
+Obiettivo dell'esame è verificare:
+
+- L'apprendimento dei concetti e delle tecniche presentate durante il corso,
+  verificandone la conoscenza e la capacità di dedurne le implicazioni dirette
+- La padronanza della materia, attraverso l'applicazione dei metodi e delle tecniche a
+  problemi che potrebbero richiedere un po' di elaborazione concettuale
+
+* Struttura del Compito
+
+La tabella riporta la struttura **indicativa** del compito. Ci
+riserviamo diritto e possibilità di cambiare struttura a seconda del
+bisogno e dei casi.
+
+Nelle tabelle **punteggio indicativo** è il punteggio che ci
+aspettiamo di assegnare all'esercizio.  Nei compiti potrebbe essere
+che alcune domande abbiano un punteggio massimo diverso da quello
+indicato (in meglio o peggio).  Il testo di ogni domanda conterrà un
+indicazione dei punteggi ottenibili rispondendo correttamente.
+
+** Prima Prova Parziale
+
+| Topic      | Subtopic                          | Punteggio Indicativo |
+|------------+-----------------------------------+----------------------|
+| Set Theory | Domanda su I, relazioni, funzioni |                    2 |
+| PL         | Informal to Formal                |                    5 |
+| PL         | Reasoning in PL                   |                    4 |
+| PL         | Domanda Teorica/Generale          |                    4 |
+| PL         | Domanda Teorica/Generale          |                    4 |
+| FOL        | Informal to Formal                |                    5 |
+| FOLD       | Reasoning in FOL                  |                    4 |
+| FOL        | Domanda Teorica/Generale          |                    4 |
+| FOL        | Domanda Teorica/Generale          |                    4 |
+|------------+-----------------------------------+----------------------|
+| Total      |                                   |                   36 |
+#+TBLFM: @>$3 = vsum(@2..@-1)
+
+** Tipi di risposta
+
+Ogni esercizio potrebbe richiedere di rispondere in uno dei seguenti modi:
+
+- *Testo libero:* descrizione testuale in italiano, che potrebbe
+  includere anche alcune formule, da scrivere nella notazione testuale
+  riportata qui sotto (e spiegata a lezione)
+- *Scelta multipla:* si chiede di indicare con una spunta quale risposta
+  sia vera tra quelle proposte. In tutti i casi a risposta multipla,
+  le risposte corrette potrebbero essere zero, una o più di una. Il
+  computer mostra l'usuale check box e, naturalmente, consente la
+  scelta multipla.
+- *Scelta singola:* si chiede di indicare una sola tra le risposte
+  fornite. Il computer mostra il radio box e, naturalmente, impedisce
+  di effettuare scelte multiple.
+- *Dropdown menu:* bisogna scegliere la corretta tra le risposte
+  possibili.
+
+* Lingua
+
+Il testo dell'esame è in italiano.
+
+* Erogazione dell'esame
+
+** Moodle + Respondus + Monitor
+
+L'esame è erogato con Moodle + Respondus + Monitor, su un'istanza di
+Moodle specificamente dedicata per gli esami. Dovete quindi scaricare
+Respondus, se non lo avete già fatto, e verificarne le
+funzionalità. Se non avete esperienza con Respondus/Moodle trovate qui
+alcuni documenti utili: https://dol.unitn.it/respondus-faq e il
+seguente
+https://dol.unitn.it/esame-informatizzato-con-respondus-lockdown-browser-e-monitor
+
+Al seguente link trovate un test di esempio (generico, non legato al
+corso): https://esamionline.unitn.it/course/view.php?id=120 Respondus
+vi chiederà di identificarvi con un documento e mostrare l'ambiente in
+cui state effettuando il test.
+
+** Da fare prima della prova
+
+La maggior parte di queste cose sono probabilmente ovvie, se avete già
+dato esami con Moodle, in ogni caso vi chiediamo di:
+
+- Leggere queste istruzioni!
+- Provare a collegarvi sul sito Moodle degli esami, in modo da
+  verificare che il vostro account funzioni.
+- Trovare un posto tranquillo dove svolgere la prova domani (non è
+  possibile svolgere la prova in una stanza con altre persone)
+- Scaricare il software necessario (respondus + Moodle) e verificare
+  che sia tutto a posto.
+- Entrare in contatto in caso di problemi.
+
+* Regole per lo svolgimento della prova
+
+- Per il compito potete usare carta e penna e, naturalmente, il
+  computer per compilare il quiz (in modalità lockdown + monitor). Non
+  è possibile utilizzzare nessun altro tipo di materiale: no a secondi
+  computer, calcolatrici, telefonini, ...
+- I fogli devono essere bianchi (e vi chiederemo di mostrarli prima
+  dell'inizio della prova)
+- Non è possibile consultare né testi, né appunti.
+- Il monitor registra i video durate la compilazione del test. I video
+  potranno essere analizzati e daremo seguito ad ogni tentativo di
+  frode.
+- Per qualsiasi dubbio o domanda sulle modalità di svolgimento
+  dell'esame vi chiediamo di entrare in contatto per email *PRIMA
+  DELLA PROVA*.
+- Durante la prova non saremo in grado di rispondere a domande, per
+  garantire una maggiore uniformità nella gestione di tutti i test
+- Durante la prova viene invece reso disponibile un numero per
+  risolvere problemi tecnici.
+
+* Zero Tolerance
+
+La prova di studenti trovati a copiare o a passare illecitamente
+materiale ai propri compagni sarà considerata nulla.  Non ci sono
+avvertimenti bonari: chi viola le regole, ne risponde.
+
+* Punteggio assegnato
+
+** Regole generali
+
+- Il voto dello scritto è dato dalla somma dei punti ottenuti
+  rispondendo ad ogni domanda.
+- Ogni domanda riporta i punti assegnabili
+- La somma totale dei punti assegnabili ad uno scritto è,
+  tipicamente, 36.
+- A seconda di media a varianza dei risultati, ci riserviamo la
+  possibilità di riparametrare i voti finali, applicando un fattore
+  moltiplicativo (anche inferiore a 1) o additivo a tutti i compiti.
+
+** Calcolo punti assegnati ad ogni esercizio
+
+TL;DR Dal momento che ogni esercizio può risultare in un voto
+negativo, si consiglia, laddove non si sia sicuri e sia possibile, di
+non rispondere alla domanda (basta non toccare nulla).
+
+Di seguito sia P il numero di punti assegnati ad un
+esercizio. Riportiamo di seguito il meccanismo di assegnazione dei
+punteggi.
+
+*** Risposta aperta
+
+Il punteggio assegnato potrebbe essere tra -P e P
+
+*** Risposta singola
+
+Il punteggio assegnato è P, se la risposta è corretta, -P, se la
+risposta è sbagliata.
+
+*** Risposta multipla
+
+Nelle domande a risposta multipla, per ottenere il punteggio totale
+assegnato all'esercizio è necessario marcare tutte e sole le risposte
+corrette. Le risposte corrette potrebbero essere 0, 1 o più di una.
+
+Nella valutazione di un esercizio a risposta multipla, ogni risposta
+corretta azzeccata garantisce una frazione del punteggio totale. Ogni
+risposta errata determina invece una riduzione del punteggio
+totale. Si veda sotto per la specifica.
+
+Il punteggio ad ogni esercizio a risposta multipla è a somma zero e,
+quindi, indicare tutte le risposte come false, così come indicare
+tutte le risposte come vere garantisce, in ambedue i casi, 0 punti.
+
+Se il numero di risposta errate e quello di risposte esatte non è
+uguale (NS != NC) il valore assegnato ad una risposta corretta e
+quello assegnato ad una risposta sbagliata potrebbe essere diverso. Di
+solito (ma non necessariamente), lo sbilanciamento è negativo. In
+altre parole: se scegliete una risposta corretta e una sbagliata, il
+punteggio potrebbe essere comunque negativo.
+
+L'algoritmo di assegnazione del punteggio è come segue. Sia P il
+numero di punti assegnati all'esercizio, N il numero di risposte
+proposte, NC il numero di risposte corrette, NS il numero di risposte
+sbagliate (N = NC+NS), Per ogni risposta corretta vengono assegnati: P
+/ NC. Per ogni risposta sbagliata vengono invece tolti P / NE.
+
+Esempio. Si supponga che un esercizio a risposta multipla, che assegna
+8 punti, abbia 2 risposte corrette e 4 errate. Ogni risposta esatta
+marcata correttamente varrà 4 punti, mentre ogni risposta errata
+marcata per errore varrà -2 punti.  Notazione utilizzata e da usare
+per le formule
+
+* Notazione da utilizzare
+
+Dal momento che potremmo chiedere di rispondere direttamente al
+computer, ci troviamo davanti alla necessità di rappresentare in testo
+formule e diagrammi.
+
+** Formule
+
+Dal momento che il sistema non consente di inserire facilmente simboli
+grafici utilizzati nelle formule, rappresentiamo e chiediamo di
+rappresentare i simboli logici utilizzando il loro nome in
+inglese. Chiediamo di scrivere i connettivi logici in minuscolo, anche
+se l'eventuale uso del maiuscolo non costituisce elemento di
+valutazione.
+
+Quindi:
+
+| Connettivo Logico        | Notazione da usare |
+|--------------------------+--------------------|
+| $\neg$                   | NOT                |
+| $\wedge$                 | AND                |
+| $\vee$                   | OR                 |
+| $\supset$, $\rightarrow$ | IMP                |
+| $\equiv$                 | IFF                |
+| $\forall$                | FORALL             |
+| $\exists$                | EXISTS             |
+| $\models$                | MODELS             |
+| $\vdash$                 | DERIVES            |
+
+I connettivi possono essere usati indifferentemente in maiuscolo o minuscolo, ma
+chiediamo di essere costanti nell'uso: sempre in maiuscolo o sempre in minuscolo.
+
+Quindi, ad esempio:
+
+\begin{equation}
+\neg A \wedge (B \supset C)
+\end{equation}
+
+deve essere scritto nel compito come:
+
+#+begin_example
+not A and (B imp C)
+#+end_example
+
+** Tableau
+
+Qualche esercizio potrebbe richiedere di svolgere un Tableau, che dobbiamo quindi essere
+in grado di inserire in forma testuale nel campo di risposta.  Vi chiediamo di utilizzare
+la seguente convenzione:
+
+1. Ogni nodo del Tableau è rappresentato con un paragrafo di testo, una serie di linee di
+   testo terminate da una riga vuota
+2. Ogni paragrafo inizia con una sequenza di numeri separati da ".", che indicano la
+   posizione del nodo nel Tableau.  Si utilizzi la seguente regola:
+   - il primo nodo è 1
+   - i discendenti del nodo N sono N.1, ..., N.M
+3. Ogni paragrafo elenca tutte le formule del nodo, una per riga, utilizzando la
+   notazione in testo spiegata sopra.  Un nodo chiuso si indica con "X" o "CLOSED",
+   indifferentemente.
+
+*** Esempio Numerazione
+
+#+begin_src dot :file node-enumeration.png :exports results
+graph G {
+  node [shape=plaintext]
+  "1" -- "1.1"
+  "1.1" -- {"1.1.1"}
+  "1.1.1" -- {"1.1.1.1", "1.1.1.2", "1.1.1.3"}
+  "1.1.1.2" -- "1.1.1.2.1"
+  "1.1.1.3" -- {"1.1.1.3.1", "1.1.1.3.2"}
+}
+#+end_src
+
+#+RESULTS:
+[[file:node-enumeration.png]]
+
+*** Tableau
+
+Il seguente Tableau:
+
+#+begin_src dot :file tableau.png :exports results
+graph g {
+  node [shape=plaintext]
+
+  A [ label="¬ (q ∨ p) ⊃ (p ∨ q)" ]
+  B [ label=" (q ∨ p)\n ¬ (p ∨ q)" ]
+  C [ label="¬ p\n¬ q" ]
+  D [ label="p" ]
+  E [ label="q" ]
+  F [ label="X" ]
+  G [ label="X" ]
+
+  A -- B;
+  B -- C;
+  C -- {D, E};
+  D -- F;
+  E -- G;
+
+  
+
+}    
+#+end_src
+
+#+RESULTS:
+[[file:tableau.png]]
+
+Si rappresenta in testo come segue:
+
+#+begin_example
+1. NOT (Q OR P) IMP (P OR Q)
+
+1.1 P OR Q
+    NOT (P OR Q)
+
+1.1.1 NOT P
+      NOT Q
+
+1.1.1.1 P
+
+1.1.1.2 Q
+
+1.1.1.1.1 CLOSED
+
+1.1.1.1.2 CLOSED
+#+end_example
+
+* Feedback sul compito
+
+- I risultati del compito non sono resi immediatamente disponibili,
+  proprio perché ci riserviamo la possibilità di aggiustare i valori
+  numerici
+- Il compito viene discusso e corretto a lezione
+- A valle del compito inseriamo un questionario di feedback anonimo
+  sulla complessità del compito stesso. I dati verranno utilizzati
+  esclusivamente per tarare le attività delle prossime edizioni del
+  corso. La compilazione, facoltativa, consente di aiutarci a migliorare
+  corso e esami.
+

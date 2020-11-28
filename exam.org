@@ -1,5 +1,6 @@
 #+TITLE: Examination and Grading
 #+DATE: <2020-08-31 Mon>
+#+INCLUDE: _navigation-l0.org
 
 The Examination consists of two midterms **or** a final written exam (no
 interview).
@@ -9,14 +10,12 @@ gotten in each midterm.
 
 The maximum score for the midterms and the written exam is higher than
 30, allowing to obtain the maximum score even in presence of minor
-mistakes.
+mistakes.  Details about the structure of the exam can be found in the
+[[file:exam/exam-structure.org][Exam Structure]] page (in Italian).
 
-Details about the structure of the exam can be found in the [[file:exam-structure.org][Exam
-Structure]] page (in Italian).
+In the following pages you can find aggregated results of exams:
 
-#+BEGIN_NOTES
-**IMPORTANT:** You must register to ESSE3 in order to take part to the written
-exam. The registration (mandatory) concludes the exam. Those passing with
-midterms need to register tothe first standard session (see below).
-#+END_NOTES
-
+- Mid Term November 2020:
+  - [[file:exam/mid-term-2020/risultati.html][Risultati Aggregati Prova 6/11/2020]]
+  - [[file:exam/mid-term-2020/feedback.org][Feedback Received]]
+  

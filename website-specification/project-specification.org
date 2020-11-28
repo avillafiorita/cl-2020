@@ -1,0 +1,193 @@
+#+TITLE: Org Mode Project Specification
+#+AUTHOR: Adolfo Villafiorita
+#+DATE: <2020-08-27 Thu>
+#+STARTUP: showall
+#+HTML_HEAD: <link rel="stylesheet" href="../assets/css/main.css">
+#+INCLUDE: ../_navigation-l1.org
+
+* Introduction
+
+This page contains the specification to build this website using Org Mode.
+You might want to look and set some of the variables in the [[Website Configuration][Configuration]]
+section.
+
+It can be found here:
+
+#+NAME: pwd
+#+BEGIN_SRC shell :exports results :results output
+pwd
+#+END_SRC
+
+#+RESULTS: pwd
+: /home/adolfo/Sites/cl-2020/website-specification
+
+To load this configuration, either =M-x org-babel-execute-buffer= on
+this buffer (=C-c C-b- C-v=) or put in your Emacs initialization file (=.emacs.el=):
+
+#+BEGIN_EXAMPLE emacs-lisp
+(setq project-location (expand-file-name "~/Sites/home/site-building/org-project-specification.org"))
+
+(if (file-exists-p project-location)
+    (org-babel-load-file project-location)
+  (message "Warning! project specification (%s) not found (check init.el)" project-location))
+#+END_EXAMPLE
+
+* Static website functions
+
+  We use the functions defined in =website.org=, which provide
+  facilities for previewing and deploying:
+
+  #+begin_src elisp
+    (org-babel-load-file "~/Sources/elisp/website.org")
+  #+end_src
+
+  #+RESULTS:
+  : Loaded ~/Sources/elisp/website.el
+
+* Project Specification
+
+** Website Configuration
+
+   Basic information about the website:
+
+   #+BEGIN_SRC emacs-lisp :results silent
+     (setq name "cl-2020")
+     (setq preview-port 4701)
+     (setq exclude-sources t)
+   #+END_SRC
+
+   Where are the sources and where do we save the resulting HTML files?
+
+   #+BEGIN_SRC emacs-lisp :results silent
+     (setq sources (expand-file-name "~/Sites/cl-2020/"))
+     (setq local-dest sources)
+   #+END_SRC
+
+   Where do we deploy the generated HTML?  
+
+   Set to =nil= if _no remote_ deployment is necessary (in which case the
+   website will be available in the =website-dest= directory):
+
+   #+BEGIN_SRC emacs-lisp :results silent
+     (setq deploy-dest "adolfo@ict4g.net:/srv/http/datascientia_education/cl-2020")
+   #+END_SRC
+
+   Remove the old specification (if present) and add it again.
+   Removal allows to make changes to this buffer and reload it.
+
+   #+begin_src emacs-lisp :results silent
+     (website-remove name)
+     (website-add name preview-port local-dest deploy-dest exclude-sources)
+   #+end_src
+
+** Navigation
+
+   This function generate the navigation for the website.  Navigation
+   links are relative, so that previewing works flawlessly.
+
+   All files of the website need to include the navigation with the appropriate include diretive:
+
+   #+begin_example
+   #+INCLUDE: _navigation-l0.org
+   #+end_example
+
+   
+
+   #+BEGIN_SRC emacs-lisp :results silent
+     (setq website-menu
+           '((nil                  . "CL-2020")
+             ("welcome.html"       . "Welcome")
+             ("news.html"          . "News")
+             ("instructions.html"  . "Instructions")
+             ("calendar.html"      . "Calendar and Slides")
+             ("exam.html"          . "Examination and Grading")
+             ("material.html"      . "Additional Materials")
+             ("syllabus.html"      . "Syllabus")
+             ("q-and-a.html"       . "Questions and Answers")
+             ("opportunities.html" . "Collaboration Opportunities")
+             ("contacts.html"      . "Contacts")))
+
+     ;; This function generates a preamble starting from website-menu, at the level of depth given by prefix
+     (defun cl-2020-preamble (x &optional prefix)
+       (concat "#+HTML: <div id=\"my-preamble\">"
+               (apply 'concat
+                      (mapcar (lambda (x) (if (car x)
+                                              (concat "<a href=\"" prefix (car x) "\">" (cdr x) "</a>")
+                                            (concat "<span class=\"title\">" (cdr x) "</span>")))
+                              website-menu))
+               "</div>"))
+
+     ;; generate four files with navigation with links at different depths
+     (with-temp-file "../_navigation-l0.org" (insert (cl-2020-preamble nil)))
+     (with-temp-file "../_navigation-l1.org" (insert (cl-2020-preamble nil "../")))
+     (with-temp-file "../_navigation-l2.org" (insert (cl-2020-preamble nil "../../")))
+     (with-temp-file "../_navigation-l3.org" (insert (cl-2020-preamble nil "../../../")))
+   #+END_SRC
+   
+
+** Org Mode Project Specification
+
+  Project specification for Org Mode
+
+  #+BEGIN_SRC emacs-lisp :results silent
+        (setq content (concat name "-content"))
+        (setq assets (concat name "-assets"))
+
+        (setq project-specification
+              `((,name
+                 :components ( ,content ) )
+
+                (,content
+                 :base-directory ,sources
+                 :publishing-directory ,local-dest
+                 :publishing-function org-html-publish-to-html
+                 :base-extension "org"
+                 :exclude "\\(.git\\|_site\\|^_.*\\|.*~\\)"
+                 :recursive t
+
+                 :html-doctype "html5"
+                 :section-numbers nil
+                 :with-toc nil
+                 :with-broken-links nil
+                 :html-head-include-default-style nil
+                 :html-head-include-scripts nil
+
+                 :html-head "<link rel=\"stylesheet\" href=\"assets/css/main.css\">"
+                 ;; :html-preamble cl-2020-preamble
+                 ;; :html-preamble t
+                 ;; :html-preamble-format (("en" ,cl-2020-l0-preamble))
+                 :html-postamble "<p class=\"date\">Last modification: %C</p>\n<p class=\"date\">Created on: %d</p>"
+                 )
+
+                ;; (,assets
+                ;;  :base-directory ,website-sources
+                ;;  :publishing-directory ,website-local-dest
+                ;;  :publishing-function org-publish-attachment
+                ;;  :base-extension "pdf\\|mp4\\|woff\\|ttf\\|txt\\|css\\|js\\|png\\|svg\\|jpg\\|gif\\|xml\\|atom\\|gz"
+                ;;  :exclude "\\(.git\\|_site\\|^_.*\\|.*~\\)"
+                ;;  :recursive t
+                ;;  )
+                ))
+  #+END_SRC
+
+  Remove the Org Mode project specification, if already present, so that we can
+  modify and re-evaluate this page:
+
+  #+BEGIN_SRC emacs-lisp :results silent
+    (let ( (components (mapcar (lambda (x) (car x)) project-specification)) )
+      (mapcar 
+         (lambda (x) (setq org-publish-project-alist (assoc-delete-all x org-publish-project-alist)))
+         components))
+  #+END_SRC
+
+  Add the project specification to the list of Org Mode projects:
+
+  #+BEGIN_SRC emacs-lisp :results silent
+    (setq org-publish-project-alist (append project-specification org-publish-project-alist))
+  #+END_SRC
+
+* Local Variables                                                  :noexport:
+
+# Local Variables:
+# org-confirm-babel-evaluate: nil
+# End:
