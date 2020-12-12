@@ -66,6 +66,11 @@ issue on Github, so that we can improve this page.
 
 * Books
 
+  A very nice website is:
+
+  - [[https://openlogicproject.org/][Open Logic Project]] which collects many resources and textbooks
+    covering logic.
+
   They might have exercises at the end of each chapter:
 
   - [[https://www2.karlin.mff.cuni.cz/~krajicek/mendelson.pdf][Introduction to Mathematical Logic]] (Elliott Mendelson)

@@ -5,13 +5,37 @@
 #+INCLUDE: _navigation-l0.org
 #+HTML_HEAD_EXTRA: <script src="assets/js/main.js"></script>
 
-* Esercizi su ML
+* Nuovo Esercizio e Esercizi su ML (Posted on: <2020-12-06 Sun>)
 
-Trovate qui esercizi su Modal Logics:
+- È stato pubblicato un primo esercizio su DL, altri sono in arrivo.
+- Gli esercizi di ML sono stati spostati alla lezione 16 (a cui
+  appartenevano) e i link nella news sotto aggiornati.
 
-- Informal to Formal: [[file:material/L17.X.ML.Informal2Formal.pdf][L17.X.ML.Informal2Formal.pdf]], [[file:material/L17.X.ML.Informal2Formal-small.mp4][L17.X.ML.Informal2Formal-small.mp4]]
+* Esercizi su ML (Posted on: <2020-11-30 Mon>)
+
+Il problema dei link "finti" è stato sistemato. Tutti i link sul sito,
+ora, puntano a file scaricabili.  Vi chiediamo di segnalarci eventuali
+dead links (link che non puntano ad un contenuto).
+
+* Esercizi su ML (Posted on: <2020-11-30 Mon>)
+
+#+BEGIN_warning
+Attenzione: nel gruppo di lezione L17.X, a partire da L17.X2, gli
+esercizi vengono svolti nel video "interattivamente". Non aveva senso
+quindi produrre un PDF.
+#+END_warning
+
+Trovate qui gli esercizi su Modal Logics:
+
+- Informal to Formal: [[file:material/L16.X.ML.Informal2Formal.pdf][L16.X.ML.Informal2Formal.pdf]], [[file:material/L16.X.ML.Informal2Formal-small.mp4][L16.X.ML.Informal2Formal-small.mp4]]
+- Frames: file:./material/L16.X2.ML.Frames-small.mp4
+- Validity: file:./material/L16.X3.ML.Validity-small.mp4
+- Validity: file:./material/L16.X4.ML.ValidityII-small.mp4
+- Validity: file:./material/L16.X5.ML.ValidityIII-small.mp4
+- Frames: file:./material/L16.X6.ML.MoreFrames-small.mp4
+- Tableaux: file:./material/L16.X7.ML.Tableaux-small.mp4
+
   
-
 * Nuovi contenuti (Posted on: [2020-10-19 Mon])
 
 - Caricate slide con approfondimento su L5.T35:  [[http://www.datascientia.education/cl-2020/material/L5.T35.PL.LogCE-Addendum.pdf][L5.T35.PL.LogCE-Addendum.pdf]]
