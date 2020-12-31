@@ -1,0 +1,450 @@
+#+TITLE: Compito CL - Seconda Prova
+#+COLUMNS: %50ITEM%10POINTS{+}
+#+STARTUP: showall
+#+HTML_HEAD: <link rel="stylesheet" href="../../assets/css/main.css">
+
+* Struttura Generale                                               :noexport:
+
+** Modal Logics
+
+   1. Informal to formal ML (Adolfo)
+   2. Esercizio su propriet=C3=A0 di frames (Adolfo)
+   3. Teoria su formule modali (Fausto)
+   4. Esercizio di soddisfacibilità di formula modale in frame (Fausto)
+   5. Tableau Logica modale (Adolfo)
+
+** Description Logics
+
+   1. Tradurre un knowledge Graph in DL o vice versa + reasoning in
+      KG (L17.141, L20.T173) (Adolfo)
+   2. Esercizio di mapping fra SKG e DKG (Fausto)
+   3. Teoria 1 TBOX ABOX (Fausto)
+   4. Teoria 2 collegamento fra i problemi TBOX e far quelli ABOX vs ABOX
+      (Fausto)
+   5. Esercizio di espansione di una ABOX rispetto ad un TBOX (adolfo)
+
+* Testo Compito
+** Domanda 1. ML: Informal to Formal (3pt)
+   :PROPERTIES:
+   :POINTS:   3
+   :END:
+
+ Si consideri la seguente frase:
+
+    Non è possibile che, se Socrate è un uomo e gli uomini sono mortali,
+    allora Socrate sia immortale.
+
+ Immaginando di utilizzare le seguenti lettere proposizionali:
+
+ - SU = SocrateUomo, vera se Socrate è un uomo
+ - UM = UominiMortali, vera se tutti gli uomini sono mortali
+ - SM = SocrateMortale, vera se Socrate è mortale
+
+ indicare quele delle seguenti sono formalizzazioni corrette:
+
+ - (33%) ¬ ⋄ (SU ∧ UM ⊃ ¬ SM) 
+ - (33%) □ ¬ (SU ∧ UM ⊃ ¬ SM) 
+ - (33%) □ (SU ∧ UM ∧ SM) 
+ - (-25%) ¬ ⋄ (SU ∧ UM) ⊃ ¬ ⋄ (¬ SM) 
+ - (-25%) □ (SU ∧ UM) ⊃ ⋄ (¬ SM)
+ - (-25%) ¬ (⋄ (SU ∧ UM)) ⊃ ⋄ (¬ SM)
+
+** Domanda 2. ML: Proprietà Frame (4pt)
+   :PROPERTIES:
+   :POINTS:   4
+   :END:
+
+ Si consideri il seguente frame
+
+ $$F = < W, R >$$
+
+ dove:
+
+ - W = N, l'insieme dei numeri naturali
+ - R = { (i,i+1) | i ∈ N and i >= 1 }
+
+ Si consideri una formula atomica $\phi$ per cui vale la seguente proprietà:
+
+ #+begin_center
+ I(ϕ) = { i | per ogni i dispari }
+ #+end_center
+
+ Dire quali delle seguenti affermazioni sono vere:
+
+ - (33%) F ⊨ ϕ ⊃ □ ¬ ϕ 
+ - (33%) F ⊨ ¬ ϕ ⊃ □ ϕ 
+ - (33%) F ⊨ □ (¬ ϕ ⊃ ⋄ ϕ) 
+ - (-25%) F ⊨ □ □ ϕ 
+ - (-25%) F ⊨ ϕ ∧ □ ¬ ϕ 
+ - (-25%) F ⊨ ¬ (□ ϕ ∨ ¬ □ ϕ) 
+
+** Domanda 3. ML: Teoria su Formule Modali (3pt)
+   :PROPERTIES:
+   :POINTS:   3
+   :END:
+
+   Una formula A è valida
+
+    - (25%) in un mondo w, se e solo se M , w ⊨ A per ogni I , con w ∈
+      W, F = <W, R> e M = <F,I>
+    - (25%) nella classe dei frame seriali C, se e solo se F ⊨ A per
+      ogni F = <W, R> e, per ogni w ∈ W, esiste w ′ tale che R(w, w′)
+    - (25%) nella classe dei frame riflessivi C, se A è nella forma B
+      ⊃ ⋄ B
+    - (25%) nella classe dei frame simmetrici C, se A è nella forma
+      B ⊃ □ ¬ □ ¬ B
+
+** Domanda 4. ML: Esercizio di soddisfacibilità di formula modale in frame (4pt)
+   :PROPERTIES:
+   :POINTS:   4
+   :END:
+
+   Sia dato il frame F come nella seguente figura, in cui ogni nodo
+   rappresenta un mondo, gli archi relazioni di accessibilità tra mondi
+   e, in ogni mondo, ad esempio w1, viene riportato l'elenco delle
+   formule vere nel mondo, ad es, A, B:
+
+   #+begin_src dot :file validity.png
+   digraph {
+         rankdir="LR"
+      
+         w1 [ label = "w1: A, B" ]
+         w2 [ label = "w2: (not A), B" ]
+         w3 [ label = "w3: A, B" ]
+
+         w1 -> w1
+         w1 -> w2
+         w1 -> w3
+
+         w2 -> w1
+         w3 -> w3
+   }       
+   #+end_src
+
+ #+RESULTS:
+ [[file:validity.png]]
+
+ La formula C= ⋄ □ (A ∧ B) è tale per cui:
+
+    - (50%) w2 ⊨ ¬ C
+    - (50%) w3 ⊨ C
+    - (-25%) F ⊨ ¬ ¬ C
+    - (-25%) w1 ⊨ ¬ C
+
+ [Suggerimento: testate la soddisfacibilità di C nei tre casi (w1, w2,
+ w3), un mondo alla volta, verificando ogni volta se C è vera in quel
+ mondo.]
+
+** Domanda 5. ML: Tableaux (4pt)
+   :PROPERTIES:
+   :POINTS:   4
+   :END:
+
+ Usando il metodo del Tableau, dire se la seguente formula è valida,
+ soddisfacibile, insoddisfacibile.
+
+ #+begin_center
+ ¬ □ (⋄(A ∨ B) ⊃ ⋄ (¬ A ∧ ¬ B))
+ #+end_center
+
+ - (100%) Soddisfacibile
+ - (-25%) Valida
+ - (-25%) Insoddisfacibile
+
+*** Soluzione (Deduction)
+
+#+begin_example
+ ¬ □ (⋄ (A ∨ B) ⊃ ⋄ (¬ A ∧ ¬ B))
+ ¬ □ (⋄ (A ∨ B) ⊃ ⋄ (¬ (A ∨ B)))
+ ⋄ ¬ (⋄ (A ∨ B) ⊃ ⋄ (¬ (A ∨ B)))
+ ⋄ (⋄ (A ∨ B) ∧ (¬ ⋄ (¬ (A ∨ B))))
+ ⋄ (⋄ (A ∨ B) ∧ □ (A ∨ B))
+ ⋄ (⋄ P ∧ □ P)
+#+end_example
+
+*** Soluzione (Tableau)
+
+ #+begin_example
+ alpha = DIAMOND (A OR B)
+ beta = DIAMOND (NOT A AND NOT B)
+
+ w |= NOT (BOX (alpha IMP beta))
+ |
+ w |/= BOX (alpha IMP beta)
+ |
+ wRw'
+ w' |/= alpha IMP beta
+ |
+ w' |= alpha  [DIAMOND (A or B)]
+ w' |/= beta  [DIAMOND (not A and not B)]
+ |
+ w'Rw''
+ w'' |= (A or B)
+ |
+ |
+ w'' |/= (not A and not B)
+ |
+ -----------------------------------------
+ w'' |= A                         w'' |= B
+ #+end_example
+
+
+** Domanda 6. DL: Informal to Formal (4pt)
+   :PROPERTIES:
+   :POINTS:   4
+   :END:
+
+   Quale o quali delle seguenti formalizzazioni in DL sono
+   compatibili con lo Schema Knowledge Graph (SKG) ed il Data
+   Knowledge Graph (DKG) dati in figura?
+
+   Si noti che nel Data Knowledge Graph, il testo tra parentesi quadre
+   indica la classe dell'istanza. Ad esempio "[balena] Willy"
+   significa che Willy è una balena.
+
+    #+begin_src dot :file skg-41.png
+      digraph {
+         rankdir = "TB"
+         label = "Schema Knowledge Graph"
+         mammifero -> habitat  [label="ViveIn"]
+         mammifero -> animale  [label="IsA"]
+         animale -> alimento [label="SiNutreDi"]
+         balena -> mammifero [label="IsA"]
+         leone -> mammifero [label="IsA"]
+      }
+      #+end_src
+
+      #+RESULTS:
+      [[file:skg-41.png]]
+        
+      #+begin_src dot :file dkg-41.png
+        digraph {
+         label = "Data Knowledge Graph"
+
+         willy  [ label="[balena]\nWilly" ]
+         simba  [ label="[leone]\nSimba" ]
+
+         pacific [ label="[habitat]\nOceanoPacifico" ]
+         africa  [ label="[habitat]\nAfrica" ]
+
+         krill [ label="[alimento]\nKrill" ]
+         springbok [ label="[alimento]\nSpringbok" ]
+
+         willy -> pacific [ label="ViveIn" ]
+         willy -> krill [ label="SiNutreDi" ]
+
+         simba -> africa [ label="ViveIn" ]
+         simba -> springbok [ label="SiNutreDi" ]
+
+        }            
+      #+end_src
+
+    #+RESULTS:
+    [[file:dkg-41.png]]
+
+    - (100%)
+       #+begin_verse
+       TBOX = {
+          balena ⊑ mammifero
+          mammifero ⊑ animale
+          [...]
+       }
+       ABOX = {
+          balena(Willy)
+          vive_in(Willy, OceanoPacifico)
+          [...]
+       }
+       #+end_verse
+
+    - (-25%)
+       #+begin_verse
+       TBOX = {
+         balena ⊑ mammifero ⊓ leone
+         mammifero ⊑ animale
+         [...]
+       }
+       ABOX = {
+         balena(Willy)
+         [...]
+       }
+       #+end_verse
+
+    - (-25%)
+       #+begin_verse
+       TBOX = {
+          balena ⊑ mammifero
+          mammifero ⊑ animale
+          vive_in(Simba, Africa)
+          [...]
+       }
+       ABOX = {
+         balena(Willy)
+         vive_in(Willy, OceanoPacifico)
+         [...]
+       }
+       #+end_verse
+
+    - (-25%)
+       #+begin_verse
+       TBOX = {
+         mammifero ⊑ balena ⊔ leone
+         mammifero ⊑ animale
+         [...]
+       }
+       ABOX = {
+         balena(Willy)
+         [...]
+       }
+       #+end_verse
+
+** Domanda 7. DL: Mapping tra SKG e DKG (4pt)
+   :PROPERTIES:
+   :POINTS:   4
+   :END:
+
+ Dati lo Schema Knowledge Graph (SKG) e il Data Knowledge Graph
+ (DKG) in figura, quali delle seguenti affermazioni sono vere?
+
+ (Ricordiamo che si dice che una teoria è /consistente/ se e solo se è
+ soddisfacibile.)
+
+ #+begin_src dot :file skg_working.png
+   digraph {
+      label = "Schema Knowledge Graph"
+      rankdir="TB"
+
+      Man -> Person [ label="IsA" ]
+      Woman -> Person [ label="IsA" ]
+      Man -> Woman [ label="HasWife" ]
+      Person -> Company [ label="WorksFor" ]
+      Woman -> Person [ label="MotherOf" ]
+   }
+ #+end_src
+
+ #+RESULTS:
+ [[file:skg_working.png]]
+
+ #+begin_src dot :file dkg_working.png
+   digraph {
+      label = "Data Knowledge Graph"
+        
+      Fred [ label = "[man]\nFred" ]
+      Mary [ label = "[woman]\nMary" ]
+      Google [ label = "[company]\nGoogle" ]
+
+      Fred -> Mary [ label="HasWife" ]
+      Mary -> Google [ label="WorksFor" ]
+      Fred -> Google [ label="WorksFor" ]
+      Mary -> Fred [ label="MotherOf" ]
+   }
+ #+end_src
+
+ #+RESULTS:
+ [[file:dkg_working.png]]
+
+
+    - (33%) Il Data Knowledge Graph è consistente con lo Schema
+      Knowledge Graph
+
+    - (33%) Se uno aggiunge nella TBOX l'assioma Disjoint(Man,
+      Woman), il DKG è consistente con lo SKG
+
+    - (33%) Se uno aggiunge nella ABOX l'asserzione
+      ¬MotherOf(Mary,Fred) il DKG è consistente con lo SKG
+
+    - (-25%) Se uno aggiunge nella ABOX l’asserzione
+      ¬MotherOf(Mary,Fred) il DKG è consistente
+                  
+    - (-25%) Il Data Knowledge Graph non è consistente
+
+** Domanda 8. DL: Domanda Teorica (TBOX/ABOX) (3pt)
+   :PROPERTIES:
+   :POINTS:   3
+   :END:
+
+   Data una TBOX T e due formule P, Q, quali delle seguenti affermazioni sono
+   vere?
+
+    - (33%) P e Q sono soddisfacibili rispetto a T sse T ⊨ P ∧ Q
+    - (33%) Disjointness (P,Q) implica ¬ ( P ⊑ Q )
+    - (33%) Disjointness (P,Q) implica ¬ (Q ⊑ P ⊔ P ⊑ Q)
+    - (-25%) ( P ⊑ Q) implica Disjointness (P, Q)
+    - (-25%) Disjointness (P,Q) implica P ⊑ Q
+    - (-25%) Disjointness (P,Q) se e solo se ¬ ( Q ⊑ P ⊔ P ⊑ Q)
+
+** Domanda 9. DL: Domanda Teorica/Generale (3pt)
+   :PROPERTIES:
+   :POINTS:   3
+   :END:
+   
+ Di seguito scriviamo CWA per significare Closed World Assumption and
+ OWA per significare Open World Assumption.  Si considerino la seguente
+ TBOX ed ABOX:
+
+ #+begin_center
+ TBOX = { A ⊑ B }
+ #+end_center
+
+ #+begin_center
+ ABOX = { A(u1), C(u2) }
+ #+end_center
+
+ Dire quali delle seguenti affermazioni sono vere:
+
+ - (33%) B(u1) può essere dedotto seguendo la regola della OWA applicata alla ABOX
+ - (33%) ogni formula derivabile applicando la OWA può essere derivata applicando anche la CWA
+ - (33%) not B(u2) (attenzione: u2!) può essere dedotto seguendo la
+   regola della CWA applicata alla ABOX
+ - (-25%) ogni formula derivabile applicando la CWA può essere derivata applicando anche la OWA
+ - (-25%) not B(u1) può essere dedotto seguendo la regola dell OWA applicata alla ABOX
+  
+** Domanda 10. DL: Espansione di ABOX in TBOX (4pt)
+   :PROPERTIES:
+   :POINTS:   4
+   :END:
+
+   Data la seguente teoria:
+
+   #+begin_verse
+   TBOX = {
+     A ≡ B ⊓ C
+     C ≡ D ⊓ E
+     E $\sqsubseteq$ F ⊓ G
+   }
+   ABOX {
+     A(1)
+   }
+   #+end_verse
+
+   Espandere ABOX nella TBOX, ricordando che l'espansione contiene
+   esclusivamente concetti primitivi e decidere quali di queste
+   affermazioni sono vere.
+
+   - (100%)
+   #+begin_verse
+     B(1)
+     D(1)
+     F(1)
+     G(1)
+   #+end_verse
+
+   - (-25%) (simboli primitivi)
+   #+begin_verse
+     A(1)
+     C(1)
+     E(1)
+   #+end_verse
+
+   - (-25%)
+   #+begin_verse
+     B(1)
+     D(1)
+     F(1) ⊔ G(1)
+   #+end_verse
+
+   - (-25%)
+   #+begin_verse
+     B(1) ⊓ C(1)
+     D(1) ⊓ E(1)
+     F(1) ⊓ G(1)
+   #+end_verse

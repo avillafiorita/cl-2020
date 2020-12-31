@@ -45,18 +45,27 @@ issue on Github, so that we can improve this page.
 * Exercises on topics covered in CL-2020
 
   - [[https://logic.umwblogs.org/][Introduction to Logic]] is a blog and course on logic, with
-    highlights on logical fallacies in informal reasoning.
-    Interesting, it also has various exercises on informal to formal:
-    [[https://logic.umwblogs.org/symbolic-logic/exercises-translation-practice-in-propositional-logic/][I2F for PL]] and [[https://logic.umwblogs.org/predicate-logic/][I2F for FOL]].
+    highlights on logical fallacies in informal reasoning.  It also
+    has various interesting exercises on informal to formal: [[https://logic.umwblogs.org/symbolic-logic/exercises-translation-practice-in-propositional-logic/][I2F for
+    PL]] and [[https://logic.umwblogs.org/predicate-logic/][I2F for FOL]].
   - [[https://www.cs.upc.edu/~larrosa/MEI-CSI-files/SAT/SAT-exercises.pdf][Exercises on satisfiability]] and [[https://www.cl.cam.ac.uk/teaching/1112/DiscMathI/exercises.pdf][Exercises on PL, FOL, Set Theory]]
-
-  #+begin_comment
   - The [[https://cgi.csc.liv.ac.uk/~frank/teaching/comp118/comp118.html][Logic in Computer Science (COMP118)]] course has various
     exercises, which you can find, for instance, here: [[https://cgi.csc.liv.ac.uk/~frank/teaching/comp118/lecture4.pdf][Lecture 4]],
     [[https://cgi.csc.liv.ac.uk/~frank/teaching/comp118/tutorial1.pdf][Tutorial 1]], [[https://cgi.csc.liv.ac.uk/~frank/teaching/comp118/test2013a.pdf][Test 1]]. If you are interested in the topic, you might
     also have a look at the [[https://cgi.csc.liv.ac.uk/~frank/teaching/comp118/material.html][Material]] page, where you can find some
-    interesting resources.
-  #+end_comment
+    nice resources.
+
+  The following focus on Modal Logic and Description Logic:
+
+  - [[http://disi.unitn.it/~ldkr/ml2014/ExercisesBooklet.pdf][Mathematical Logic Exercises]] at DISI covers everything, including
+    ML and DL
+  - [[https://lat.inf.tu-dresden.de/teaching/ws2013-2014/DL/sheet-01.pdf][Description Logic]] at TUD
+  - [[https://eng.libretexts.org/Bookshelves/Computer_Science/Book%3A_An_Introduction_to_Ontology_Engineering_(Keet)/04%3A_Description_Logics/4.E%3A_Description_Logics_(Exercises)][DL Exercises]] at Libre Books
+  - [[http://www.inf.unibz.it/~gennari/courses/NL/exercises/recapIIwithSol.pdf][Modal Logics]] at UNIBZ
+  - [[https://calvin.edu/press/files/04ModalExercisesPDF.pdf][The Little Logic Book]] at Calvin
+  - [[http://people.umass.edu/klement/511/exam1.pdf][Phil 511 at UMASS, Exercises]] see also: [[http://people.umass.edu/klement/511/]]
+  - [[http://beisecker.faculty.unlv.edu/Courses/PHIL%20422/Basic_Modal_Logic.pdf][Basic Modal Logic]]
+
 
 * Moodle page for CL-2020
 

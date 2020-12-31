@@ -2,6 +2,8 @@
 #+DATE: <2020-08-31 Mon>
 #+INCLUDE: _navigation-l0.org
 
+* General Information
+
 The Examination consists of two midterms **or** a final written exam (no
 interview).
 
@@ -13,9 +15,17 @@ The maximum score for the midterms and the written exam is higher than
 mistakes.  Details about the structure of the exam can be found in the
 [[file:exam/exam-structure.org][Exam Structure]] page (in Italian).
 
-In the following pages you can find aggregated results of exams:
+* Exams
+
+In the following you can find aggregated results of exams:
 
 - Mid Term November 2020:
+  - [[file:exam/sample-exams/mid-term-2020-noanswers.org][Mid-term-2020 with no answers]]
+  - [[file:exam/sample-exams/mid-term-2020.org][Mid-term-2020 with answers]]
   - [[file:exam/mid-term-2020/risultati.html][Risultati Aggregati Prova 6/11/2020]]
   - [[file:exam/mid-term-2020/feedback.org][Feedback Received]]
-  
+- Final Term December 2020
+  - [[file:exam/sample-exams/final-term-2020-noanswers.org][Final-term 2020 with no answers]]
+  - [[file:exam/sample-exams/final-term-2020.org][Final-term 2020 with answers]]
+  - [[file:exam/final-term-2020/risultati.html][Risultati Aggregati Prova 18/12/2020]]
+  - [[file:exam/final-term-2020/feedback.org][Feedback Received]]

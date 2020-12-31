@@ -1,0 +1,404 @@
+#+TITLE: Mid Term
+#+STARTUP: showall
+#+COLUMNS: %40ITEM %20CATEGORY %20SUBCATEGORY %10POINTS
+#+HTML_HEAD: <link rel="stylesheet" href="../../assets/css/main.css">
+
+* PL - Informal to Formal - Il passaggio a livello (parte I)
+  :PROPERTIES:
+  :POINTS:   4.00
+  :CATEGORY: PL
+  :SUBCATEGORY: Informal to formal
+  :END:
+  
+
+Il documento dei requisiti di un sistema ferroviario contiene la
+seguente descrizione del comportamento di un treno ad un passaggio a
+livello:
+
+#+begin_verse
+   Il semaforo di protezione di un passaggio a livello può essere in
+   uno solo di questi due stati: rosso o verde.  Se il passaggio a
+   livello è chiuso, allora il semaforo è verde Non è possibile che
+   il semaforo sia verde, se il passaggio a livello è aperto Il treno
+   può muoversi se e solo se il semaforo è verde
+#+end_verse
+
+Immaginando di utilizzare le seguente formalizzazione:
+
+- =OPEN= = Passaggio a livello aperto
+- =not OPEN= = Passaggio a livello chiuso
+- =GREEN= = Semaforo è verde
+- =RED= = Semaforo è rosso
+- =MOVE= = Il treno è in movimento
+- =not MOVE= = il treno è fermo
+
+indicare quale o quali delle seguenti teorie cattura la
+rappresentazione informale descritta sopra.
+
+(corretta)
+#+begin_example
+  RED iff not GREEN
+  not OPEN imp GREEN
+  OPEN imp RED
+  GREEN iff MOVE
+#+end_example
+
+#+begin_example
+  RED iff GREEN
+  not OPEN imp GREEN
+  OPEN imp GREEN
+  GREEN iff MOVE
+#+end_example
+
+#+begin_example
+  RED imp not GREEN
+  OPEN and not RED
+  GREEN imp MOVE
+  MOVE imp GREEN
+#+end_example
+
+#+begin_example
+  RED iff not GREEN
+  not OPEN or GREEN
+  OPEN imp RED
+  GREEN imp MOVE
+  MOVE imp GREEN
+#+end_example
+
+* PL - Informal to Formal - Il passaggio a livello (parte II)
+  :PROPERTIES:
+  :POINTS:   1.00
+  :CATEGORY: PL
+  :SUBCATEGORY: Informal to formal
+  :END:
+
+Supponiamo di voler verificare la seguente condizione:
+
+#+begin_verse
+  il treno si muove con il passaggio a livello aperto.
+#+end_verse
+
+Come formalizzereste questa condizione?
+
+- =not (OPEN and MOVE)=
+- (corretta) =OPEN imp MOVE=
+- =OPEN iff MOVE=
+- =MOVE and OPEN=
+
+* PL - Proposizioni Atomiche
+  :PROPERTIES:
+  :POINTS:   3.00
+  :CATEGORY: PL
+  :SUBCATEGORY: Theory
+  :END:
+
+Sia A una proposizione atomica in PL e B una variabile proposizionale
+generica.
+
+Indicare quale o quali delle risposte a seguire sono giuste.
+
+- =not A= è insoddisfacibile
+- (corretta) =not A or B= è soddisfacibile
+- (corretta) =(A and B ) imp B= è soddisfacibile
+- (corretta) =(A and B ) imp B= è valida 
+- =not (not A or A)= è soddisfacibile, ma non valida
+- (corretta) se =B= è una tautologia allora =A imp B= è valida  
+
+* PL - Truth Table
+  :PROPERTIES:
+  :POINTS: 5.00
+  :CATEGORY: PL
+  :SUBCATEGORY: Truth Table
+  :END:
+
+Trovare una interpretazione che NON soddisfa la seguente formula:
+
+#+begin_verse
+=(not (A or B) and (C and not D)) imp (not C or B)=
+#+end_verse
+
+- =A=: =TRUE=, =FALSE= o =INDIFFERENTE=?
+- =B=: =TRUE=, =FALSE= o =INDIFFERENTE=?
+- =C=: =TRUE=, =FALSE= o =INDIFFERENTE=? 
+- =D=: =TRUE=, =FALSE= o =INDIFFERENTE=?
+
+dove
+
+- =INDIFFERENTE= indica che non è necessario assegnare un valore di verità
+  alla lettera proposizionale nell'interpretazione scelta
+- =TRUE= indica la lettera proposizionale è VERA nell'interpretazione scelta
+- =FALSE= indica la lettera proposizionale è FALSA nell'interpretazione scelta  
+
+
+* PL - Funzione di Interpretazione
+  :PROPERTIES:
+  :POINTS:   3.00
+  :CATEGORY: PL
+  :SUBCATEGORY: Theory
+  :END:
+
+
+Consideriamo di avere un linguaggio proposizionale =L= e una teoria =T=
+scritta nel linguaggio =L=. Sia =I(L)= un'interpretazione di =L=: l'insieme
+delle proposizioni atomiche e delle proposizioni atomiche negate che
+sono vere.
+
+Indicare quale o quali delle seguenti affermazioni sono vere:
+
+- (corretta) Una interpretazione =I(L)= è tale per cui per ogni formula =A= appartenente
+  ad =L= abbiamo =A= appartenente ad =I(L)= oppure =not A= appartenente ad
+  =I(L)=.
+- Una teoria =T= è tale per cui per ogni formula =A= appartenente a =L=
+  abbiamo =A= appartenente a =T= oppure =not A= appartenente a =T=.
+- (corretta) Un modello =M= è una interpretazione di un linguaggio =L= che soddisfa tutte
+  le formule di =T=.
+- (corretta) Ogni modello =M= di una teoria =T= consistente è tale per cui =T= è un
+  sottoinsieme proprio o improprio di =M=
+- Una teoria inconsistente ha un solo modello.
+- (corretta) Dati un Linguaggio =L= con =N= proposizioni atomiche, una tautologia
+  (una formula valida) ha $2^N$ modelli.
+
+* FOL - Informal to formal - Red Mushrooms
+  :PROPERTIES:
+  :POINTS:   4.00
+  :CATEGORY: FOL
+  :SUBCATEGORY: Informal to formal
+  :END:
+
+
+Data la frase "Tutti i funghi di colore rosso sono velenosi",
+immaginando di usare le seguenti lettere predicative:
+
+- =Red(x)=, per indicare che x è di colore rosso
+- =Mushroom(x)=, per indicare che x è un fungo
+- =Poisonous(x)=, per indicare che x è velenoso
+
+Indicare quali delle seguenti formalizzazioni catturano il significato
+della frase:
+
+- (corretta) =forall x. (Red(x) imp (Mushroom(x) imp Poisonous(x))=
+- =exists x. (Red(x) and Mushroom(x) imp Poisonous(x))=
+- =forall x. (Mushroom(x) and Red(x)) imp exists x. Poisonous(x)=
+- =forall x. (Poisonous(x) imp (Red(x) and Mushroom(x))=
+- (corretta) =forall x. (Red(x) and Mushroom(x) imp Poisonous(x))=
+- =forall x. (Red(x) and Mushroom(x) and Poisonous(x))=
+
+* FOL - Linguaggio FOL
+  :PROPERTIES:
+  :POINTS:   2.00
+  :CATEGORY: FOL
+  :SUBCATEGORY: Theory
+  :END:
+
+Data la formula
+
+#+begin_verse
+=maggiorenne(x) imp contiene(documento(x), foto(x))=
+#+end_verse
+
+indicare quale o quali delle seguenti affermazioni sono vere:
+
+- (corretta) =maggiorenne= è un simbolo predicativo, =contiene= è un simbolo predicativo,
+  =documento(x)= è un termine, =foto= è un simbolo funzionale, =x= è una
+  variabile
+- =maggiorenne= è un simbolo funzionale, =contiene= è un simbolo predicativo,
+  =documento(x)= è un simbolo funzionale, =foto= è un simbolo funzionale, =x=
+  è una variabile
+- =maggiorenne=, =contiene=, =documento= e =foto= sono tutti simboli
+  funzionali, =x= è una variabile
+- =maggiorenne=, =contiene=, =documento= e =foto= sono tutti simboli
+  predicativi, =x= è un termine
+- =maggiorenne= è un simbolo funzionale, =contiene(x)= è un simbolo
+  funzionale, =documento= è un simbolo predicativo, =foto= è un simbolo
+  predicativo, =x= è un simbolo funzionale
+
+* FOL - Tableau (valida, ..., invalida?)
+  :PROPERTIES:
+  :POINTS:   3.00
+  :CATEGORY: FOL
+  :SUBCATEGORY: Tableau
+  :END:
+
+Data la seguente formula:
+
+#+begin_verse
+=(forall x. (P(x) imp Q(x)) and forall x. P(x)) imp (Q(b) or Q(c))=
+#+end_verse
+
+usare il metodo dei Tableau per decidere se la formula è valida,
+soddisfacibile, insoddisfacibile e costruire poi un modello.
+
+In questa prima parte si chiede se la formula è:
+
+- (corretta) Valida
+- Soddisfacibile
+- Insoddisfacibile
+
+* FOL - Tableau - Modello
+  :PROPERTIES:
+  :POINTS:   2.00
+  :CATEGORY: FOL
+  :SUBCATEGORY: Tableau
+  :END:
+
+Quale o quali tra i seguenti sono modelli della formula data sopra?
+
+
+(corretta)
+#+begin_example
+D = { 0, 1, 2 }
+I(c) = { 0 }
+I(b) = { 1 }
+I(P) = { 0, 1, 2 }
+I(Q) = { 0, 1, 2 }
+#+end_example
+
+(corretta)
+#+begin_example
+D = { 0, 1, 2 }
+I(c) = { 0 }
+I(b) = { 0 }
+I(P) = { 0 }
+I(Q) = { 0 }
+#+end_example
+
+(corretta)
+#+begin_example
+D = { 0, 1, 2 }
+I(c) = { 1 }
+I(b) = { 1 }
+I(P) = { 0 }
+I(Q) = { 0 }
+#+end_example
+
+(corretta)
+#+begin_example
+D = { 0, 1, 2 }
+I(c) = { 0 }
+I(b) = { 1 }
+I(P) = { 2 }
+I(Q) = { 0, 1 }
+#+end_example
+
+(corretta)
+#+begin_example
+D = { 0, 1, 2 }
+I(c) = { 0 }
+I(b) = { 0 }
+I(P) = { 0, 1, 2 }
+I(Q) = { 1 }
+#+end_example
+
+#+begin_example
+D = {}
+I(c) = {}
+I(b) = {}
+I(P) = {}
+I(Q) = {}  
+#+end_example
+
+* FOL - M di T in dominio finito
+  :PROPERTIES:
+  :POINTS:   4.00
+  :CATEGORY: FOL
+  :SUBCATEGORY: Theory
+  :END:
+
+Siano ={a,b,c}= tre costanti in un linguaggio del primo ordine =L=.
+
+Sia =T= una teoria definita come:
+
+#+begin_verse
+  =T = { forall x.y. P(x,y) }=
+#+end_verse
+
+Con riferimento ad un modello =M= di =T= con un dominio finito con soli due
+elementi, quale o quali delle seguenti formule sono vere in =M= se e solo se =T= è
+vera in =M=?
+
+- =P(a,a) and P(b,b) and P(c,c)=
+- =(P(a,a) and P(b,b)) or (P(a,a) and P(c,c)) or (P(b,b) and P(c,c))=
+- (corretta) =P(a,a) and P(a,b) and P(a,c) and P(b,a) and P(b,b) and P(b,c) and P(c,a) and P(c,b) and P(c,c)=
+- (corretta) =P(a,a) and P(a,c) and P(c,a) and P(c,c)=
+- (corretta) =P(b,b) and P(b,c) and P(c,b) and P(c,c)=
+- =P(b,b) and P(b,c) and P(c,b) and P(c,c) and not P(a,c)=
+
+* PL - CNF
+  :PROPERTIES:
+  :POINTS:   3.00
+  :CATEGORY: PL
+  :SUBCATEGORY: CNF
+  :END:
+
+Data la formula WFF:
+
+#+begin_verse
+  =(A iff B) or C=
+#+end_verse
+
+dire quale o quali delle seguenti formule sono riformulazioni in CNF di WFF
+
+- (corretta) =(not A or B or C) and (not B or A or C)=
+- (corretta) =(C or A or not B or C) and (B or not A or C)=
+- =(not B or A or C) and (A or B or not C)=
+- =(B or not A or not C) and (not B or A or C)=
+  
+* PL - DPLL Sequence
+  :PROPERTIES:
+  :POINTS:   3.00
+  :CATEGORY: PL
+  :SUBCATEGORY: DPLL
+  :END:
+
+Data la formula:
+
+#+begin_verse
+=(not A or B or D) and (A or not C) and (D or C)=
+#+end_verse
+
+quale o quali tra le seguenti sequenze di assegnazioni di letterali potrebbe
+essere generata da DPLL?
+
+*Note.* Le assegnazioni sono mostrate nell'ordine: quindi
+
+#+begin_example
+C
+D
+A
+#+end_example
+
+significa: prima =C=, poi =D=, poi =A=
+
+Scegli una o più tra le seguenti:
+
+(corretta)
+#+begin_example
+D
+not C
+#+end_example
+
+(corretta)
+#+begin_example
+C
+A
+B
+#+end_example
+
+(corretta)
+#+begin_example
+C
+A
+D
+#+end_example
+
+#+begin_example
+C
+A
+not B
+#+end_example
+
+#+begin_example
+C
+B
+A
+#+end_example

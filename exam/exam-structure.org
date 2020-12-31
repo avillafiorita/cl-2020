@@ -47,8 +47,8 @@ indicazione dei punteggi ottenibili rispondendo correttamente.
 | Topic | Subtopic                 | Punteggio Indicativo |
 |-------+--------------------------+----------------------|
 | ML    | Informal to Formal       |                    3 |
-| ML    | Proprietà dei frame      |                    3 |
-| ML    | Domanda Teorica/Generale |                    4 |
+| ML    | Proprietà dei frame      |                    4 |
+| ML    | Domanda Teorica/Generale |                    3 |
 | ML    | Soddisfacibilità         |                    4 |
 | ML    | Tableuax                 |                    4 |
 | DL    | Knowledge Graph <-> DL   |                    4 |

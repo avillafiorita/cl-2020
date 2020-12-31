@@ -1,0 +1,95 @@
+#+TITLE: Feedback received on Mid-Term 2020
+#+DATE: <2020-11-17 Tue>
+#+HTML_HEAD: <link rel="stylesheet" href="../../assets/css/main.css">
+#+INCLUDE: ../../_navigation-l2.org
+
+** Feedback su Compito
+
+66 responses
+
+** Quanto era complesso il compito?
+
+ - 33 (50%): Giusto: il compito aveva la giusta complessità
+ - 28 (42%): Molto: il compito era difficile, ma affrontabile
+ - 4 (6%): Troppo: il compito era troppo difficile
+ - 1 (2%): Facile: il compito è stato più facile di quanto mi aspettavo
+ - 0 (0%): No response
+ - 0 (0%): Molto facile: il compito è stato molto più semplice del previsto
+
+** Quanto ti sei preparato?
+
+ - 30 (45%): Ho studiato tanto
+ - 18 (27%): Ho studiato quanto bastava per passare
+ - 13 (20%): Ho studiato veramente tanto, ci tenevo
+ - 4 (6%): Ho studiato poco
+ - 1 (2%): Ho studiato quel che potevo e "ci ho provato"
+ - 0 (0%): No response
+
+** Come pensi sia andata?
+
+ - 33 (50%): Bene
+ - 21 (32%): Così - così
+ - 8 (12%): Male
+ - 2 (3%): No response
+ - 2 (3%): Molto bene
+ - 0 (0%): Molto male
+
+** Il tempo a disposizione è stato
+
+ - 66 (100%): Adeguato
+ - 0 (0%): No response
+ - 0 (0%): Non adeguato: avrei preferito avere più tempo
+
+** Quanto è stato coerente il compito con gli argomenti trattati a lezione?
+
+ - 34 (52%): Coerente: qualche domanda mi ha sorpreso, ma avevo i relativi argomenti sono stati trattati nel corso
+ - 17 (26%): Poco coerente: qualche domanda non è stata adeguatamente "coperta" durante il corso
+ - 14 (21%): Molto coerente: il compito conteneva le domande che mi aspettavo
+ - 1 (2%): Per nulla coerente: il mid-term aveva poco a che fare con gli argomenti trattati nel corso
+ - 0 (0%): No response
+
+** Quanto è stato difficile gestire la modalità a domande chiuse?
+
+ - 47 (71%): Come mi aspettavo
+ - 10 (15%): Difficile
+ - 5 (8%): Inaspettatamente difficile
+ - 2 (3%): Molto più facile di uno svolgimento a domanda aperta
+ - 1 (2%): No response
+ - 1 (2%): Più facile di come mi aspettavo
+
+** Quanto hai avuto difficoltà a gestire il punteggio negativo sulle risposte sbagliate?
+
+ - 23 (35%): Molto: ha influenzato la mia capacità di rispondere ad alcune domande
+ - 19 (29%): Nè troppo, nè poco: sapevo come gestire
+ - 11 (17%): Troppo: ho rinunciato a rispondere ad alcune domande per timore di includere una risposta sbagliata
+ - 11 (17%): Poco: non mi sono posto il problema
+ - 2 (3%): Niente: è giusto avere risposte con un punteggio negativo
+ - 0 (0%): No response
+
+** Esercizio più complesso?
+
+ - 25 (38%): DL: Espansione di ABOX in TBOX
+ - 16 (24%): ML: Tableau
+ - 6 (9%): DL: Domanda su CWA e OWA
+ - 5 (8%): DL: Mapping SKG, DKG (Mary and Fred)
+ - 4 (6%): DL: Domanda su TBOX, ABOX
+ - 3 (5%): ML: Teoria (Una formula è valida se...)
+ - 3 (5%): ML: Soddisfacibilità in un Frame dato (w1, w2, w3)
+ - 2 (3%): ML: Informal to Formal
+ - 1 (2%): ML: Proprietà Frame (W numeri Naturali >= 1)
+ - 1 (2%): DL: Informal to Formal (Leone, Balena)
+ - 0 (0%): No response
+
+** Esercizio più facile?
+
+ - 15 (23%): ML: Soddisfacibilità in un Frame dato (w1, w2, w3)
+ - 14 (21%): ML: Informal to Formal
+ - 10 (15%): DL: Informal to Formal (Leone, Balena)
+ - 8 (12%): ML: Proprietà Frame (W numeri Naturali >= 1)
+ - 8 (12%): ML: Tableau
+ - 4 (6%): No response
+ - 2 (3%): ML: Teoria (Una formula è valida se...)
+ - 2 (3%): DL: Mapping SKG, DKG (Mary and Fred)
+ - 1 (2%): DL: Domanda su TBOX, ABOX
+ - 1 (2%): DL: Domanda su CWA e OWA
+ - 1 (2%): DL: Espansione di ABOX in TBOX
