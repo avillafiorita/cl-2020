@@ -98,7 +98,7 @@ this buffer (=C-c C-b- C-v=) or put in your Emacs initialization file (=.emacs.e
              ("news.html"          . "News")
              ("instructions.html"  . "Instructions")
              ("calendar.html"      . "Calendar and Slides")
-             ("exam.html"          . "Examination and Grading")
+             ("exam/index.html"    . "Examination and Grading")
              ("material.html"      . "Additional Materials")
              ("syllabus.html"      . "Syllabus")
              ("q-and-a.html"       . "Questions and Answers")
@@ -116,7 +116,7 @@ this buffer (=C-c C-b- C-v=) or put in your Emacs initialization file (=.emacs.e
                "</div>"))
 
      ;; generate four files with navigation with links at different depths
-     (with-temp-file (expand-file-name (concat sources "_navigation-l0.org")) (insert (cl-2020-preamble nil)))
+     (with-temp-file (expand-file-name (concat sources "../_navigation-l0.org")) (insert (cl-2020-preamble nil)))
      (with-temp-file (expand-file-name (concat sources "../_navigation-l1.org")) (insert (cl-2020-preamble nil "../")))
      (with-temp-file (expand-file-name (concat sources "../_navigation-l2.org")) (insert (cl-2020-preamble nil "../../")))
      (with-temp-file (expand-file-name (concat sources "../_navigation-l3.org")) (insert (cl-2020-preamble nil "../../../")))

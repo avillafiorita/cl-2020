@@ -1,6 +1,6 @@
 #+TITLE: Examination and Grading
 #+DATE: <2020-08-31 Mon>
-#+INCLUDE: _navigation-l0.org
+#+INCLUDE: ../_navigation-l1.org
 #+STARTUP: showall
 
 * General Information
@@ -23,14 +23,14 @@ In the following you can find aggregated results of exams:
 - Mid Term November 2020:
   - [[file:exam/sample-exams/mid-term-2020-noanswers.org][Mid-term-2020 with no answers]]
   - [[file:exam/sample-exams/mid-term-2020.org][Mid-term-2020 with answers]]
-  - [[file:exam/mid-term-2020/risultati.html][Risultati Aggregati Prova 6/11/2020]]
-  - [[file:exam/mid-term-2020/feedback.org][Feedback Received]]
+  - [[file:exam/stats/mid-term-2020/risultati.html][Risultati Aggregati Prova 6/11/2020]]
+  - [[file:exam/stats/mid-term-2020/feedback.org][Feedback Received]]
 - Final Term December 2020
   - [[file:exam/sample-exams/final-term-2020-noanswers.org][Final-term 2020 with no answers]]
   - [[file:exam/sample-exams/final-term-2020.org][Final-term 2020 with answers]]
-  - [[file:exam/final-term-2020/risultati.html][Risultati Aggregati Prova 18/12/2020]]
-  - [[file:exam/final-term-2020/feedback.org][Feedback Received]]
+  - [[file:exam/stats/final-term-2020/risultati.html][Risultati Aggregati Prova 18/12/2020]]
+  - [[file:exam/stats/final-term-2020/feedback.org][Feedback Received]]
 - Exam, January 2021
   - [[file:exam/sample-exams/exam-2021.01-noanswers.org][Exam 2021.01 with no answers]]
   - [[file:exam/sample-exams/exam-2021.01.org][Exam 2021.01 with answers]]
-  - [[file:exam/exam-2021.01/risultati.org][Feedback Received]]
+  - [[file:exam/stats/exam-2021.01/risultati.org][Risultati Aggregati Prova 25/01/2021]]
