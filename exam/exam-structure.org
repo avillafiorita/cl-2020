@@ -3,6 +3,7 @@
 #+DATE: <2020-10-11 Sun>
 #+HTML_HEAD: <link rel="stylesheet" href="../assets/css/main.css">
 #+INCLUDE: ../_navigation-l1.org
+#+STARTUP: showall
 
 * Obiettivi
 
@@ -42,6 +43,7 @@ indicazione dei punteggi ottenibili rispondendo correttamente.
 | Total      |                                   |                   36 |
 #+TBLFM: @>$3 = vsum(@2..@-1)
 
+
 ** Seconda Prova Parziale
 
 | Topic | Subtopic                 | Punteggio Indicativo |
@@ -60,6 +62,17 @@ indicazione dei punteggi ottenibili rispondendo correttamente.
 | Total |                          |                   36 |
 #+TBLFM: @>$3 = vsum(@2..@-1)
    
+** Esame Appello
+
+I testi degli esami negli appelli coprono tutto il programma e quindi
+tutte e quattro le logiche studiate e tutte le varie tematiche
+approfondite, in particolare, formalizzazione di problemi descritti
+informalmente, ragionamento, teoria.
+
+I testi presenti nel sito, sia testi d'esame che provette svolte
+durante il corso, sono esemplificativi del tipo di domande che
+verranno poste.
+
 ** Tipi di risposta
 
 Ogni esercizio potrebbe richiedere di rispondere in uno dei seguenti modi:
@@ -138,6 +151,10 @@ dato esami con Moodle, in ogni caso vi chiediamo di:
 La prova di studenti trovati a copiare o a passare illecitamente
 materiale ai propri compagni sarà considerata nulla.  Non ci sono
 avvertimenti bonari: chi viola le regole, ne risponde.
+
+L'Università degli Studi di Trento richiede agli studenti di aderire
+ad un codice di comportamento, spiegato qui:
+https://www.unitn.it/norme-regolamenti/549/studenti
 
 * Punteggio assegnato
 

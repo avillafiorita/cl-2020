@@ -1,0 +1,251 @@
+#+TITLE: Appello Gennaio
+#+DATE: 2020-01-25
+#+COLUMNS: %50ITEM%10POINTS{+}
+#+STARTUP: showall
+#+HTML_HEAD: <link rel="stylesheet" href="../../assets/css/main.css">
+
+* PL: Informal to Formal [4pt]
+
+Vogliamo rappresentare in logica proposizionale la conoscenza
+necessaria a un robot per operare in un ambiente in cui sono presenti
+*tre blocchi* colorati, uno rosso, uno verde e uno giallo. I blocchi
+possono stare uno sopra l'altro o uno a fianco all'altro.  Il robot è
+in grado di *spostare un blocco solo se _non_ ha nessun altro blocco
+sopra.*
+
+Rappresentiamo che un blocco è sopra un altro utilizzando lettere
+proposizionali nella forma COLORE_SOPRA_COLORE.  Ad esempio:
+ROSSO_SOPRA_VERDE, se vera, indica che il blocco ROSSO è sopra il
+blocco VERDE.
+
+Rappresentiamo inoltre il fatto che il robot può spostare un blocco
+con la seguente lettera proposizionale: SPOSTABILE_BLOCCO. Ad esempio:
+SPOSTABILE_ROSSO, se vera, indica che il blocco ROSSO può essere
+spostato, cioè che il blocco ROSSO non ha nessun blocco sopra di esso.
+
+Quale o quali delle seguenti formule sono valide nel nostro mondo?
+
+- (ROSSO_SOPRA_VERDE and VERDE_SOPRA_GIALLO) imp SPOSTABILE_ROSSO
+- SPOSTABILE_ROSSO imp (not VERDE_SOPRA_ROSSO and not GIALLO_SOPRA_ROSSO)
+- (VERDE_SOPRA_ROSSO or GIALLO_SOPRA_ROSSO) imp not SPOSTABILE_ROSSO
+- SPOSTABILE_ROSSO iff ROSSO_SOPRA_VERDE and not GIALLO_SOPRA_ROSSO
+- SPOSTABILE_ROSSO iff ROSSO_SOPRA_VERDE and VERDE_SOPRA_GIALLO
+- SPOSTABILE_ROSSO imp ROSSO_SOPRA_VERDE and VERDE_SOPRA_GIALLO
+
+* PL: Truth Table [3pt]
+
+Quali delle seguenti assegnazioni rendono vera la seguente formula:
+
+#+begin_quote
+(A ⊃ (B ∧ C)) ∧ A ∧ (¬ B ∨ ¬ C)
+#+end_quote
+ 
+Di seguito si assuma che la prima lettera indichi il valore di verità
+di A, la seconda di B e la terza di C.  Quindi, ad esempio, V,F,V
+indica l'interpretazione in cui A è vera, B è falsa e C è vera.
+
+- F, F, F
+- F, F, V
+- F, V, F
+- F, V, V
+- V, F, F
+- V, F, V
+- V, V, F
+- V, V, V
+- Nessuna assegnazione
+
+* PL: Teoria [5pt]
+
+Consideriamo la logica proposizionale PL. Dire quali delle seguenti
+affermazioni sono vere:
+
+- Se $T_1$ e $T_2$ sono due teorie in PL, allora, se $T_1 \models A$
+  e $T_2 \cup \{ A \} \models B$ allora $T_1 \cup T_2 \models B$
+- $T$ è una teoria in PL se e solo se $T \models A$ implica che $A
+  \in T$
+- Una teoria in PL contiene sempre un insieme infinito di formule
+- Data un teoria T in PL, se esiste un insieme finito di assiomi
+  che assiomatizza T, allora ne esiste più di uno
+- Data una formula A in PL, il numero delle sotto-formule di A è
+  il numero di simboli, logici e non logici, che occorrono in A, più
+  uno
+- Se A in PL è soddisfacibile allora $\neg A$ è insoddisfacibile
+- Se $T_1$ e $T_2$ sono due teorie in PL allora, $T_1 \models A$ e
+  $T_1 \cup T_2 \models A$ se e solo se $T_2$ non è vuota
+- L’insieme di formule in PL $\{A, A \supset B, B \}$ è una teoria
+  di PL
+
+* FOL: Informal to Formal [3pt]
+
+Come formalizzereste in FOL la seguente frase:
+
+#+begin_quote
+Solo uno studente non ha passato l'esame di Geometria
+#+end_quote
+
+- ∃x (Student(x) ∧ Failed(x, Geometry) ∧ ∀y (Student(y) ∧ Failed(y, Geometry) ⊃ x=y))
+- ∀x (Student(x) ∧ Failed(x, Geometry) ∧ ∃y (Student(y) ∧ Failed(y, Geometry) ⊃ x=y))
+- ∀x (Student(x) ⊃ Failed(x, Geometry) ∧ ∀y (Student(y) ∧ Failed(y, Geometry) ⊃ x=y)) 
+- ∃x ∃y (Student(x) ∧ Failed(x, Geometry) ∧ x = y)
+
+* FOL: Tableau [4pt]
+
+Utilizzare il metodo del Tableau per verificare se la seguente formula è ...
+
+#+begin_quote
+∃y ∀x (P(y) ∧ Q(y) ⊃ Q(x) ∧ P(x))
+#+end_quote
+
+- Valida
+- Soddisfacibile
+- Insoddisfacibile
+
+* FOL: Teoria [3pt]
+
+Consideriamo H, la logica di Hilbert del primo ordine. Dire quali
+delle seguenti affermazioni sono vere:
+
+- A ⊃ (B ⊃ A) è un assioma di H
+- A ⊃ (¬ B ⊃ A) è un teorema di H
+- ∀ c. (A ⊃ B) ⊃ (A ⊃ ∀ c. B), dove c
+  non occorre libera in A, è un assioma di H
+- “da A e A ⊃ B si può derivare B” è un assioma di H
+- I teoremi di H sono un sottoinsieme proprio dei teoremi che si
+  possono dedurre usando il calcolo dei tableau per la logica del
+  primo ordine
+ 
+* ML: Informal to Formal [4pt]
+
+Immaginando di:
+
+1. avere un frame $F$ = < $W$, $R$ > di una logica temporale dove $(w_1, w_2) \in R$
+   se e solo se $w_2$ rappresenta lo stato del mondo in
+   un istante di *tempo* successivo a quello di $w_1$
+2. $w \models \mbox{Piovuto}$ è vero se ha piovuto nel mondo $w$
+3. $w \models \mbox{Bagnato}$ è vero se il prato è bagnato nel mondo
+   $w$
+
+come rappresentereste la seguente frase in $F$?
+
+#+begin_notes
+Suggerimento: provate a disegnare F corrispondente alle configurazioni
+di ogni risposta.
+#+end_notes
+
+Se il prato è bagnato è possible che abbia piovuto
+
+- Piovuto ⊃ ⋄ Bagnato
+- Piovuto ⊃ Bagnato
+- Bagnato ⊃ ⋄ Piovuto
+- Bagnato ⊃ □ Piovuto
+
+
+* ML: Mondi [3pt] 
+
+ Si consideri il seguente frame
+
+ F = < W, R >
+
+ dove:
+
+ - W = { 1, 2, 3 }
+ - R = { (1,2), (2,3), (3,1) }
+
+ Sia data la seguente funzione di interpretazione
+
+ I(A) = { 1 } \\
+ I(B) = { 2 } \\
+ I(C) = { 3 }
+
+ Dire quali delle seguenti affermazioni sono vere:
+
+ -  F ⊨ □ □ A iff B
+ -  F ⊨ □ A ⊃ ⋄ □ A
+ -  F ⊨ □ (A ⊃ □ B)
+ -  F ⊨ B ∧ □ □ A
+ -  F ⊨ C ⊃ ⋄ ⋄ A
+ -  F ⊨ ¬ B ∨ □ □ A
+
+* DL: Informal to Formal [3pt]
+
+Sia dato il seguente database
+ 
+**Persona**
+| Nome     | Vive_in | Amico_di | Nazionalità | Uomo  | Età |
+|----------+---------+----------+-------------+-------+-----|
+| Fausto   | Trento  | Adolfo   | Italiano    | Vero  |  50 |
+| MaryAnne | Milano  | Fausto   | Americano   | Falso |  35 |
+| Adolfo   | Italia  | MaryAnne | Italiano    | Vero  |  40 |
+
+Quali delle seguenti affermazioni sono vere?
+
+- Un Data Scientist che dovesse formalizzare la conoscenza
+  implicita codificata nella base di dati sopra rappresentata
+  utilizzando le parole nel loro significato inteso, potrebbe
+  codificare la seguente TBOX ?
+ 
+
+  #+begin_verse
+  TBOX = {
+           Uomo ⊑ Persona,
+           not Uomo ⊑ Persona
+         }
+  #+end_verse
+
+- Il data scientist di cui al punto precedente potrebbe
+  arricchire la TBOX di al punto precedente con il seguente fatto?
+ 
+  #+begin_verse
+  { \exists Nazionalita.Italiano \subsumedby By Persona}
+  #+end_verse
+
+- Il Data scientist di cui al punto precedente potrebbe arricchire la
+  TBOX di cui al punto precedente con il seguente fatto?
+
+  #+begin_verse
+  { Età ⊑ Persona }
+  #+end_verse
+
+- Assumendo Open World assumption, la seguente ABOX rappresenta
+  correttamente ma non completamente i contenuti del data base?
+
+  #+begin_verse
+  ABOX = {
+           Amico_di(Fausto, Adolfo), 
+           Amico_di(Adolfo, MaryAnne),
+           Uomo(Fausto), 
+           Uomo (MaryAnne)
+         }
+  #+end_verse
+
+- Nel processo di formalizzazione della ABOX, un data scientist
+  potrebbe aggiungere i seguenti due fatti alla ABOX, intendendo per
+  part_of il fatto che il primo elemento è geograficamente incluso nel
+  secondo?
+
+  #+begin_verse
+  { Part_of(Trento, Italia), part_of(Milano, Italia) }
+  #+end_verse
+
+* DL: KG [4pt]
+
+Descrivere sinteticamente (max 30 righe) come, intuitivamente, le
+logiche descrittive possano essere messe in corrispondenza con le
+logiche multimodali. In particolare indicare almeno tre elementi della
+sintassi o della semantica di una logica descrittiva e la loro
+corrispondenza con altrettanti elementi della sintassi o della
+semantica di una logica multimodale. (Usare elementi diversi da quelli
+presentati nell'esempio sotto.)
+
+Ad esempio.
+
+- AND_SQUARE in logica descrittiva è utilizzato per intersecare due
+  concetti e corrisponde a AND in logica modale, che viene utilizzato
+  per congiungere il valore di verità di due formule.
+- OR_SQUARE in logica descrittiva è utilizzato per unire due concetti
+  e corrisponde a OR in logica modale, che viene utilizzato per
+  disgiungere il valore di verità di due formule.
+- NOT in logica descrittiva è utilizzato per costruire il complemento
+  rispetto al dominio di un concetto e corrisponde a NOT in logica
+  modale, utilizzato per negare il valore di verità di una formula
+

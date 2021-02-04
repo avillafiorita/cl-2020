@@ -1,6 +1,7 @@
 #+TITLE: Examination and Grading
 #+DATE: <2020-08-31 Mon>
 #+INCLUDE: _navigation-l0.org
+#+STARTUP: showall
 
 * General Information
 
@@ -29,3 +30,7 @@ In the following you can find aggregated results of exams:
   - [[file:exam/sample-exams/final-term-2020.org][Final-term 2020 with answers]]
   - [[file:exam/final-term-2020/risultati.html][Risultati Aggregati Prova 18/12/2020]]
   - [[file:exam/final-term-2020/feedback.org][Feedback Received]]
+- Exam, January 2021
+  - [[file:exam/sample-exams/exam-2021.01-noanswers.org][Exam 2021.01 with no answers]]
+  - [[file:exam/sample-exams/exam-2021.01.org][Exam 2021.01 with answers]]
+  - [[file:exam/exam-2021.01/risultati.org][Feedback Received]]

@@ -2,3 +2,5 @@ _site
 *~
 *.html
 material/
+#.*#
+*.svg

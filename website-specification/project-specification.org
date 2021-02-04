@@ -25,7 +25,7 @@ To load this configuration, either =M-x org-babel-execute-buffer= on
 this buffer (=C-c C-b- C-v=) or put in your Emacs initialization file (=.emacs.el=):
 
 #+BEGIN_EXAMPLE emacs-lisp
-(setq project-location (expand-file-name "~/Sites/home/site-building/org-project-specification.org"))
+(setq project-location (expand-file-name "~/Sites/home/website-specification/project-specification.org"))
 
 (if (file-exists-p project-location)
     (org-babel-load-file project-location)
@@ -91,8 +91,6 @@ this buffer (=C-c C-b- C-v=) or put in your Emacs initialization file (=.emacs.e
    #+INCLUDE: _navigation-l0.org
    #+end_example
 
-   
-
    #+BEGIN_SRC emacs-lisp :results silent
      (setq website-menu
            '((nil                  . "CL-2020")
@@ -118,10 +116,10 @@ this buffer (=C-c C-b- C-v=) or put in your Emacs initialization file (=.emacs.e
                "</div>"))
 
      ;; generate four files with navigation with links at different depths
-     (with-temp-file "../_navigation-l0.org" (insert (cl-2020-preamble nil)))
-     (with-temp-file "../_navigation-l1.org" (insert (cl-2020-preamble nil "../")))
-     (with-temp-file "../_navigation-l2.org" (insert (cl-2020-preamble nil "../../")))
-     (with-temp-file "../_navigation-l3.org" (insert (cl-2020-preamble nil "../../../")))
+     (with-temp-file (expand-file-name (concat sources "_navigation-l0.org")) (insert (cl-2020-preamble nil)))
+     (with-temp-file (expand-file-name (concat sources "../_navigation-l1.org")) (insert (cl-2020-preamble nil "../")))
+     (with-temp-file (expand-file-name (concat sources "../_navigation-l2.org")) (insert (cl-2020-preamble nil "../../")))
+     (with-temp-file (expand-file-name (concat sources "../_navigation-l3.org")) (insert (cl-2020-preamble nil "../../../")))
    #+END_SRC
    
 
